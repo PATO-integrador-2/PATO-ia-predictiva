@@ -1,0 +1,101 @@
+{
+  "model": "RandomForestRegressor_NationalPoverty",
+  "r2": 0.9927949350057187,
+  "mae": 0.950445072640318,
+  "rmse": 1.4269330203170607,
+  "best_params": {
+    "n_estimators": 200,
+    "max_depth": 10,
+    "min_samples_split": 2,
+    "min_samples_leaf": 1,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "feature_importance": [
+    {
+      "Feature": "value_lag1",
+      "Importance": 0.965998433806091
+    },
+    {
+      "Feature": "value_lag2",
+      "Importance": 0.017338578732879337
+    },
+    {
+      "Feature": "deviation_from_global",
+      "Importance": 0.007758066373267835
+    },
+    {
+      "Feature": "value_lag3",
+      "Importance": 0.002941126583596385
+    },
+    {
+      "Feature": "value_trend",
+      "Importance": 0.0026527444879543634
+    },
+    {
+      "Feature": "country_encoded",
+      "Importance": 0.0013326023696863302
+    },
+    {
+      "Feature": "global_mean",
+      "Importance": 0.0006399114965396153
+    },
+    {
+      "Feature": "measure_encoded",
+      "Importance": 0.00029922870954663896
+    },
+    {
+      "Feature": "years_since_2010",
+      "Importance": 0.0002823020808403145
+    },
+    {
+      "Feature": "area_encoded",
+      "Importance": 0.00027102790346508244
+    },
+    {
+      "Feature": "year",
+      "Importance": 0.0002593654037777854
+    },
+    {
+      "Feature": "year_squared",
+      "Importance": 0.00022661205235534747
+    }
+  ],
+  "feature_names": [
+    "year",
+    "year_squared",
+    "years_since_2010",
+    "value_lag1",
+    "value_lag2",
+    "value_lag3",
+    "value_trend",
+    "global_mean",
+    "deviation_from_global",
+    "area_encoded",
+    "country_encoded",
+    "measure_encoded"
+  ],
+  "areas": [
+    "National",
+    "Rural",
+    "Urban"
+  ],
+  "countries": [
+    "Chile",
+    "Colombia",
+    "Costa Rica",
+    "Dominican Republic",
+    "Ecuador",
+    "Honduras",
+    "Mexico",
+    "Panama",
+    "Paraguay"
+  ],
+  "measures": [
+    "Incidencia (H)",
+    "Incidencia ajustada (M0)",
+    "Intensidad (A)"
+  ],
+  "train_date": "2026-09-09T21:38:16.105197",
+  "n_samples": 534
+}

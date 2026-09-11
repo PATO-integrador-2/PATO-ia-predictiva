@@ -1,0 +1,112 @@
+{
+  "model": "RandomForestRegressor_IncidenceByHeadSex",
+  "mae": 1.3177567460317432,
+  "rmse": 1.898196220392661,
+  "r2": 0.9031100487163087,
+  "params": {
+    "n_estimators": 150,
+    "max_depth": 12,
+    "min_samples_split": 3,
+    "min_samples_leaf": 1,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "feature_importance": [
+    {
+      "Feature": "trend",
+      "Importance": 0.2637776211970973
+    },
+    {
+      "Feature": "deviation_from_global",
+      "Importance": 0.1479403198196641
+    },
+    {
+      "Feature": "domain_std",
+      "Importance": 0.12353050942676366
+    },
+    {
+      "Feature": "lag3",
+      "Importance": 0.08897410304627848
+    },
+    {
+      "Feature": "lag2",
+      "Importance": 0.07640313842933183
+    },
+    {
+      "Feature": "lag1",
+      "Importance": 0.07571316978264767
+    },
+    {
+      "Feature": "domain_mean",
+      "Importance": 0.06849021803908796
+    },
+    {
+      "Feature": "ma2",
+      "Importance": 0.06735239654597959
+    },
+    {
+      "Feature": "ma3",
+      "Importance": 0.05975321685897295
+    },
+    {
+      "Feature": "domain_norm",
+      "Importance": 0.020716096233564105
+    },
+    {
+      "Feature": "domain_encoded",
+      "Importance": 0.00651370319915432
+    },
+    {
+      "Feature": "sex_encoded",
+      "Importance": 0.0007216720207448824
+    },
+    {
+      "Feature": "global_mean",
+      "Importance": 0.00011383540071314304
+    },
+    {
+      "Feature": "year_squared",
+      "Importance": 0.0
+    },
+    {
+      "Feature": "years_since_2010",
+      "Importance": 0.0
+    },
+    {
+      "Feature": "year",
+      "Importance": 0.0
+    }
+  ],
+  "feature_names": [
+    "year",
+    "year_squared",
+    "years_since_2010",
+    "lag1",
+    "lag2",
+    "lag3",
+    "ma2",
+    "ma3",
+    "trend",
+    "global_mean",
+    "deviation_from_global",
+    "domain_mean",
+    "domain_std",
+    "domain_norm",
+    "domain_encoded",
+    "sex_encoded"
+  ],
+  "sexes": [
+    "Hombre",
+    "Mujer"
+  ],
+  "domains": [
+    "Cabeceras",
+    "Caribe",
+    "Central",
+    "Centros poblados y rural disperso",
+    "Nacional",
+    "Oriental"
+  ],
+  "train_date": "2026-09-08T13:04:33.698049",
+  "n_samples": 24
+}

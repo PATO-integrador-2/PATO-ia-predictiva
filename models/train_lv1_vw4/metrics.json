@@ -1,0 +1,120 @@
+{
+  "model": "RandomForestRegressor_DimensionContribution",
+  "mae": 0.5980598941798992,
+  "rmse": 0.7131419455115355,
+  "r2": 0.9957552660276069,
+  "params": {
+    "n_estimators": 150,
+    "max_depth": 12,
+    "min_samples_split": 3,
+    "min_samples_leaf": 1,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "feature_importance": [
+    {
+      "Feature": "lag3",
+      "Importance": 0.1602063079400028
+    },
+    {
+      "Feature": "ma3",
+      "Importance": 0.1510028724839274
+    },
+    {
+      "Feature": "global_mean",
+      "Importance": 0.14685352375138827
+    },
+    {
+      "Feature": "lag2",
+      "Importance": 0.14093590148439886
+    },
+    {
+      "Feature": "lag1",
+      "Importance": 0.12137079801894925
+    },
+    {
+      "Feature": "ma2",
+      "Importance": 0.11917345148711021
+    },
+    {
+      "Feature": "domain_mean",
+      "Importance": 0.10081143326894458
+    },
+    {
+      "Feature": "trend",
+      "Importance": 0.04476545582845158
+    },
+    {
+      "Feature": "dimension_encoded",
+      "Importance": 0.0062797950418376075
+    },
+    {
+      "Feature": "deviation_from_global",
+      "Importance": 0.005595593572481577
+    },
+    {
+      "Feature": "domain_norm",
+      "Importance": 0.0014063819993667217
+    },
+    {
+      "Feature": "domain_std",
+      "Importance": 0.0010140560762059595
+    },
+    {
+      "Feature": "domain_encoded",
+      "Importance": 0.00039199624578849495
+    },
+    {
+      "Feature": "sum_dimensions",
+      "Importance": 0.00019243280114668619
+    },
+    {
+      "Feature": "year",
+      "Importance": 0.0
+    },
+    {
+      "Feature": "years_since_2010",
+      "Importance": 0.0
+    },
+    {
+      "Feature": "year_squared",
+      "Importance": 0.0
+    }
+  ],
+  "feature_names": [
+    "year",
+    "year_squared",
+    "years_since_2010",
+    "lag1",
+    "lag2",
+    "lag3",
+    "ma2",
+    "ma3",
+    "trend",
+    "global_mean",
+    "deviation_from_global",
+    "domain_mean",
+    "domain_std",
+    "domain_norm",
+    "sum_dimensions",
+    "domain_encoded",
+    "dimension_encoded"
+  ],
+  "dimensions": [
+    "Educaci\u00f3n",
+    "Ni\u00f1ez y Juventud",
+    "Salud",
+    "Trabajo",
+    "Vivienda"
+  ],
+  "domains": [
+    "Cabecera",
+    "Caribe",
+    "Central",
+    "Centros poblados y rural disperso",
+    "Nacional",
+    "Oriental"
+  ],
+  "train_date": "2026-09-07T20:36:25.392303",
+  "n_samples": 60
+}

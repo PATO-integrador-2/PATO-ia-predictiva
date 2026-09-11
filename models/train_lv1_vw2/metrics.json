@@ -1,0 +1,171 @@
+{
+  "model": "RandomForestRegressor_PrivationsOnly",
+  "global": {
+    "mae": 0.18042594966141406,
+    "rmse": 0.2306469413730938,
+    "r2": 0.9652832657186091,
+    "feature_importance": [
+      {
+        "Feature": "domain_trend",
+        "Importance": 0.2510494886994954
+      },
+      {
+        "Feature": "ipm_lag1",
+        "Importance": 0.2487203250333489
+      },
+      {
+        "Feature": "variable_trend",
+        "Importance": 0.2392392843377993
+      },
+      {
+        "Feature": "ipm_lag3",
+        "Importance": 0.12454734030085471
+      },
+      {
+        "Feature": "ipm_lag2",
+        "Importance": 0.10993786522037557
+      },
+      {
+        "Feature": "year_squared",
+        "Importance": 0.007661321065022834
+      },
+      {
+        "Feature": "years_since_2010",
+        "Importance": 0.007050401720198763
+      },
+      {
+        "Feature": "year",
+        "Importance": 0.006757755171973181
+      },
+      {
+        "Feature": "variable_encoded",
+        "Importance": 0.003386932780362729
+      },
+      {
+        "Feature": "domain_encoded",
+        "Importance": 0.001649285670568621
+      }
+    ],
+    "feature_names": [
+      "year",
+      "year_squared",
+      "years_since_2010",
+      "ipm_lag1",
+      "ipm_lag2",
+      "ipm_lag3",
+      "domain_trend",
+      "variable_trend",
+      "domain_encoded",
+      "variable_encoded"
+    ]
+  },
+  "by_variable": {
+    "Analfabetismo": {
+      "mae": 0.9244197442808337,
+      "rmse": 1.2607830752296871,
+      "r2": 0.07117694957058329
+    },
+    "Bajo logro educativo": {
+      "mae": 0.5652035551813097,
+      "rmse": 0.8602172797187885,
+      "r2": 0.42050895079426254
+    },
+    "Barreras a servicios para cuidado de la primera infancia": {
+      "mae": 0.7515910301651078,
+      "rmse": 0.8457849461440589,
+      "r2": 0.5129837101818524
+    },
+    "Barreras de acceso a servicios de salud": {
+      "mae": 0.6279131735961692,
+      "rmse": 1.0688179502742954,
+      "r2": -0.24538873933786043
+    },
+    "Desempleo de larga duración": {
+      "mae": 0.6274208316740134,
+      "rmse": 0.9452717768214641,
+      "r2": -0.4879646298060474
+    },
+    "Hacinamiento crítico": {
+      "mae": 0.6377186673471055,
+      "rmse": 0.9665953635563982,
+      "r2": 0.21510479431506113
+    },
+    "Inadecuada eliminación de excretas": {
+      "mae": 0.5483031033933553,
+      "rmse": 0.7645402729604529,
+      "r2": 0.46670628554911764
+    },
+    "Inasistencia escolar": {
+      "mae": 0.18578702507697473,
+      "rmse": 0.31176031834166634,
+      "r2": 0.8559032840976434
+    },
+    "Material inadecuado de paredes exteriores": {
+      "mae": 0.6484791015382904,
+      "rmse": 0.8956524462672415,
+      "r2": 0.28584880430281423
+    },
+    "Material inadecuado de pisos": {
+      "mae": 0.2671998066931456,
+      "rmse": 0.37203503916020686,
+      "r2": 0.8753232692600607
+    },
+    "Rezago escolar": {
+      "mae": 0.7511082052688197,
+      "rmse": 1.024081322281861,
+      "r2": 0.2955674006815474
+    },
+    "Sin acceso a fuente de agua mejorada": {
+      "mae": 1.203501487919435,
+      "rmse": 1.4948196587162603,
+      "r2": 0.21464559738210598
+    },
+    "Sin aseguramiento en salud": {
+      "mae": 0.7069912502159239,
+      "rmse": 1.0572136298348689,
+      "r2": 0.1059178101639835
+    },
+    "Trabajo infantil": {
+      "mae": 0.5991922890963859,
+      "rmse": 1.0240581489015543,
+      "r2": -0.02169361417946436
+    },
+    "Trabajo informal": {
+      "mae": 0.653600763632167,
+      "rmse": 0.743478711699995,
+      "r2": 0.5499543653982908
+    }
+  },
+  "variables": [
+    "Analfabetismo",
+    "Bajo logro educativo",
+    "Barreras a servicios para cuidado de la primera infancia",
+    "Barreras de acceso a servicios de salud",
+    "Desempleo de larga duración",
+    "Hacinamiento crítico",
+    "Inadecuada eliminación de excretas",
+    "Inasistencia escolar",
+    "Material inadecuado de paredes exteriores",
+    "Material inadecuado de pisos",
+    "Rezago escolar",
+    "Sin acceso a fuente de agua mejorada",
+    "Sin aseguramiento en salud",
+    "Trabajo infantil",
+    "Trabajo informal"
+  ],
+  "domains": [
+    "Agregado",
+    "Agregado PDET",
+    "Cabeceras",
+    "Cabeceras PDET",
+    "Centros poblados y rural disperso",
+    "Centros poblados y rural disperso PDET",
+    "Centros poblados y rural disperso*",
+    "Nacional",
+    "Nacional*"
+  ],
+  "n_estimators": 150,
+  "max_depth": 10,
+  "train_date": "2026-09-10T04:38:29.155067",
+  "n_samples": 948
+}

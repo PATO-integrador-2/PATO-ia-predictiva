@@ -1,0 +1,62 @@
+{
+  "model": "RandomForestRegressor_Simple",
+  "mae": 0.22683870967741648,
+  "rmse": 0.264342153644754,
+  "r2": 0.9416590676095997,
+  "feature_importance": [
+    {
+      "Feature": "deviation_from_global",
+      "Importance": 0.8347682633449612
+    },
+    {
+      "Feature": "lag1",
+      "Importance": 0.031951134168606156
+    },
+    {
+      "Feature": "domain_percentile",
+      "Importance": 0.028793477150342382
+    },
+    {
+      "Feature": "ma2",
+      "Importance": 0.020055071483721966
+    },
+    {
+      "Feature": "global_mean",
+      "Importance": 0.016892542690806454
+    },
+    {
+      "Feature": "pos_relative_max",
+      "Importance": 0.015495788337612153
+    },
+    {
+      "Feature": "ma3",
+      "Importance": 0.015117896580701853
+    },
+    {
+      "Feature": "domain_norm",
+      "Importance": 0.013544879304813774
+    },
+    {
+      "Feature": "global_ma3",
+      "Importance": 0.013218754522345819
+    },
+    {
+      "Feature": "acceleration",
+      "Importance": 0.01016219241608824
+    }
+  ],
+  "feature_names": [
+    "deviation_from_global",
+    "domain_percentile",
+    "lag1",
+    "ma2",
+    "global_ma3",
+    "ma3",
+    "acceleration",
+    "global_mean",
+    "pos_relative_max",
+    "domain_norm"
+  ],
+  "train_date": "2026-09-07T18:38:03.309192",
+  "n_samples": 183
+}

@@ -1,0 +1,110 @@
+{
+  "model": "RandomForestRegressor_IncidenceBySex",
+  "mae": 0.24054886305450773,
+  "rmse": 0.4201318877415547,
+  "r2": 0.9958130096209248,
+  "feature_importance": [
+    {
+      "Feature": "deviation_from_global",
+      "Importance": 0.973987588170085
+    },
+    {
+      "Feature": "ma2",
+      "Importance": 0.014814169304541056
+    },
+    {
+      "Feature": "ma3",
+      "Importance": 0.004315504248693342
+    },
+    {
+      "Feature": "lag2",
+      "Importance": 0.0022289955353764503
+    },
+    {
+      "Feature": "lag1",
+      "Importance": 0.001953916941692262
+    },
+    {
+      "Feature": "lag3",
+      "Importance": 0.0015197582022406261
+    },
+    {
+      "Feature": "domain_norm",
+      "Importance": 0.0007920225697243079
+    },
+    {
+      "Feature": "domain_std",
+      "Importance": 0.00019574462743925908
+    },
+    {
+      "Feature": "domain_mean",
+      "Importance": 9.31758279895726e-05
+    },
+    {
+      "Feature": "trend",
+      "Importance": 7.328003938105814e-05
+    },
+    {
+      "Feature": "dominio_encoded",
+      "Importance": 1.6777582877992565e-05
+    },
+    {
+      "Feature": "sexo_encoded",
+      "Importance": 9.066949959032834e-06
+    }
+  ],
+  "feature_names": [
+    "dominio_encoded",
+    "sexo_encoded",
+    "lag1",
+    "lag2",
+    "lag3",
+    "domain_mean",
+    "domain_std",
+    "domain_norm",
+    "ma2",
+    "ma3",
+    "trend",
+    "deviation_from_global"
+  ],
+  "n_estimators": 100,
+  "max_depth": 8,
+  "train_date": "2026-09-10T07:04:57.685169",
+  "n_samples": 298,
+  "train_years": [
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
+  ],
+  "test_years": [
+    2023,
+    2024,
+    2025
+  ],
+  "domains": [
+    "Antioquia",
+    "Bogotá",
+    "Bogotá (Cabecera)",
+    "Cabeceras",
+    "Caribe",
+    "Central",
+    "Centros poblados y rural disperso",
+    "Nacional",
+    "Oriental",
+    "Orinoquía - Amazonía",
+    "Pacífica",
+    "Pacífica (sin incluir Valle del Cauca)",
+    "Valle del Cauca"
+  ],
+  "sexes": [
+    "Hombre",
+    "Mujer"
+  ]
+}

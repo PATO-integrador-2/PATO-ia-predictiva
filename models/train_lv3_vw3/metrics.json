@@ -1,0 +1,115 @@
+{
+  "model": "RandomForestRegressor_PovertyByAge",
+  "r2": 0.9681982225694448,
+  "mae": 2.904297764434612,
+  "rmse": 4.0358293077068765,
+  "params": {
+    "n_estimators": 200,
+    "max_depth": 20,
+    "min_samples_split": 2,
+    "min_samples_leaf": 1,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "feature_importance": [
+    {
+      "Feature": "value_lag1",
+      "Importance": 0.8646945518686376
+    },
+    {
+      "Feature": "avg_previous_2",
+      "Importance": 0.05468718339850793
+    },
+    {
+      "Feature": "avg_previous_3",
+      "Importance": 0.03910089722641246
+    },
+    {
+      "Feature": "deviation_from_global",
+      "Importance": 0.02759504378217231
+    },
+    {
+      "Feature": "value_trend",
+      "Importance": 0.009890764772123334
+    },
+    {
+      "Feature": "global_mean",
+      "Importance": 0.0013728521555805635
+    },
+    {
+      "Feature": "value_lag2",
+      "Importance": 0.00126410845809192
+    },
+    {
+      "Feature": "country_encoded",
+      "Importance": 0.0003557294232600024
+    },
+    {
+      "Feature": "year_squared",
+      "Importance": 0.00028274918247197584
+    },
+    {
+      "Feature": "years_since_2010",
+      "Importance": 0.00027188378658106975
+    },
+    {
+      "Feature": "year",
+      "Importance": 0.00024380279007581884
+    },
+    {
+      "Feature": "age_range_encoded",
+      "Importance": 0.00014887651340771835
+    },
+    {
+      "Feature": "area_encoded",
+      "Importance": 9.155664267728149e-05
+    }
+  ],
+  "feature_names": [
+    "year",
+    "year_squared",
+    "years_since_2010",
+    "value_lag1",
+    "value_lag2",
+    "avg_previous_2",
+    "avg_previous_3",
+    "value_trend",
+    "global_mean",
+    "deviation_from_global",
+    "area_encoded",
+    "country_encoded",
+    "age_range_encoded"
+  ],
+  "areas": [
+    "National",
+    "Rural",
+    "Urban"
+  ],
+  "countries": [
+    "Argentina",
+    "Bolivia (Plurinational State of)",
+    "Brazil",
+    "Chile",
+    "Colombia",
+    "Costa Rica",
+    "Dominican Republic",
+    "Ecuador",
+    "El Salvador",
+    "Honduras",
+    "Latin America (simple average)",
+    "Latin America (weighted average)",
+    "Mexico",
+    "Panama",
+    "Paraguay",
+    "Peru",
+    "Uruguay"
+  ],
+  "age_ranges": [
+    "0 a 17 a\u00f1os",
+    "18 a 59 a\u00f1os",
+    "60 a\u00f1os y m\u00e1s",
+    "Total"
+  ],
+  "train_date": "2026-09-09T21:52:46.175458",
+  "n_samples": 2408
+}
