@@ -6,7 +6,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 from typing import List, Optional
 import uvicorn
 
@@ -850,6 +850,79 @@ async def export_pdf(request: ExportPDFRequest):
     )
 
 
+# Predictores "simples": su predict() recibe exactamente los campos del request.
+# tipo (usado en la URL) -> (llave en `predictors`, modelo de request, función de título)
+SIMPLE_PREDICTORS = {
+    "ipm": ("ipm", PredictIPMRequest, lambda r: f"Predicción IPM - {r.domain}"),
+    "privacion": ("privacion", PredictPrivacionRequest, lambda r: f"Predicción privación {r.variable} - {r.domain}"),
+    "porcentaje": ("porcentaje", PredictPorcentajeRequest, lambda r: f"Predicción porcentaje - {r.domain}"),
+    "dimension": ("dimension", PredictDimensionRequest, lambda r: f"Predicción dimensión {r.dimension} - {r.domain}"),
+    "incidence_by_sex": ("incidence_sex", PredictIncidenceBySexRequest, lambda r: f"Predicción incidencia por sexo - {r.domain}"),
+    "incidence_by_head_sex": ("incidence_head_sex", PredictIncidenceByHeadSexRequest, lambda r: f"Predicción incidencia jefe de hogar - {r.domain}"),
+    "contribution_latam": ("contribution_latam", PredictContributionLatamRequest, lambda r: f"Predicción contribución Latam - {r.country}"),
+    "national_poverty": ("national_poverty", PredictNationalPovertyRequest, lambda r: f"Predicción pobreza nacional - {r.country}"),
+    "poverty_by_age": ("poverty_by_age", PredictPovertyByAgeRequest, lambda r: f"Predicción pobreza por edad - {r.country}"),
+}
+
+
+@app.post("/export/pdf/{predictor_type}")
+async def export_prediction_pdf(predictor_type: str, payload: dict):
+    """
+    Genera la predicción (nivel 1 o 3) y la exporta a PDF en un solo paso,
+    sin que el cliente tenga que llamar antes a /predict/* ni enviar el
+    `data` manualmente.
+
+    El body es el mismo que usarías en /predict/{predictor_type} (domain,
+    begin_year, years, etc.), más los campos opcionales `title`, `subtitle`
+    y `columns` para personalizar el PDF.
+
+    Nota: los predictores de nivel 2 (department_poverty, multiple_departments,
+    household_poverty, multiple_households) no están soportados aquí; para
+    esos usa /predict/{type} y luego /export/pdf con el `data` resultante.
+    """
+    if predictor_type not in SIMPLE_PREDICTORS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Tipo de predictor desconocido o no soportado: '{predictor_type}'. "
+                   f"Valores válidos: {sorted(SIMPLE_PREDICTORS.keys())}"
+        )
+
+    title = payload.pop("title", None)
+    subtitle = payload.pop("subtitle", None)
+    columns = payload.pop("columns", None)
+
+    predictor_key, model_cls, title_fn = SIMPLE_PREDICTORS[predictor_type]
+    if predictors.get(predictor_key) is None:
+        raise HTTPException(status_code=500, detail=f"Predictor '{predictor_type}' no disponible")
+
+    try:
+        req = model_cls(**payload)
+        df = predictors[predictor_key].predict(**req.dict())
+        data = df.to_dict(orient='records')
+    except ValidationError as e:
+        raise HTTPException(status_code=422, detail=e.errors())
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    final_title = title or title_fn(req)
+    try:
+        pdf_bytes = generate_pdf_report(
+            title=final_title,
+            data=data,
+            subtitle=subtitle,
+            columns=columns
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    filename = f"{final_title.strip().replace(' ', '_') or 'reporte'}.pdf"
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'}
+    )
+
+
 # ENDPOINTS GET
 
 @app.get("/")
@@ -876,7 +949,8 @@ async def root():
             "POST /predict/national_poverty": "Predicción de población en situación de pobreza multidimensional (cifras nacionales)",
             "POST /predict/poverty_by_age": "Predicción de incidencia de pobreza multidimensional por grupo de edad y área",
             # EXPORTACIÓN
-            "POST /export/pdf": "Exporta a PDF los datos obtenidos de cualquier endpoint /predict/*"
+            "POST /export/pdf": "Exporta a PDF los datos obtenidos de cualquier endpoint /predict/*",
+            "POST /export/pdf/{predictor_type}": "Genera la predicción (nivel 1 o 3) y la exporta a PDF en un solo paso (mismo body que /predict/{predictor_type})"
         }
     }
 

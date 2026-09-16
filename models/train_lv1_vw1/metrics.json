@@ -1,36 +1,36 @@
 {
   "model": "RandomForestRegressor_Global_Improved",
-  "mae": 1.5723190375917535,
-  "rmse": 2.200353096995565,
-  "r2": 0.9440785816585485,
+  "mae": 1.499852190339045,
+  "rmse": 2.027495022906679,
+  "r2": 0.9530351480189152,
   "feature_importance": [
     {
       "Feature": "ipm_lag1",
-      "Importance": 0.6044723328082433
+      "Importance": 0.5893697289403105
     },
     {
       "Feature": "ipm_lag2",
-      "Importance": 0.34808110663389663
+      "Importance": 0.3813797797375489
     },
     {
       "Feature": "domain_trend",
-      "Importance": 0.029186267033664504
+      "Importance": 0.020264589089342918
     },
     {
       "Feature": "domain_encoded",
-      "Importance": 0.014678103442195806
-    },
-    {
-      "Feature": "year_squared",
-      "Importance": 0.0014931158516509
+      "Importance": 0.0043174501532877415
     },
     {
       "Feature": "year",
-      "Importance": 0.0010568553792976026
+      "Importance": 0.0016930114956650892
+    },
+    {
+      "Feature": "year_squared",
+      "Importance": 0.0015580019051551265
     },
     {
       "Feature": "years_since_2010",
-      "Importance": 0.0010322188510512539
+      "Importance": 0.0014174386786897772
     }
   ],
   "feature_names": [
@@ -44,8 +44,8 @@
   ],
   "n_estimators": 150,
   "max_depth": 8,
-  "train_date": "2026-09-07T15:29:34.129101",
-  "n_samples": 199,
+  "train_date": "2026-09-15T23:13:04.511517",
+  "n_samples": 217,
   "years": [
     2020,
     2021,
