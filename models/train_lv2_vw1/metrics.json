@@ -1,0 +1,189 @@
+{
+  "model": "RandomForestRegressor_DepartmentPoverty_v2",
+  "r2": 0.9985160878442647,
+  "mae": 0.0008880880302550844,
+  "rmse": 0.0048239485650386224,
+  "best_params": {
+    "n_estimators": 200,
+    "max_depth": 15,
+    "min_samples_split": 2,
+    "min_samples_leaf": 1,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "feature_importance": [
+    {
+      "Feature": "privacion_bajo_logro_educativo",
+      "Importance": 0.3900417331444839
+    },
+    {
+      "Feature": "privacion_tasa_empleo_formal",
+      "Importance": 0.1793537354052421
+    },
+    {
+      "Feature": "privacion_analfabetismo",
+      "Importance": 0.07561749230009213
+    },
+    {
+      "Feature": "privacion_no_aseguramiento_salud",
+      "Importance": 0.053038435179620105
+    },
+    {
+      "Feature": "privacion_rezago_escolar",
+      "Importance": 0.04173999443224353
+    },
+    {
+      "Feature": "privacion_desempleo_larga_duracion",
+      "Importance": 0.040974948823366664
+    },
+    {
+      "Feature": "privacion_inadecuada_eliminacion_excretas",
+      "Importance": 0.03586811752862693
+    },
+    {
+      "Feature": "ipm_trend",
+      "Importance": 0.03565334859948764
+    },
+    {
+      "Feature": "privacion_barreras_acceso_salud",
+      "Importance": 0.02717282240302968
+    },
+    {
+      "Feature": "ipm_lag3",
+      "Importance": 0.024540411700214756
+    },
+    {
+      "Feature": "privacion_inasistencia_escolar",
+      "Importance": 0.01849346494718497
+    },
+    {
+      "Feature": "privacion_no_acceso_agua_mejorada",
+      "Importance": 0.0165865161417773
+    },
+    {
+      "Feature": "privacion_inadecuado_material_pisos",
+      "Importance": 0.016186298179601682
+    },
+    {
+      "Feature": "privacion_hacinamiento_critico",
+      "Importance": 0.015499199784711997
+    },
+    {
+      "Feature": "privacion_atencion_integral_primera_infancia",
+      "Importance": 0.0147661130830947
+    },
+    {
+      "Feature": "privacion_inadecuado_material_paredes",
+      "Importance": 0.00875327769973323
+    },
+    {
+      "Feature": "privacion_trabajo_infantil",
+      "Importance": 0.004708628987261588
+    },
+    {
+      "Feature": "ipm_lag1",
+      "Importance": 0.0002185774292209142
+    },
+    {
+      "Feature": "personas_que_habitan_ese_hogar",
+      "Importance": 0.00021290489733888495
+    },
+    {
+      "Feature": "ipm_lag2",
+      "Importance": 0.00020307212500436653
+    },
+    {
+      "Feature": "departamento_encoded",
+      "Importance": 0.00017563136965290351
+    },
+    {
+      "Feature": "region_encoded",
+      "Importance": 6.522400729091793e-05
+    },
+    {
+      "Feature": "years_since_2010",
+      "Importance": 4.4125688985591326e-05
+    },
+    {
+      "Feature": "year",
+      "Importance": 4.3320172030931355e-05
+    },
+    {
+      "Feature": "year_squared",
+      "Importance": 4.260597070252612e-05
+    }
+  ],
+  "feature_names": [
+    "year",
+    "year_squared",
+    "years_since_2010",
+    "ipm_lag1",
+    "ipm_lag2",
+    "ipm_lag3",
+    "ipm_trend",
+    "personas_que_habitan_ese_hogar",
+    "privacion_bajo_logro_educativo",
+    "privacion_analfabetismo",
+    "privacion_inasistencia_escolar",
+    "privacion_rezago_escolar",
+    "privacion_atencion_integral_primera_infancia",
+    "privacion_trabajo_infantil",
+    "privacion_no_aseguramiento_salud",
+    "privacion_barreras_acceso_salud",
+    "privacion_desempleo_larga_duracion",
+    "privacion_tasa_empleo_formal",
+    "privacion_no_acceso_agua_mejorada",
+    "privacion_inadecuada_eliminacion_excretas",
+    "privacion_inadecuado_material_pisos",
+    "privacion_inadecuado_material_paredes",
+    "privacion_hacinamiento_critico",
+    "region_encoded",
+    "departamento_encoded"
+  ],
+  "regions": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "8"
+  ],
+  "departments": [
+    "11",
+    "13",
+    "15",
+    "17",
+    "18",
+    "19",
+    "20",
+    "23",
+    "25",
+    "27",
+    "41",
+    "44",
+    "47",
+    "5",
+    "50",
+    "52",
+    "54",
+    "63",
+    "66",
+    "68",
+    "70",
+    "73",
+    "76",
+    "8",
+    "81",
+    "85",
+    "86",
+    "88",
+    "91",
+    "94",
+    "95",
+    "97",
+    "99"
+  ],
+  "train_date": "2026-09-10T04:38:24.346212",
+  "n_samples": 189062
+}
