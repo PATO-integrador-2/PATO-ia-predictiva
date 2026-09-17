@@ -4,13 +4,12 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from fastapi import FastAPI, HTTPException, Response
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional
 import uvicorn
 
-from api.pdf_export import generate_pdf_report
 
 # PREDICTORES 
 # NIVEL 1
@@ -166,15 +165,6 @@ class PredictPovertyByAgeRequest(BaseModel):
     age_range: str
     begin_year: int = 2026
     years: int = 5
-
-# EXPORTACIÓN
-class ExportPDFRequest(BaseModel):
-    """Request para exportar un conjunto de datos (p. ej. el `data` de cualquier /predict/*) como PDF."""
-    title: str
-    subtitle: Optional[str] = None
-    data: List[dict]
-    columns: Optional[List[str]] = None
-
 
 # Objects de respuesta de la API
 class APIResponse(BaseModel):
@@ -821,35 +811,6 @@ async def predict_poverty_by_age(request: PredictPovertyByAgeRequest):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-# EXPORTACIÓN
-
-@app.post("/export/pdf")
-async def export_pdf(request: ExportPDFRequest):
-    """
-    Exporta a PDF un conjunto de datos generado por cualquier endpoint /predict/*.
-
-    El cliente primero consulta el endpoint de predicción deseado y luego
-    envía el campo `data` de esa respuesta (junto con un título) a este
-    endpoint para obtener un archivo PDF descargable.
-    """
-    try:
-        pdf_bytes = generate_pdf_report(
-            title=request.title,
-            data=request.data,
-            subtitle=request.subtitle,
-            columns=request.columns
-        )
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
-
-    filename = f"{request.title.strip().replace(' ', '_') or 'reporte'}.pdf"
-    return Response(
-        content=pdf_bytes,
-        media_type="application/pdf",
-        headers={"Content-Disposition": f'attachment; filename="{filename}"'}
-    )
-
-
 # ENDPOINTS GET
 
 @app.get("/")
@@ -874,9 +835,7 @@ async def root():
             # NIVEL 3
             "POST /predict/contribution_latam": "Predicción de contribución relativa de privaciones en Latinoamérica",
             "POST /predict/national_poverty": "Predicción de población en situación de pobreza multidimensional (cifras nacionales)",
-            "POST /predict/poverty_by_age": "Predicción de incidencia de pobreza multidimensional por grupo de edad y área",
-            # EXPORTACIÓN
-            "POST /export/pdf": "Exporta a PDF los datos obtenidos de cualquier endpoint /predict/*"
+            "POST /predict/poverty_by_age": "Predicción de incidencia de pobreza multidimensional por grupo de edad y área"
         }
     }
 
@@ -906,6 +865,6 @@ if __name__ == "__main__":
     uvicorn.run(
         "api.main:app",
         host="0.0.0.0",
-        port=os.getenv("PORT"),
+        port=int(os.environ.get("PORT")),
         reload=True
     )

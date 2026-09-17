@@ -1,6 +1,11 @@
 # .gitignore
 .env
-*.pkl
 *.pyc
+models/train_lv2_vw1/
+src/level2/
+Endpoints nivel 1.txt
+Endpoints nivel 2.txt
+Endpoints nivel 3.txt
+
 __pycache__/
 .vscode
