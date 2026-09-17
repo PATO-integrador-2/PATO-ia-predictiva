@@ -1,0 +1,54 @@
+/** 
+// 1. Predecir un departamento
+POST /predict/department_poverty
+{
+    "region": "Caribe",
+    "departamento": "Atlántico",
+    "year": 2026
+}
+
+// 2. Predecir múltiples departamentos
+POST /predict/multiple_departments
+{
+    "region": "Caribe",
+    "departments": ["Atlántico", "Bolívar", "Magdalena"],
+    "year": 2026
+}
+
+// 3. Predecir un hogar
+POST /predict/household_poverty
+{
+    "region": "Caribe",
+    "departamento": "Atlántico",
+    "personas_que_habitan_ese_hogar": 4,
+    "privacion_bajo_logro_educativo": 1,
+    "privacion_analfabetismo": 0,
+    ...
+}
+
+// 4. Predecir múltiples hogares
+POST /predict/multiple_households
+{
+    "households": [
+        {
+            "region": "Caribe",
+            "departamento": "Atlántico",
+            ...
+        },
+        {
+            "region": "Andina",
+            "departamento": "Antioquia",
+            ...
+        }
+    ]
+}
+
+
+region=1: departamentos 13, 20, 23, 44, 47, 70, 8
+region=2: departamentos 15, 25, 50, 54, 68
+region=3: departamentos 17, 18, 41, 5, 63, 66, 73
+region=4: departamentos 19, 27, 52, 76
+region=5: departamentos 81, 85, 86, 91, 94, 95, 97, 99
+region=6: departamento 11
+region=8: departamento 88
+*/

@@ -1,0 +1,38 @@
+POST	
+
+VISTA 8
+/predict/contribution_latam
+Contribución relativa de privaciones en Latinoamérica
+{
+    "privation": "Acceso a Internet",
+    "country": "Argentina",
+    "begin_year": 2026,
+    "years": 5
+}
+
+
+VISTA 9
+POST	
+/predict/national_poverty
+Población en pobreza multidimensional (cifras nacionales)
+{
+    "country": "Costa Rica",
+    "area": "National",
+    "measure": "Incidencia (H)",
+    "begin_year": 2026,
+    "years": 5
+}
+
+
+VISTA 10
+POST	
+/predict/poverty_by_age
+Pobreza por grupo de edad y área
+
+{
+    "country": "Latin America (weighted average)",
+    "area": "National",
+    "age_range": "0 a 17 años",
+    "begin_year": 2026,
+    "years": 5
+}
