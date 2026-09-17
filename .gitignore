@@ -1,6 +1,5 @@
 # .gitignore
 .env
-*.pkl
 *.pyc
 models/train_lv2_vw1/
 src/level2/
