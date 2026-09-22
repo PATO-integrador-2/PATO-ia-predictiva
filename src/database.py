@@ -3,7 +3,8 @@
 import pandas as pd
 from sqlalchemy import create_engine, text
 from typing import Optional
-import os 
+import os
+from urllib.parse import quote_plus
 from dotenv import load_dotenv
 
 load_dotenv()  # Cargar variables de entorno desde el archivo .env
@@ -19,7 +20,7 @@ class Database:
 
         #Conección a la base de datos
         self.connection_string = (
-            f"postgresql://{self.user}:{self.password}" 
+            f"postgresql://{quote_plus(self.user)}:{quote_plus(self.password)}"
             f"@{self.host}:{self.port}/{self.database}"
         )
 
