@@ -1,116 +1,112 @@
 {
-  "model": "RandomForestRegressor_DepartmentPoverty_v2",
-  "r2": 0.9985160878442647,
-  "mae": 0.0008880880302550844,
-  "rmse": 0.0048239485650386224,
-  "best_params": {
-    "n_estimators": 200,
-    "max_depth": 15,
-    "min_samples_split": 2,
-    "min_samples_leaf": 1,
-    "random_state": 42,
-    "n_jobs": -1
-  },
+  "model": "RandomForestRegressor_LV2_VW1",
+  "n_estimators": 200,
+  "max_depth": 15,
+  "min_samples_split": 2,
+  "min_samples_leaf": 1,
+  "mae": 0.0008625095034374824,
+  "rmse": 0.004790289237792771,
+  "r2": 0.998536723731536,
   "feature_importance": [
     {
       "Feature": "privacion_bajo_logro_educativo",
-      "Importance": 0.3900417331444839
+      "Importance": 0.3900540812088287
     },
     {
       "Feature": "privacion_tasa_empleo_formal",
-      "Importance": 0.1793537354052421
+      "Importance": 0.17943913092984556
     },
     {
       "Feature": "privacion_analfabetismo",
-      "Importance": 0.07561749230009213
+      "Importance": 0.07573511905344159
     },
     {
       "Feature": "privacion_no_aseguramiento_salud",
-      "Importance": 0.053038435179620105
+      "Importance": 0.05482342023219123
     },
     {
       "Feature": "privacion_rezago_escolar",
-      "Importance": 0.04173999443224353
+      "Importance": 0.04349564786818533
     },
     {
       "Feature": "privacion_desempleo_larga_duracion",
-      "Importance": 0.040974948823366664
+      "Importance": 0.04268001442561222
     },
     {
       "Feature": "privacion_inadecuada_eliminacion_excretas",
-      "Importance": 0.03586811752862693
+      "Importance": 0.0374086610718993
     },
     {
       "Feature": "ipm_trend",
-      "Importance": 0.03565334859948764
+      "Importance": 0.02965787620810897
     },
     {
       "Feature": "privacion_barreras_acceso_salud",
-      "Importance": 0.02717282240302968
+      "Importance": 0.028063219924035862
     },
     {
       "Feature": "ipm_lag3",
-      "Importance": 0.024540411700214756
+      "Importance": 0.019590684027135406
     },
     {
       "Feature": "privacion_inasistencia_escolar",
-      "Importance": 0.01849346494718497
+      "Importance": 0.01916476805667958
     },
     {
       "Feature": "privacion_no_acceso_agua_mejorada",
-      "Importance": 0.0165865161417773
+      "Importance": 0.017022731332273274
     },
     {
       "Feature": "privacion_inadecuado_material_pisos",
-      "Importance": 0.016186298179601682
+      "Importance": 0.016778226755443458
     },
     {
       "Feature": "privacion_hacinamiento_critico",
-      "Importance": 0.015499199784711997
+      "Importance": 0.0160544528470232
     },
     {
       "Feature": "privacion_atencion_integral_primera_infancia",
-      "Importance": 0.0147661130830947
+      "Importance": 0.015080997871718125
     },
     {
       "Feature": "privacion_inadecuado_material_paredes",
-      "Importance": 0.00875327769973323
+      "Importance": 0.00902441609388925
     },
     {
       "Feature": "privacion_trabajo_infantil",
-      "Importance": 0.004708628987261588
-    },
-    {
-      "Feature": "ipm_lag1",
-      "Importance": 0.0002185774292209142
+      "Importance": 0.004875918689042977
     },
     {
       "Feature": "personas_que_habitan_ese_hogar",
-      "Importance": 0.00021290489733888495
+      "Importance": 0.00022538857703110793
+    },
+    {
+      "Feature": "ipm_lag1",
+      "Importance": 0.00022324543780069634
     },
     {
       "Feature": "ipm_lag2",
-      "Importance": 0.00020307212500436653
+      "Importance": 0.00021336367477812785
     },
     {
       "Feature": "departamento_encoded",
-      "Importance": 0.00017563136965290351
+      "Importance": 0.00017337107142748187
     },
     {
       "Feature": "region_encoded",
-      "Importance": 6.522400729091793e-05
-    },
-    {
-      "Feature": "years_since_2010",
-      "Importance": 4.4125688985591326e-05
+      "Importance": 8.45782833647852e-05
     },
     {
       "Feature": "year",
-      "Importance": 4.3320172030931355e-05
+      "Importance": 4.490624883233981e-05
     },
     {
       "Feature": "year_squared",
-      "Importance": 4.260597070252612e-05
+      "Importance": 4.321648608775509e-05
+    },
+    {
+      "Feature": "years_since_2010",
+      "Importance": 4.25636253237137e-05
     }
   ],
   "feature_names": [
@@ -140,50 +136,63 @@
     "region_encoded",
     "departamento_encoded"
   ],
+  "train_date": "2026-09-23T19:52:43.938449",
+  "n_samples": 189062,
+  "train_years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "test_years": [
+    2024,
+    2025
+  ],
+  "n_features": 25,
   "regions": [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "8"
+    "Bogotá D.C.",
+    "Caribe",
+    "Central",
+    "Oriental",
+    "Orinoquía - Amazonía",
+    "Pacífica",
+    "Sin clasificar"
   ],
   "departments": [
-    "11",
-    "13",
-    "15",
-    "17",
-    "18",
-    "19",
-    "20",
-    "23",
-    "25",
-    "27",
-    "41",
-    "44",
-    "47",
-    "5",
-    "50",
-    "52",
-    "54",
-    "63",
-    "66",
-    "68",
-    "70",
-    "73",
-    "76",
-    "8",
-    "81",
-    "85",
-    "86",
-    "88",
-    "91",
-    "94",
-    "95",
-    "97",
-    "99"
-  ],
-  "train_date": "2026-09-10T04:38:24.346212",
-  "n_samples": 189062
+    "Bogotá, D.C.",
+    "Atlántico",
+    "Bolívar",
+    "Cesar",
+    "Córdoba",
+    "La Guajira",
+    "Magdalena",
+    "Sucre",
+    "Antioquia",
+    "Caldas",
+    "Caquetá",
+    "Huila",
+    "Quindío",
+    "Risaralda",
+    "Tolima",
+    "Boyacá",
+    "Cundinamarca",
+    "Meta",
+    "Norte de Santander",
+    "Santander",
+    "Amazonas",
+    "Arauca",
+    "Casanare",
+    "Guainía",
+    "Guaviare",
+    "Putumayo",
+    "Vaupés",
+    "Vichada",
+    "Cauca",
+    "Chocó",
+    "Nariño",
+    "Valle del Cauca",
+    "Archipiélago de San Andrés, Providencia y Santa Catalina"
+  ]
 }

@@ -6,9 +6,10 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, root_validator
 from typing import List, Optional
 import uvicorn
+import unicodedata
 
 
 # PREDICTORES 
@@ -96,12 +97,70 @@ class PredictIncidenceByHeadSexRequest(BaseModel):
 
 #NIVEL 2 
 
+def _normalize_level2_text(value):
+    """Normaliza texto para comparar nombres de región y departamento sin depender de mayúsculas, tildes o variantes de formato."""
+    if value is None:
+        return ""
+    text = str(value).strip()
+    return ''.join(
+        ch for ch in unicodedata.normalize('NFKD', text)
+        if not unicodedata.combining(ch)
+    ).lower().replace('.', '').replace(',', '').replace('-', ' ').replace('_', ' ')
+
+
+def _coerce_level2_name(value, accepted_values):
+    """Devuelve el nombre exacto aceptado por el modelo, validando el valor recibido por la API."""
+    if value is None:
+        return value
+
+    raw_value = str(value).strip()
+    if not raw_value:
+        return raw_value
+
+    accepted = list(accepted_values or [])
+    normalized_input = _normalize_level2_text(raw_value)
+
+    for option in accepted:
+        if _normalize_level2_text(option) == normalized_input:
+            return option
+
+    return raw_value
+
+
+def _serialize_level2_trend(data_frame):
+    """Serializa las columnas internas del predictor con nombres públicos en inglés."""
+    return [
+        {
+            'department': record['departamento'],
+            'region': record['region'],
+            'last_observed_year': record['anio_real'],
+            'last_observed_ipm': record['ipm_real'],
+            'year': record['año'],
+            'predicted_ipm': record['ipm_predicho'],
+            'change': record['cambio'],
+            'change_percentage': record['cambio_porcentaje']
+        }
+        for record in data_frame.to_dict(orient='records')
+    ]
+
+
 class PredictDepartmentPovertyRequest(BaseModel):
     """Request para predicción de pobreza por departamento (múltiples años)."""
     region: str
-    departamento: str
+    department: str
     begin_year: int = 2026
     years: int = 5
+
+    @root_validator(pre=True)
+    def normalize_fields(cls, values):
+        if isinstance(values, dict):
+            if 'region' not in values and 'region_name' in values:
+                values['region'] = values['region_name']
+            if 'department' not in values and 'departamento' in values:
+                values['department'] = values['departamento']
+            if 'department' not in values and 'departamento_name' in values:
+                values['department'] = values['departamento_name']
+        return values
 
 
 class PredictMultipleDepartmentsRequest(BaseModel):
@@ -111,11 +170,22 @@ class PredictMultipleDepartmentsRequest(BaseModel):
     begin_year: int = 2026
     years: int = 5
 
+    @root_validator(pre=True)
+    def normalize_fields(cls, values):
+        if isinstance(values, dict):
+            if 'region' not in values and 'region_name' in values:
+                values['region'] = values['region_name']
+            if 'departments' not in values and 'department' in values:
+                values['departments'] = values['department'] if isinstance(values['department'], list) else [values['department']]
+            if 'departments' not in values and 'departamentos' in values:
+                values['departments'] = values['departamentos'] if isinstance(values['departamentos'], list) else [values['departamentos']]
+        return values
+
 
 class PredictHouseholdPovertyRequest(BaseModel):
     """Request para predicción de pobreza para un hogar específico."""
     region: str
-    departamento: str
+    department: str
     personas_que_habitan_ese_hogar: int
     privacion_bajo_logro_educativo: int
     privacion_analfabetismo: int
@@ -134,6 +204,17 @@ class PredictHouseholdPovertyRequest(BaseModel):
     privacion_hacinamiento_critico: int
     begin_year: int = 2026
     years: int = 5
+
+    @root_validator(pre=True)
+    def normalize_fields(cls, values):
+        if isinstance(values, dict):
+            if 'region' not in values and 'region_name' in values:
+                values['region'] = values['region_name']
+            if 'department' not in values and 'departamento' in values:
+                values['department'] = values['departamento']
+            if 'department' not in values and 'departamento_name' in values:
+                values['department'] = values['departamento_name']
+        return values
 
 
 class PredictMultipleHouseholdsRequest(BaseModel):
@@ -299,7 +380,7 @@ async def predict_ipm(request: PredictIPMRequest):
 
     try:
         df = predictors['ipm'].predict(domain=request.domain, begin_year=request.begin_year, years=request.years)
-        data = df.to_dict(orient='records')
+        data = _serialize_level2_trend(df)
 
         return APIResponse(
             success=True,
@@ -323,7 +404,7 @@ async def predict_privacion(request: PredictPrivacionRequest):
             begin_year=request.begin_year,
             years=request.years
         )
-        data = df.to_dict(orient='records')
+        data = _serialize_level2_trend(df)
 
         return APIResponse(
             success=True,
@@ -429,68 +510,33 @@ async def predict_incidence_by_head_sex(request: PredictIncidenceByHeadSexReques
         raise HTTPException(status_code=400, detail=str(e))
 
 # NIVEL 2
+
 @app.post("/predict/department_poverty", response_model=APIResponse)
 async def predict_department_poverty(request: PredictDepartmentPovertyRequest):
     """
     Predice el IPM promedio para un departamento específico para múltiples años.
-    
-    Args:
-        region: Nombre de la región (ej. 'Caribe', 'Andina')
-        departamento: Nombre del departamento (ej. 'Atlántico', 'Antioquia')
-        begin_year: Año inicial para la predicción (default: 2026)
-        years: Número de años a predecir (default: 5)
-    
-    Returns:
-        Lista de IPMs predichos para el departamento
     """
     if predictors['department_poverty'] is None:
         raise HTTPException(status_code=500, detail="Predictor Pobreza por Departamento no disponible")
 
     try:
-        # Obtener datos historicos para contexto
-        historical = predictors['department_poverty']._get_historical_data(
-            request.region, 
-            request.departamento, 
-            years_hist=5
+        accepted_regions = list(predictors['department_poverty'].le_region.classes_)
+        accepted_departments = list(predictors['department_poverty'].le_departamento.classes_)
+        region = _coerce_level2_name(request.region, accepted_regions)
+        department = _coerce_level2_name(request.department, accepted_departments)
+
+        df = predictors['department_poverty'].predict_department_trend(
+            region=region,
+            departamentos=[department],
+            año_inicio=request.begin_year,
+            años=request.years
         )
-        
-        # Predecir para cada año
-        predictions = []
-        for year in range(request.begin_year, request.begin_year + request.years):
-            ipm_pred = predictors['department_poverty'].predict_department_average(
-                region=request.region,
-                departamento=request.departamento,
-                year=year
-            )
-            predictions.append({
-                'anio': year,
-                'ipm_predicho': round(ipm_pred, 4)
-            })
-        
-        # Calcular tendencia
-        ultimo_real = historical['ipm'].iloc[-1]
-        ultimo_predicho = predictions[-1]['ipm_predicho']
-        
-        data = [{
-            'region': request.region,
-            'departamento': request.departamento,
-            'begin_year': request.begin_year,
-            'years': request.years,
-            'ipm_historico': [
-                {
-                    'anio': int(row['anio']),
-                    'ipm': float(row['ipm'])
-                }
-                for _, row in historical.iterrows()
-            ],
-            'predicciones': predictions,
-            'tendencia': 'decreciente' if ultimo_predicho < ultimo_real else 'creciente',
-            'cambio_porcentual': round(((ultimo_predicho - ultimo_real) / ultimo_real) * 100, 2) if ultimo_real > 0 else 0
-        }]
+
+        data = df.to_dict(orient='records')
 
         return APIResponse(
             success=True,
-            message=f"Predicciones generadas para {request.departamento} - {request.region} ({request.years} años)",
+            message=f"Predicciones generadas para {department} - {region} ({request.years} años)",
             data=data
         )
     except Exception as e:
@@ -501,84 +547,28 @@ async def predict_department_poverty(request: PredictDepartmentPovertyRequest):
 async def predict_multiple_departments(request: PredictMultipleDepartmentsRequest):
     """
     Predice el IPM para múltiples departamentos de una región para múltiples años.
-    
-    Args:
-        region: Nombre de la región
-        departments: Lista de nombres de departamentos
-        begin_year: Año inicial para la predicción (default: 2026)
-        years: Número de años a predecir (default: 5)
-    
-    Returns:
-        DataFrame comparativo con predicciones para todos los departamentos
     """
     if predictors['department_poverty'] is None:
         raise HTTPException(status_code=500, detail="Predictor Pobreza por Departamento no disponible")
 
     try:
-        # Predecir para cada departamento
-        resultados_por_depto = {}
-        
-        for depto in request.departments:
-            try:
-                # Obtener datos historicos
-                historical = predictors['department_poverty']._get_historical_data(
-                    request.region, 
-                    depto, 
-                    years_hist=3
-                )
-                
-                # Predecir para cada año
-                predicciones = []
-                for year in range(request.begin_year, request.begin_year + request.years):
-                    ipm_pred = predictors['department_poverty'].predict_department_average(
-                        region=request.region,
-                        departamento=depto,
-                        year=year
-                    )
-                    predicciones.append({
-                        'anio': year,
-                        'ipm_predicho': round(ipm_pred, 4)
-                    })
-                
-                resultados_por_depto[depto] = {
-                    'ipm_historico': float(historical['ipm'].iloc[-1]),
-                    'anio_historico': int(historical['anio'].iloc[-1]),
-                    'predicciones': predicciones
-                }
-                
-            except Exception as e:
-                print(f"  Error con {depto}: {e}")
-                resultados_por_depto[depto] = {
-                    'error': str(e)
-                }
-        
-        # Crear tabla comparativa por años
-        tabla_comparativa = []
-        for year in range(request.begin_year, request.begin_year + request.years):
-            fila = {'anio': year}
-            for depto in request.departments:
-                if depto in resultados_por_depto and 'predicciones' in resultados_por_depto[depto]:
-                    # Buscar el valor para este año
-                    for pred in resultados_por_depto[depto]['predicciones']:
-                        if pred['anio'] == year:
-                            fila[depto] = pred['ipm_predicho']
-                            break
-                else:
-                    fila[depto] = None
-            tabla_comparativa.append(fila)
-        
-        data = [{
-            'region': request.region,
-            'begin_year': request.begin_year,
-            'years': request.years,
-            'departamentos': request.departments,
-            'resultados_por_departamento': resultados_por_depto,
-            'tabla_comparativa': tabla_comparativa
-        }]
+        accepted_regions = list(predictors['department_poverty'].le_region.classes_)
+        accepted_departments = list(predictors['department_poverty'].le_departamento.classes_)
+        region = _coerce_level2_name(request.region, accepted_regions)
+        departamentos = [_coerce_level2_name(depto, accepted_departments) for depto in request.departments]
+
+        df = predictors['department_poverty'].predict_department_trend(
+            region=region,
+            departamentos=departamentos,
+            año_inicio=request.begin_year,
+            años=request.years
+        )
+
+        data = df.to_dict(orient='records')
 
         return APIResponse(
             success=True,
-            message=f"Predicciones generadas para {len(request.departments)} departamentos",
+            message=f"Predicciones generadas para {len(departamentos)} departamentos",
             data=data
         )
     except Exception as e:
@@ -589,37 +579,43 @@ async def predict_multiple_departments(request: PredictMultipleDepartmentsReques
 async def predict_household_poverty(request: PredictHouseholdPovertyRequest):
     """
     Predice el IPM para un hogar específico basado en sus características.
-    
-    Args:
-        Todos los campos de privación del hogar (16 variables)
-        begin_year: Año inicial para la predicción (default: 2026)
-        years: Número de años a predecir (default: 5)
-    
-    Returns:
-        IPM predicho para el hogar en múltiples años
     """
     if predictors['department_poverty'] is None:
         raise HTTPException(status_code=500, detail="Predictor Pobreza por Departamento no disponible")
 
     try:
-        # Convertir request a diccionario
+        accepted_regions = list(predictors['department_poverty'].le_region.classes_)
+        accepted_departments = list(predictors['department_poverty'].le_departamento.classes_)
+        region = _coerce_level2_name(request.region, accepted_regions)
+        department = _coerce_level2_name(request.department, accepted_departments)
+
         hogar = request.dict()
-        
-        # Predecir para cada año
+        hogar['region'] = region
+        hogar['departamento'] = department
+
         predicciones = []
         for year in range(request.begin_year, request.begin_year + request.years):
-            # Actualizar el año en el hogar (aunque no se usa directamente, lo mantenemos para contexto)
             hogar['anio'] = year
-            
-            # Predecir
+            hogar['year'] = year
+            hogar['year_squared'] = year ** 2
+            hogar['years_since_2010'] = year - 2010
+
+            if 'ipm_lag1' not in hogar:
+                hogar['ipm_lag1'] = 0
+            if 'ipm_lag2' not in hogar:
+                hogar['ipm_lag2'] = 0
+            if 'ipm_lag3' not in hogar:
+                hogar['ipm_lag3'] = 0
+            if 'ipm_trend' not in hogar:
+                hogar['ipm_trend'] = 0
+
             ipm_pred = predictors['department_poverty'].predict_household(hogar)
-            
+
             predicciones.append({
-                'anio': year,
-                'ipm_predicho': round(ipm_pred, 4)
+                'year': year,
+                'predicted_ipm': round(ipm_pred, 4)
             })
-        
-        # Calcular número de privaciones
+
         privaciones = [
             hogar['privacion_bajo_logro_educativo'],
             hogar['privacion_analfabetismo'],
@@ -638,21 +634,20 @@ async def predict_household_poverty(request: PredictHouseholdPovertyRequest):
             hogar['privacion_hacinamiento_critico']
         ]
         total_privaciones = sum(privaciones)
-        
-        # Clasificación basada en el primer año de predicción
-        ipm_inicial = predicciones[0]['ipm_predicho'] if predicciones else 0
-        
+
+        ipm_inicial = predicciones[0]['predicted_ipm'] if predicciones else 0
+
         data = [{
             'region': hogar['region'],
-            'departamento': hogar['departamento'],
-            'personas_en_hogar': hogar['personas_que_habitan_ese_hogar'],
-            'total_privaciones': total_privaciones,
+            'department': hogar['departamento'],
+            'people_in_household': hogar['personas_que_habitan_ese_hogar'],
+            'total_deprivations': total_privaciones,
             'begin_year': request.begin_year,
             'years': request.years,
-            'predicciones': predicciones,
-            'clasificacion_inicial': 'Pobre' if ipm_inicial >= 0.3 else 'No Pobre',
-            'nivel_privacion': 'Alto' if ipm_inicial >= 0.5 else 'Medio' if ipm_inicial >= 0.2 else 'Bajo',
-            'tendencia': 'decreciente' if len(predicciones) >= 2 and predicciones[-1]['ipm_predicho'] < predicciones[0]['ipm_predicho'] else 'creciente'
+            'predictions': predicciones,
+            'initial_classification': 'Pobre' if ipm_inicial >= 0.3 else 'No Pobre',
+            'deprivation_level': 'Alto' if ipm_inicial >= 0.5 else 'Medio' if ipm_inicial >= 0.2 else 'Bajo',
+            'trend': 'decreasing' if len(predicciones) >= 2 and predicciones[-1]['predicted_ipm'] < predicciones[0]['predicted_ipm'] else 'increasing'
         }]
 
         return APIResponse(
@@ -668,34 +663,43 @@ async def predict_household_poverty(request: PredictHouseholdPovertyRequest):
 async def predict_multiple_households(request: PredictMultipleHouseholdsRequest):
     """
     Predice el IPM para múltiples hogares para múltiples años.
-    
-    Args:
-        households: Lista de hogares con sus características
-    
-    Returns:
-        Lista de predicciones para cada hogar en múltiples años
     """
     if predictors['department_poverty'] is None:
         raise HTTPException(status_code=500, detail="Predictor Pobreza por Departamento no disponible")
 
     try:
         resultados = []
-        
+
+        accepted_regions = list(predictors['department_poverty'].le_region.classes_)
+        accepted_departments = list(predictors['department_poverty'].le_departamento.classes_)
+
         for idx, hogar_request in enumerate(request.households):
-            # Convertir a diccionario
             hogar = hogar_request.dict()
-            
-            # Predecir para cada año
+            hogar['region'] = _coerce_level2_name(hogar_request.region, accepted_regions)
+            hogar['departamento'] = _coerce_level2_name(hogar_request.department, accepted_departments)
+
             predicciones = []
             for year in range(hogar_request.begin_year, hogar_request.begin_year + hogar_request.years):
                 hogar['anio'] = year
+                hogar['year'] = year
+                hogar['year_squared'] = year ** 2
+                hogar['years_since_2010'] = year - 2010
+
+                if 'ipm_lag1' not in hogar:
+                    hogar['ipm_lag1'] = 0
+                if 'ipm_lag2' not in hogar:
+                    hogar['ipm_lag2'] = 0
+                if 'ipm_lag3' not in hogar:
+                    hogar['ipm_lag3'] = 0
+                if 'ipm_trend' not in hogar:
+                    hogar['ipm_trend'] = 0
+
                 ipm_pred = predictors['department_poverty'].predict_household(hogar)
                 predicciones.append({
-                    'anio': year,
-                    'ipm_predicho': round(ipm_pred, 4)
+                    'year': year,
+                    'predicted_ipm': round(ipm_pred, 4)
                 })
-            
-            # Calcular privaciones
+
             privaciones = [
                 hogar['privacion_bajo_logro_educativo'],
                 hogar['privacion_analfabetismo'],
@@ -713,19 +717,19 @@ async def predict_multiple_households(request: PredictMultipleHouseholdsRequest)
                 hogar['privacion_inadecuado_material_paredes'],
                 hogar['privacion_hacinamiento_critico']
             ]
-            
-            ipm_inicial = predicciones[0]['ipm_predicho'] if predicciones else 0
-            
+
+            ipm_inicial = predicciones[0]['predicted_ipm'] if predicciones else 0
+
             resultados.append({
                 'hogar_id': idx + 1,
                 'region': hogar['region'],
-                'departamento': hogar['departamento'],
-                'personas_en_hogar': hogar['personas_que_habitan_ese_hogar'],
-                'total_privaciones': sum(privaciones),
+                'department': hogar['departamento'],
+                'people_in_household': hogar['personas_que_habitan_ese_hogar'],
+                'total_deprivations': sum(privaciones),
                 'begin_year': hogar_request.begin_year,
                 'years': hogar_request.years,
-                'predicciones': predicciones,
-                'clasificacion_inicial': 'Pobre' if ipm_inicial >= 0.3 else 'No Pobre'
+                'predictions': predicciones,
+                'initial_classification': 'Pobre' if ipm_inicial >= 0.3 else 'No Pobre'
             })
 
         return APIResponse(
@@ -735,7 +739,6 @@ async def predict_multiple_households(request: PredictMultipleHouseholdsRequest)
         )
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
-
 # NIVEL 3 
 
 @app.post("/predict/contribution_latam", response_model=APIResponse)

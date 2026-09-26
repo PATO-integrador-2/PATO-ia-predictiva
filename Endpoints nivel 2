@@ -3,8 +3,9 @@
 POST /predict/department_poverty
 {
     "region": "Caribe",
-    "departamento": "Atlántico",
-    "year": 2026
+    "department": "Atlántico",
+    "begin_year": 2026,
+    "years": 5
 }
 
 // 2. Predecir múltiples departamentos
@@ -12,14 +13,15 @@ POST /predict/multiple_departments
 {
     "region": "Caribe",
     "departments": ["Atlántico", "Bolívar", "Magdalena"],
-    "year": 2026
+    "begin_year": 2026,
+    "years": 5
 }
 
 // 3. Predecir un hogar
 POST /predict/household_poverty
 {
     "region": "Caribe",
-    "departamento": "Atlántico",
+    "department": "Atlántico",
     "personas_que_habitan_ese_hogar": 4,
     "privacion_bajo_logro_educativo": 1,
     "privacion_analfabetismo": 0,
@@ -32,12 +34,12 @@ POST /predict/multiple_households
     "households": [
         {
             "region": "Caribe",
-            "departamento": "Atlántico",
+            "department": "Atlántico",
             ...
         },
         {
             "region": "Andina",
-            "departamento": "Antioquia",
+            "department": "Antioquia",
             ...
         }
     ]
