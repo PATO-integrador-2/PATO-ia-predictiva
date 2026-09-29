@@ -380,7 +380,7 @@ async def predict_ipm(request: PredictIPMRequest):
 
     try:
         df = predictors['ipm'].predict(domain=request.domain, begin_year=request.begin_year, years=request.years)
-        data = _serialize_level2_trend(df)
+        data = df.to_dict(orient='records')
 
         return APIResponse(
             success=True,
@@ -404,7 +404,7 @@ async def predict_privacion(request: PredictPrivacionRequest):
             begin_year=request.begin_year,
             years=request.years
         )
-        data = _serialize_level2_trend(df)
+        data = df.to_dict(orient='records')
 
         return APIResponse(
             success=True,
