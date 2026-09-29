@@ -211,15 +211,4 @@ CI/CD en `.github/workflows/`:
 2. **`deploy.yml` – Deploy container:** al terminar el anterior (o manualmente), un runner
    *self-hosted* ejecuta `docker compose pull && docker compose up -d` en `WORK_DIR`.
 
-## Notas y limitaciones conocidas
 
-- Los predictores consultan la base de datos en cada llamada a `predict`; si la BD cae, las predicciones fallan
-  aunque los modelos estén cargados.
-- La predicción es recursiva: el error se acumula a medida que crece `years`. Las métricas de arriba
-  evalúan el conjunto de prueba, no horizontes largos.
-- `pdf_export.py` existe pero **no está conectado** a ningún endpoint en `main.py`.
-- `src/test_preprocessing.py` llama a `prepare_nivel1_data`, pero el método se llama `prepare_level1_data`
-  (el script está desactualizado). El preprocesamiento de nivel 3 está pendiente en `preprocessing.py`.
-- `Endpoints nivel 1` muestra `dimension` en `/predict/porcentaje`, pero el request real solo usa `domain`.
-- `.gitignore` menciona `src/level2/` y `models/train_lv2_vw1/`, pero ambos están versionados.
-- Las vistas 2 y 4 aparecen marcadas como "REVISAR" en `Endpoints nivel 1`.
