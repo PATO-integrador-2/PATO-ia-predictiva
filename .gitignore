@@ -1,6 +1,7 @@
 # .gitignore
 .env
 *.pyc
+/graphify-out/
 models/train_lv2_vw1/
 src/level2/
 Endpoints nivel 1.txt
