@@ -1,62 +1,4579 @@
 {
-  "model": "RandomForestRegressor_ContributionLatam",
-  "r2": 0.9192714343475885,
-  "mae": 0.6717310102164166,
-  "rmse": 1.3135452972321378,
-  "params": {
-    "n_estimators": 50,
-    "max_depth": 15,
-    "min_samples_split": 2,
-    "min_samples_leaf": 1,
-    "random_state": 42,
-    "n_jobs": -1
+  "model": "temporal_benchmark",
+  "selected_model": "naive",
+  "selected_model_by_series": {
+    "Argentina::Acceso a Internet": "xgboost",
+    "Argentina::Agua": "lightgbm",
+    "Argentina::Analfabetismo": "xgboost",
+    "Argentina::Aseguramiento en salud": "naive",
+    "Argentina::Calidad del empleo": "naive",
+    "Argentina::Condiciones de la vivienda": "naive",
+    "Argentina::Hacinamiento": "random_forest",
+    "Argentina::Inasistencia o rezago escolar": "naive",
+    "Argentina::Inserci\u00f3n laboral": "random_forest",
+    "Argentina::Logro educativo": "xgboost",
+    "Argentina::Pensiones": "naive",
+    "Argentina::Saneamiento": "lightgbm",
+    "Bolivia (Plurinational State of)::Acceso a Internet": "xgboost",
+    "Bolivia (Plurinational State of)::Agua": "random_forest",
+    "Bolivia (Plurinational State of)::Analfabetismo": "naive",
+    "Bolivia (Plurinational State of)::Aseguramiento en salud": "naive",
+    "Bolivia (Plurinational State of)::Calidad del empleo": "xgboost",
+    "Bolivia (Plurinational State of)::Condiciones de la vivienda": "naive",
+    "Bolivia (Plurinational State of)::Hacinamiento": "naive",
+    "Bolivia (Plurinational State of)::Inasistencia o rezago escolar": "naive",
+    "Bolivia (Plurinational State of)::Inserci\u00f3n laboral": "xgboost",
+    "Bolivia (Plurinational State of)::Logro educativo": "naive",
+    "Bolivia (Plurinational State of)::Pensiones": "lightgbm",
+    "Bolivia (Plurinational State of)::Saneamiento": "naive",
+    "Colombia::Acceso a Internet": "naive",
+    "Colombia::Agua": "naive",
+    "Colombia::Analfabetismo": "xgboost",
+    "Colombia::Aseguramiento en salud": "naive",
+    "Colombia::Calidad del empleo": "naive",
+    "Colombia::Condiciones de la vivienda": "naive",
+    "Colombia::Hacinamiento": "naive",
+    "Colombia::Inasistencia o rezago escolar": "naive",
+    "Colombia::Inserci\u00f3n laboral": "naive",
+    "Colombia::Logro educativo": "naive",
+    "Colombia::Pensiones": "random_forest",
+    "Colombia::Saneamiento": "random_forest",
+    "Costa Rica::Acceso a Internet": "naive",
+    "Costa Rica::Agua": "xgboost",
+    "Costa Rica::Analfabetismo": "naive",
+    "Costa Rica::Aseguramiento en salud": "naive",
+    "Costa Rica::Calidad del empleo": "random_forest",
+    "Costa Rica::Condiciones de la vivienda": "naive",
+    "Costa Rica::Hacinamiento": "xgboost",
+    "Costa Rica::Inasistencia o rezago escolar": "naive",
+    "Costa Rica::Inserci\u00f3n laboral": "lightgbm",
+    "Costa Rica::Logro educativo": "random_forest",
+    "Costa Rica::Pensiones": "xgboost",
+    "Costa Rica::Saneamiento": "lightgbm",
+    "Dominican Republic::Acceso a Internet": "lightgbm",
+    "Dominican Republic::Agua": "random_forest",
+    "Dominican Republic::Analfabetismo": "naive",
+    "Dominican Republic::Aseguramiento en salud": "naive",
+    "Dominican Republic::Calidad del empleo": "xgboost",
+    "Dominican Republic::Condiciones de la vivienda": "naive",
+    "Dominican Republic::Hacinamiento": "xgboost",
+    "Dominican Republic::Inasistencia o rezago escolar": "naive",
+    "Dominican Republic::Inserci\u00f3n laboral": "naive",
+    "Dominican Republic::Logro educativo": "naive",
+    "Dominican Republic::Pensiones": "naive",
+    "Dominican Republic::Saneamiento": "random_forest",
+    "Ecuador::Acceso a Internet": "naive",
+    "Ecuador::Agua": "naive",
+    "Ecuador::Analfabetismo": "naive",
+    "Ecuador::Aseguramiento en salud": "random_forest",
+    "Ecuador::Calidad del empleo": "random_forest",
+    "Ecuador::Condiciones de la vivienda": "xgboost",
+    "Ecuador::Hacinamiento": "lightgbm",
+    "Ecuador::Inasistencia o rezago escolar": "naive",
+    "Ecuador::Inserci\u00f3n laboral": "lightgbm",
+    "Ecuador::Logro educativo": "lightgbm",
+    "Ecuador::Pensiones": "naive",
+    "Ecuador::Saneamiento": "naive",
+    "El Salvador::Acceso a Internet": "lightgbm",
+    "El Salvador::Agua": "lightgbm",
+    "El Salvador::Analfabetismo": "xgboost",
+    "El Salvador::Aseguramiento en salud": "random_forest",
+    "El Salvador::Calidad del empleo": "xgboost",
+    "El Salvador::Condiciones de la vivienda": "xgboost",
+    "El Salvador::Hacinamiento": "lightgbm",
+    "El Salvador::Inasistencia o rezago escolar": "naive",
+    "El Salvador::Inserci\u00f3n laboral": "naive",
+    "El Salvador::Logro educativo": "naive",
+    "El Salvador::Pensiones": "naive",
+    "El Salvador::Saneamiento": "lightgbm",
+    "Honduras::Acceso a Internet": "xgboost",
+    "Honduras::Agua": "random_forest",
+    "Honduras::Analfabetismo": "lightgbm",
+    "Honduras::Aseguramiento en salud": "xgboost",
+    "Honduras::Calidad del empleo": "lightgbm",
+    "Honduras::Condiciones de la vivienda": "naive",
+    "Honduras::Hacinamiento": "xgboost",
+    "Honduras::Inasistencia o rezago escolar": "random_forest",
+    "Honduras::Inserci\u00f3n laboral": "xgboost",
+    "Honduras::Logro educativo": "lightgbm",
+    "Honduras::Pensiones": "lightgbm",
+    "Honduras::Saneamiento": "naive",
+    "Latin America (simple average)::Acceso a Internet": "lightgbm",
+    "Latin America (simple average)::Agua": "xgboost",
+    "Latin America (simple average)::Analfabetismo": "xgboost",
+    "Latin America (simple average)::Aseguramiento en salud": "naive",
+    "Latin America (simple average)::Calidad del empleo": "naive",
+    "Latin America (simple average)::Condiciones de la vivienda": "naive",
+    "Latin America (simple average)::Hacinamiento": "naive",
+    "Latin America (simple average)::Inasistencia o rezago escolar": "naive",
+    "Latin America (simple average)::Inserci\u00f3n laboral": "naive",
+    "Latin America (simple average)::Logro educativo": "naive",
+    "Latin America (simple average)::Pensiones": "naive",
+    "Latin America (simple average)::Saneamiento": "naive",
+    "Latin America (weighted average)::Acceso a Internet": "random_forest",
+    "Latin America (weighted average)::Agua": "random_forest",
+    "Latin America (weighted average)::Analfabetismo": "naive",
+    "Latin America (weighted average)::Aseguramiento en salud": "naive",
+    "Latin America (weighted average)::Calidad del empleo": "random_forest",
+    "Latin America (weighted average)::Condiciones de la vivienda": "naive",
+    "Latin America (weighted average)::Hacinamiento": "random_forest",
+    "Latin America (weighted average)::Inasistencia o rezago escolar": "naive",
+    "Latin America (weighted average)::Inserci\u00f3n laboral": "naive",
+    "Latin America (weighted average)::Logro educativo": "naive",
+    "Latin America (weighted average)::Pensiones": "naive",
+    "Latin America (weighted average)::Saneamiento": "naive",
+    "Mexico::Acceso a Internet": "random_forest",
+    "Mexico::Agua": "lightgbm",
+    "Mexico::Analfabetismo": "xgboost",
+    "Mexico::Aseguramiento en salud": "naive",
+    "Mexico::Calidad del empleo": "xgboost",
+    "Mexico::Condiciones de la vivienda": "xgboost",
+    "Mexico::Hacinamiento": "lightgbm",
+    "Mexico::Inasistencia o rezago escolar": "naive",
+    "Mexico::Inserci\u00f3n laboral": "xgboost",
+    "Mexico::Logro educativo": "naive",
+    "Mexico::Pensiones": "naive",
+    "Mexico::Saneamiento": "lightgbm",
+    "Paraguay::Acceso a Internet": "naive",
+    "Paraguay::Agua": "lightgbm",
+    "Paraguay::Analfabetismo": "xgboost",
+    "Paraguay::Aseguramiento en salud": "naive",
+    "Paraguay::Calidad del empleo": "xgboost",
+    "Paraguay::Condiciones de la vivienda": "lightgbm",
+    "Paraguay::Hacinamiento": "random_forest",
+    "Paraguay::Inasistencia o rezago escolar": "naive",
+    "Paraguay::Inserci\u00f3n laboral": "naive",
+    "Paraguay::Logro educativo": "xgboost",
+    "Paraguay::Pensiones": "naive",
+    "Paraguay::Saneamiento": "naive",
+    "Peru::Acceso a Internet": "naive",
+    "Peru::Agua": "random_forest",
+    "Peru::Analfabetismo": "naive",
+    "Peru::Aseguramiento en salud": "naive",
+    "Peru::Calidad del empleo": "naive",
+    "Peru::Condiciones de la vivienda": "naive",
+    "Peru::Hacinamiento": "naive",
+    "Peru::Inasistencia o rezago escolar": "naive",
+    "Peru::Inserci\u00f3n laboral": "xgboost",
+    "Peru::Logro educativo": "lightgbm",
+    "Peru::Pensiones": "xgboost",
+    "Peru::Saneamiento": "naive",
+    "Uruguay::Acceso a Internet": "random_forest",
+    "Uruguay::Agua": "xgboost",
+    "Uruguay::Analfabetismo": "random_forest",
+    "Uruguay::Aseguramiento en salud": "random_forest",
+    "Uruguay::Calidad del empleo": "lightgbm",
+    "Uruguay::Condiciones de la vivienda": "random_forest",
+    "Uruguay::Hacinamiento": "lightgbm",
+    "Uruguay::Inasistencia o rezago escolar": "naive",
+    "Uruguay::Inserci\u00f3n laboral": "random_forest",
+    "Uruguay::Logro educativo": "xgboost",
+    "Uruguay::Pensiones": "random_forest",
+    "Uruguay::Saneamiento": "lightgbm"
   },
-  "feature_importance": [
-    {
-      "Feature": "value_lag1",
-      "Importance": 0.9082186607183436
+  "candidates": {
+    "naive": {
+      "mae": 0.4474292777777778,
+      "rmse": 0.8445696361629658,
+      "mape": 8.456057448290357,
+      "r2": 0.9681330671720566
     },
-    {
-      "Feature": "value_lag2",
-      "Importance": 0.0546912798673067
+    "random_forest": {
+      "mae": 0.9165587670431403,
+      "rmse": 1.5384651490707277,
+      "mape": 19.87851471999736,
+      "r2": 0.8942586957712464
     },
-    {
-      "Feature": "value_trend",
-      "Importance": 0.022334974634484372
+    "xgboost": {
+      "mae": 1.0941039149591925,
+      "rmse": 1.9415746466567294,
+      "mape": 24.71364847136286,
+      "r2": 0.8315862593446114
     },
-    {
-      "Feature": "value_lag3",
-      "Importance": 0.007395240192811351
-    },
-    {
-      "Feature": "deviation_from_global",
-      "Importance": 0.0031496566561161885
-    },
-    {
-      "Feature": "global_mean",
-      "Importance": 0.0017957441940135044
-    },
-    {
-      "Feature": "country_encoded",
-      "Importance": 0.0010639835570911086
-    },
-    {
-      "Feature": "year",
-      "Importance": 0.00037421222650564694
-    },
-    {
-      "Feature": "year_squared",
-      "Importance": 0.0003724257659775195
-    },
-    {
-      "Feature": "years_since_2010",
-      "Importance": 0.0003718437436181125
-    },
-    {
-      "Feature": "privation_encoded",
-      "Importance": 0.00023197844373181706
+    "lightgbm": {
+      "mae": 1.0405846223216224,
+      "rmse": 1.8264024847484561,
+      "mape": 24.785250888309374,
+      "r2": 0.8509739068465813
     }
+  },
+  "metrics_by_series": {
+    "Argentina::Acceso a Internet": {
+      "naive": {
+        "mae": 1.0989825,
+        "rmse": 1.1374476392372967,
+        "mape": 37.87426760057732,
+        "r2": -6.972497991554229
+      },
+      "random_forest": {
+        "mae": 0.8991197245420282,
+        "rmse": 1.212685929155349,
+        "mape": 33.50384795833164,
+        "r2": -8.06208785163673
+      },
+      "xgboost": {
+        "mae": 0.9106404101409913,
+        "rmse": 0.9187234495297836,
+        "mape": 30.85065158610084,
+        "r2": -4.201171738891212
+      },
+      "lightgbm": {
+        "mae": 1.0019729119013112,
+        "rmse": 1.010582211358287,
+        "mape": 33.93530790889877,
+        "r2": -5.293248629194614
+      }
+    },
+    "Argentina::Agua": {
+      "naive": {
+        "mae": 0.23260999999999998,
+        "rmse": 0.23417695045627354,
+        "mape": 34.14802255521542,
+        "r2": -4.190986966718505
+      },
+      "random_forest": {
+        "mae": 0.38205217060714275,
+        "rmse": 0.4427413121777784,
+        "mape": 62.10079220678888,
+        "r2": -17.55503346349147
+      },
+      "xgboost": {
+        "mae": 0.24473154512977602,
+        "rmse": 0.2843902494435028,
+        "mape": 39.814580253707746,
+        "r2": -6.655808304462017
+      },
+      "lightgbm": {
+        "mae": 0.12516624237366797,
+        "rmse": 0.12637484802323196,
+        "mape": 18.310210318207915,
+        "r2": -0.5117603089666423
+      }
+    },
+    "Argentina::Analfabetismo": {
+      "naive": {
+        "mae": 0.4362115,
+        "rmse": 0.6154582337839831,
+        "mape": 15.413349379739982,
+        "r2": -1.000010943613622
+      },
+      "random_forest": {
+        "mae": 0.6243446123379035,
+        "rmse": 0.7900876352607021,
+        "mape": 23.13519481015107,
+        "r2": -2.2959888214795026
+      },
+      "xgboost": {
+        "mae": 0.34551099339675906,
+        "rmse": 0.47301067626495,
+        "mape": 12.371665395251712,
+        "r2": -0.18134592125386484
+      },
+      "lightgbm": {
+        "mae": 0.6572942020943641,
+        "rmse": 0.7400717114424942,
+        "mape": 25.683846498252656,
+        "r2": -1.8918969132642705
+      }
+    },
+    "Argentina::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.49588000000000054,
+        "rmse": 0.5973937010046223,
+        "mape": 3.5400792755430572,
+        "r2": -1.077070575691617
+      },
+      "random_forest": {
+        "mae": 0.7231778989196025,
+        "rmse": 0.8193437877444301,
+        "mape": 5.142305339637628,
+        "r2": -2.9071699836622575
+      },
+      "xgboost": {
+        "mae": 0.898816182098388,
+        "rmse": 0.9410419534733742,
+        "mape": 6.35060847413247,
+        "r2": -4.154041919350381
+      },
+      "lightgbm": {
+        "mae": 0.7170266069708857,
+        "rmse": 0.8335975744159827,
+        "mape": 5.107356024311008,
+        "r2": -3.0442953110169633
+      }
+    },
+    "Argentina::Calidad del empleo": {
+      "naive": {
+        "mae": 0.6723195000000022,
+        "rmse": 0.7026776514665188,
+        "mape": 3.679717317411025,
+        "r2": -1.5700442824736172
+      },
+      "random_forest": {
+        "mae": 0.6910461776091896,
+        "rmse": 0.8079877636832485,
+        "mape": 3.700892593373943,
+        "r2": -2.3981135874149353
+      },
+      "xgboost": {
+        "mae": 1.0031519557495123,
+        "rmse": 1.074566336006497,
+        "mape": 5.401163452690932,
+        "r2": -5.010281121798953
+      },
+      "lightgbm": {
+        "mae": 0.9507726880087368,
+        "rmse": 1.0177754421098744,
+        "mape": 5.119390299884512,
+        "r2": -4.391781190748256
+      }
+    },
+    "Argentina::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.05121400000000009,
+        "rmse": 0.05525490349281239,
+        "mape": 4.39600048921238,
+        "r2": -12.152239886449863
+      },
+      "random_forest": {
+        "mae": 0.07500634106048565,
+        "rmse": 0.09701693041506392,
+        "mape": 6.336157872396647,
+        "r2": -39.54647755320371
+      },
+      "xgboost": {
+        "mae": 0.23159610126113894,
+        "rmse": 0.23168131188108837,
+        "mape": 19.768109492337295,
+        "r2": -230.2278171769927
+      },
+      "lightgbm": {
+        "mae": 0.21105129047213478,
+        "rmse": 0.23222890468828733,
+        "mape": 18.128455603490362,
+        "r2": -231.32215080235417
+      }
+    },
+    "Argentina::Hacinamiento": {
+      "naive": {
+        "mae": 0.35923449999999946,
+        "rmse": 0.36032681727911886,
+        "mape": 2.120712200949392,
+        "r2": -3.7345109893293333
+      },
+      "random_forest": {
+        "mae": 0.2877754939909778,
+        "rmse": 0.3276220702569095,
+        "mape": 1.7092079266905913,
+        "r2": -2.9140670248993232
+      },
+      "xgboost": {
+        "mae": 0.4143387425537117,
+        "rmse": 0.5345137156149758,
+        "mape": 2.467400717362597,
+        "r2": -9.418367313835617
+      },
+      "lightgbm": {
+        "mae": 0.3991651454750986,
+        "rmse": 0.4464821279734171,
+        "mape": 2.3698008813886706,
+        "r2": -6.2692585586546965
+      }
+    },
+    "Argentina::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.08760900000000005,
+        "rmse": 0.08852286060673825,
+        "mape": 2.108258271929321,
+        "r2": -2.1160444552895803
+      },
+      "random_forest": {
+        "mae": 1.0557132931862832,
+        "rmse": 1.0571765448822112,
+        "mape": 25.344784411611954,
+        "r2": -443.4140737248352
+      },
+      "xgboost": {
+        "mae": 3.5430543289489744,
+        "rmse": 3.593670790702535,
+        "mape": 84.93911574274537,
+        "r2": -5134.341684199257
+      },
+      "lightgbm": {
+        "mae": 3.091160918691794,
+        "rmse": 3.107147722140693,
+        "mape": 74.16633065238591,
+        "r2": -3837.986352014876
+      }
+    },
+    "Argentina::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 0.84769,
+        "rmse": 0.9697473465805413,
+        "mape": 5.573792658298398,
+        "r2": -25.508548661693993
+      },
+      "random_forest": {
+        "mae": 0.4913472286666112,
+        "rmse": 0.5115984616855377,
+        "mape": 3.2415144936036215,
+        "r2": -6.377805652837914
+      },
+      "xgboost": {
+        "mae": 1.3122933354187012,
+        "rmse": 1.5993722489304916,
+        "mape": 8.613401798989786,
+        "r2": -71.10541210680017
+      },
+      "lightgbm": {
+        "mae": 0.5195552512841601,
+        "rmse": 0.7076883051137396,
+        "mape": 3.4797198333734207,
+        "r2": -13.117337207008495
+      }
+    },
+    "Argentina::Logro educativo": {
+      "naive": {
+        "mae": 1.5862610000000004,
+        "rmse": 1.677831655587056,
+        "mape": 20.922032816297737,
+        "r2": -9.41999870108303
+      },
+      "random_forest": {
+        "mae": 1.2766668944719788,
+        "rmse": 1.4816631144698882,
+        "mape": 17.106968124440904,
+        "r2": -7.1258693567948495
+      },
+      "xgboost": {
+        "mae": 0.8435011308898925,
+        "rmse": 1.1711590722570602,
+        "mape": 11.574188972683631,
+        "r2": -4.076947481345652
+      },
+      "lightgbm": {
+        "mae": 1.0350881925369455,
+        "rmse": 1.2509716955474026,
+        "mape": 13.949742550401961,
+        "r2": -4.792497617763367
+      }
+    },
+    "Argentina::Pensiones": {
+      "naive": {
+        "mae": 0.879629,
+        "rmse": 0.9678684390148282,
+        "mape": 25.45741825498185,
+        "r2": -15.546944864371369
+      },
+      "random_forest": {
+        "mae": 0.7293498828575034,
+        "rmse": 0.9815219887659156,
+        "mape": 21.709858954382824,
+        "r2": -16.017087426297866
+      },
+      "xgboost": {
+        "mae": 1.2458255757293701,
+        "rmse": 1.2625088812541307,
+        "mape": 34.60500870593945,
+        "r2": -27.154903750496338
+      },
+      "lightgbm": {
+        "mae": 0.8534157704832047,
+        "rmse": 1.0278297818023125,
+        "mape": 25.037092549065342,
+        "r2": -17.660683975456845
+      }
+    },
+    "Argentina::Saneamiento": {
+      "naive": {
+        "mae": 0.5357449999999995,
+        "rmse": 0.536773021909633,
+        "mape": 4.310296708623483,
+        "r2": -3.5635212884535292
+      },
+      "random_forest": {
+        "mae": 0.44747985553477676,
+        "rmse": 0.45516834213741175,
+        "mape": 3.5911085185759224,
+        "r2": -2.2814275294156636
+      },
+      "xgboost": {
+        "mae": 0.40362471725463855,
+        "rmse": 0.44439652991817225,
+        "mape": 3.2211036851165455,
+        "r2": -2.1279517023839767
+      },
+      "lightgbm": {
+        "mae": 0.2759177555189112,
+        "rmse": 0.32516343072117115,
+        "mape": 2.1946215993746008,
+        "r2": -0.6746425223321091
+      }
+    },
+    "Bolivia (Plurinational State of)::Acceso a Internet": {
+      "naive": {
+        "mae": 1.098478,
+        "rmse": 1.098478,
+        "mape": 11.336293522280162,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.9731655168270805,
+        "rmse": 0.9731655168270805,
+        "mape": 10.043068631791675,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.21474614245605395,
+        "rmse": 0.21474614245605395,
+        "mape": 2.21618030006902,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.2882021340337655,
+        "rmse": 0.2882021340337655,
+        "mape": 2.97424617075107,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Agua": {
+      "naive": {
+        "mae": 0.751919,
+        "rmse": 0.751919,
+        "mape": 12.26456872103468,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.019844460216525306,
+        "rmse": 0.019844460216525306,
+        "mape": 0.3236834633217319,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.14389835171508825,
+        "rmse": 0.14389835171508825,
+        "mape": 2.3471294427369416,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.43126330592610174,
+        "rmse": 0.43126330592610174,
+        "mape": 7.03434605641203,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Analfabetismo": {
+      "naive": {
+        "mae": 0.28682799999999986,
+        "rmse": 0.28682799999999986,
+        "mape": 6.704124761212239,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.0492616705449702,
+        "rmse": 1.0492616705449702,
+        "mape": 24.524736589494253,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.7789424558105464,
+        "rmse": 0.7789424558105464,
+        "mape": 18.206477071830356,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.7471179158708274,
+        "rmse": 0.7471179158708274,
+        "mape": 17.4626316793859,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.6938279999999999,
+        "rmse": 0.6938279999999999,
+        "mape": 46.55167208226793,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.1323110935610874,
+        "rmse": 1.1323110935610874,
+        "mape": 75.97124175237948,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.9823022332458495,
+        "rmse": 0.9823022332458495,
+        "mape": 65.90655241319212,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.8013022851513787,
+        "rmse": 0.8013022851513787,
+        "mape": 53.76254809136981,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Calidad del empleo": {
+      "naive": {
+        "mae": 0.8778279999999974,
+        "rmse": 0.8778279999999974,
+        "mape": 4.872326418362065,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.7783380825589283,
+        "rmse": 0.7783380825589283,
+        "mape": 4.320114193292025,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.49516467932128805,
+        "rmse": 0.49516467932128805,
+        "mape": 2.7483788948369146,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.600426619167461,
+        "rmse": 0.600426619167461,
+        "mape": 3.33262834958266,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.014715999999999951,
+        "rmse": 0.014715999999999951,
+        "mape": 0.148208665231713,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.484194759948533,
+        "rmse": 0.484194759948533,
+        "mape": 4.876451419146644,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.854171711486817,
+        "rmse": 0.854171711486817,
+        "mape": 8.602585569322468,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.6250349408117195,
+        "rmse": 0.6250349408117195,
+        "mape": 6.2948895284648,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Hacinamiento": {
+      "naive": {
+        "mae": 0.3801199999999998,
+        "rmse": 0.3801199999999998,
+        "mape": 3.2376070734713296,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.4161816626570456,
+        "rmse": 0.4161816626570456,
+        "mape": 3.5447561161409826,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.6760066571044927,
+        "rmse": 0.6760066571044927,
+        "mape": 5.75777105849525,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.6376072807644064,
+        "rmse": 0.6376072807644064,
+        "mape": 5.430710939439291,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.06446100000000055,
+        "rmse": 0.06446100000000055,
+        "mape": 1.5006840973953672,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 3.2528620013431926,
+        "rmse": 3.2528620013431926,
+        "mape": 75.72824306848104,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 4.53858056829834,
+        "rmse": 4.53858056829834,
+        "mape": 105.66040991596297,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 6.155517088470537,
+        "rmse": 6.155517088470537,
+        "mape": 143.3034952283255,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 0.24697700000000022,
+        "rmse": 0.24697700000000022,
+        "mape": 3.150806005306608,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.37491978267539494,
+        "rmse": 0.37491978267539494,
+        "mape": 4.783034463783597,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.2173007702026366,
+        "rmse": 0.2173007702026366,
+        "mape": 2.77221187281495,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.7203965167245778,
+        "rmse": 1.7203965167245778,
+        "mape": 21.947937161777674,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Logro educativo": {
+      "naive": {
+        "mae": 0.03911399999999965,
+        "rmse": 0.03911399999999965,
+        "mape": 0.5859638336542194,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.372329178296118,
+        "rmse": 0.372329178296118,
+        "mape": 5.577834859531642,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.42714941229248016,
+        "rmse": 0.42714941229248016,
+        "mape": 6.399092579895963,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.27008939557400513,
+        "rmse": 0.27008939557400513,
+        "mape": 4.046188517152335,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Pensiones": {
+      "naive": {
+        "mae": 0.4307840000000005,
+        "rmse": 0.4307840000000005,
+        "mape": 9.978014199510264,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.9090185467017777,
+        "rmse": 0.9090185467017777,
+        "mape": 21.055099461931064,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.3966434295349117,
+        "rmse": 0.3966434295349117,
+        "mape": 9.187234837045464,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.22938254336875996,
+        "rmse": 0.22938254336875996,
+        "mape": 5.3130624044840635,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Saneamiento": {
+      "naive": {
+        "mae": 0.6350700000000007,
+        "rmse": 0.6350700000000007,
+        "mape": 4.0716558079775185,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.4502572486563263,
+        "rmse": 1.4502572486563263,
+        "mape": 9.298106271045745,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.96499480041504,
+        "rmse": 1.96499480041504,
+        "mape": 12.598268681807538,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.8052256913689302,
+        "rmse": 0.8052256913689302,
+        "mape": 5.162583436463718,
+        "r2": null
+      }
+    },
+    "Colombia::Acceso a Internet": {
+      "naive": {
+        "mae": 0.04217550000000081,
+        "rmse": 0.05252971264436913,
+        "mape": 0.23635630291447668,
+        "r2": -1.0436830675627933
+      },
+      "random_forest": {
+        "mae": 0.5286008967367746,
+        "rmse": 0.5344774509705736,
+        "mape": 2.965967795304371,
+        "r2": -210.57398768818967
+      },
+      "xgboost": {
+        "mae": 0.5555059401855473,
+        "rmse": 0.5581984388080427,
+        "mape": 3.1172590091276504,
+        "r2": -229.77073409283187
+      },
+      "lightgbm": {
+        "mae": 0.26470850207515895,
+        "rmse": 0.26620466645770763,
+        "mape": 1.4854054023394543,
+        "r2": -51.484954493044526
+      }
+    },
+    "Colombia::Agua": {
+      "naive": {
+        "mae": 0.20503950000000026,
+        "rmse": 0.24471455555912533,
+        "mape": 4.462704557917955,
+        "r2": -1.089064356295447
+      },
+      "random_forest": {
+        "mae": 1.0157074839747668,
+        "rmse": 1.2272848003430687,
+        "mape": 21.074069074110984,
+        "r2": -51.54397527098538
+      },
+      "xgboost": {
+        "mae": 0.41921473452758784,
+        "rmse": 0.5110044508634759,
+        "mape": 8.691910804429279,
+        "r2": -8.109228184956123
+      },
+      "lightgbm": {
+        "mae": 0.2612405076822282,
+        "rmse": 0.28451795888507997,
+        "mape": 5.469566952322406,
+        "r2": -1.8239147663942012
+      }
+    },
+    "Colombia::Analfabetismo": {
+      "naive": {
+        "mae": 0.2084665000000001,
+        "rmse": 0.2325279310373272,
+        "mape": 3.7359511868020627,
+        "r2": -1.229261771091021
+      },
+      "random_forest": {
+        "mae": 0.16253196576077666,
+        "rmse": 0.18437369278482127,
+        "mape": 2.9987828952736835,
+        "r2": -0.4015504076103389
+      },
+      "xgboost": {
+        "mae": 0.10774552432250983,
+        "rmse": 0.14968066313100112,
+        "mape": 1.9048780693813943,
+        "r2": 0.0762760355449188
+      },
+      "lightgbm": {
+        "mae": 0.3909633491877331,
+        "rmse": 0.39098920912806123,
+        "mape": 7.10811563310456,
+        "r2": -5.302899128234614
+      }
+    },
+    "Colombia::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.17511,
+        "rmse": 0.19950513404170825,
+        "mape": 23.71299282404894,
+        "r2": -24.182095390064365
+      },
+      "random_forest": {
+        "mae": 0.43539271477825875,
+        "rmse": 0.44601438325125103,
+        "mape": 60.049039430287046,
+        "r2": -124.85817810115216
+      },
+      "xgboost": {
+        "mae": 0.6591684914283753,
+        "rmse": 0.6651172613058368,
+        "mape": 91.35817287574017,
+        "r2": -278.8853391639936
+      },
+      "lightgbm": {
+        "mae": 0.6056152865943256,
+        "rmse": 0.6107950285083307,
+        "mape": 85.17954586603605,
+        "r2": -235.03407224158633
+      }
+    },
+    "Colombia::Calidad del empleo": {
+      "naive": {
+        "mae": 0.0642699999999996,
+        "rmse": 0.06913287061883024,
+        "mape": 0.41797979837136495,
+        "r2": -1.3738706012948194
+      },
+      "random_forest": {
+        "mae": 0.2108087381598196,
+        "rmse": 0.24714643693940339,
+        "mape": 1.3750371066946647,
+        "r2": -29.338672114580568
+      },
+      "xgboost": {
+        "mae": 0.47088598831176753,
+        "rmse": 0.47100765253110394,
+        "mape": 3.0657520019852273,
+        "r2": -109.19040705557376
+      },
+      "lightgbm": {
+        "mae": 0.28382811355888116,
+        "rmse": 0.3420611401329548,
+        "mape": 1.8443835699224742,
+        "r2": -57.11594964958544
+      }
+    },
+    "Colombia::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.3031560000000004,
+        "rmse": 0.4051901326747726,
+        "mape": 3.0974771962563628,
+        "r2": -556.7116369101772
+      },
+      "random_forest": {
+        "mae": 1.379825800072795,
+        "rmse": 1.7963335750354443,
+        "mape": 14.055895281202213,
+        "r2": -10960.398317040279
+      },
+      "xgboost": {
+        "mae": 1.4996409317016601,
+        "rmse": 1.6666372197862869,
+        "mape": 15.285754961072035,
+        "r2": -9434.700287192401
+      },
+      "lightgbm": {
+        "mae": 0.963915848123488,
+        "rmse": 1.2492598208174033,
+        "mape": 9.819295415244362,
+        "r2": -5300.484907505
+      }
+    },
+    "Colombia::Hacinamiento": {
+      "naive": {
+        "mae": 0.15386450000000007,
+        "rmse": 0.15576149659174426,
+        "mape": 1.843359167440034,
+        "r2": -4.775317603404259
+      },
+      "random_forest": {
+        "mae": 0.2587040558601448,
+        "rmse": 0.2587474454442589,
+        "mape": 3.1027376289174176,
+        "r2": -14.937044724203385
+      },
+      "xgboost": {
+        "mae": 0.3357505441589357,
+        "rmse": 0.3430051086682773,
+        "mape": 4.033902942941947,
+        "r2": -27.00637029252907
+      },
+      "lightgbm": {
+        "mae": 0.6578120761313091,
+        "rmse": 0.6622638558910344,
+        "mape": 7.897666306058995,
+        "r2": -103.4041487083778
+      }
+    },
+    "Colombia::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.13596999999999992,
+        "rmse": 0.16970395109130504,
+        "mape": 2.9565806043184364,
+        "r2": -96.21230319993302
+      },
+      "random_forest": {
+        "mae": 4.2707615481311025,
+        "rmse": 4.278147292936388,
+        "mape": 93.10543638022695,
+        "r2": -61779.12617508166
+      },
+      "xgboost": {
+        "mae": 5.923709545928955,
+        "rmse": 5.967887301646391,
+        "mape": 129.11000609494835,
+        "r2": -120219.50604551338
+      },
+      "lightgbm": {
+        "mae": 5.4605194400050445,
+        "rmse": 5.584098033656402,
+        "mape": 118.97363092029616,
+        "r2": -105254.15942041097
+      }
+    },
+    "Colombia::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 0.13888000000000034,
+        "rmse": 0.15325792149184342,
+        "mape": 1.1800581776259547,
+        "r2": -16.124628731858188
+      },
+      "random_forest": {
+        "mae": 0.35204433958922277,
+        "rmse": 0.3866554659624684,
+        "mape": 2.991190629326227,
+        "r2": -107.99927517300247
+      },
+      "xgboost": {
+        "mae": 1.0324010084533688,
+        "rmse": 1.0694588528674684,
+        "mape": 8.766868998434783,
+        "r2": -832.879815742171
+      },
+      "lightgbm": {
+        "mae": 0.4125162035821326,
+        "rmse": 0.5296568960476394,
+        "mape": 3.5088594642468682,
+        "r2": -203.53355374216125
+      }
+    },
+    "Colombia::Logro educativo": {
+      "naive": {
+        "mae": 0.05120999999999931,
+        "rmse": 0.052196495093060805,
+        "mape": 0.4736717908250037,
+        "r2": -5.448336928038119
+      },
+      "random_forest": {
+        "mae": 0.7804002433592725,
+        "rmse": 0.7877296671529166,
+        "mape": 7.21756587188263,
+        "r2": -1467.653828558291
+      },
+      "xgboost": {
+        "mae": 0.6870972213745112,
+        "rmse": 0.6928438746752178,
+        "mape": 6.354554955008508,
+        "r2": -1135.1503362568667
+      },
+      "lightgbm": {
+        "mae": 0.3601511312135939,
+        "rmse": 0.3603172528799032,
+        "mape": 3.3298118651452158,
+        "r2": -306.28060780128766
+      }
+    },
+    "Colombia::Pensiones": {
+      "naive": {
+        "mae": 0.19943299999999997,
+        "rmse": 0.20190223349185615,
+        "mape": 3.9876436557417962,
+        "r2": -2.05805625686851
+      },
+      "random_forest": {
+        "mae": 0.08668339353626742,
+        "rmse": 0.11215456493750049,
+        "mape": 1.7726583792721406,
+        "r2": 0.05638000665218257
+      },
+      "xgboost": {
+        "mae": 0.33563209924316384,
+        "rmse": 0.3508782973190359,
+        "mape": 6.7830980507499525,
+        "r2": -8.23583653652902
+      },
+      "lightgbm": {
+        "mae": 0.41208610192058126,
+        "rmse": 0.5078653860708707,
+        "mape": 8.407801913351204,
+        "r2": -18.349085890082495
+      }
+    },
+    "Colombia::Saneamiento": {
+      "naive": {
+        "mae": 0.13900700000000032,
+        "rmse": 0.19301511378386962,
+        "mape": 2.552089477838096,
+        "r2": -1.0006975865290109
+      },
+      "random_forest": {
+        "mae": 0.13826944829127097,
+        "rmse": 0.1437482272205227,
+        "mape": 2.462858831669897,
+        "r2": -0.10969545881847997
+      },
+      "xgboost": {
+        "mae": 0.6110026194152831,
+        "rmse": 0.615166892424012,
+        "mape": 10.99075871745251,
+        "r2": -19.322855174295878
+      },
+      "lightgbm": {
+        "mae": 0.6258196081425269,
+        "rmse": 0.7625747598736142,
+        "mape": 11.033988550249235,
+        "r2": -30.229401930557664
+      }
+    },
+    "Costa Rica::Acceso a Internet": {
+      "naive": {
+        "mae": 0.502135,
+        "rmse": 0.6608263177643577,
+        "mape": 4.424947296664248,
+        "r2": -330.955256577111
+      },
+      "random_forest": {
+        "mae": 0.9585481061463472,
+        "rmse": 1.0626728109457644,
+        "mape": 8.436859728897202,
+        "r2": -857.428300568828
+      },
+      "xgboost": {
+        "mae": 1.273307465057373,
+        "rmse": 1.4818099659340382,
+        "mape": 11.211439944420801,
+        "r2": -1668.1290333537834
+      },
+      "lightgbm": {
+        "mae": 0.7721939591553859,
+        "rmse": 0.8301078817702021,
+        "mape": 6.777739212912762,
+        "r2": -522.8102152985432
+      }
+    },
+    "Costa Rica::Agua": {
+      "naive": {
+        "mae": 0.23156050000000028,
+        "rmse": 0.2746464660841281,
+        "mape": 6.853195449669211,
+        "r2": -1.097831415247708
+      },
+      "random_forest": {
+        "mae": 0.3248803426616158,
+        "rmse": 0.32504217072134506,
+        "mape": 10.003244674319426,
+        "r2": -1.9383395011492413
+      },
+      "xgboost": {
+        "mae": 0.18598146750640887,
+        "rmse": 0.2591421004052234,
+        "mape": 6.038131130783783,
+        "r2": -0.8676629487322407
+      },
+      "lightgbm": {
+        "mae": 0.6212824983489333,
+        "rmse": 0.6520480829711905,
+        "mape": 19.44794051913014,
+        "r2": -10.824473138504114
+      }
+    },
+    "Costa Rica::Analfabetismo": {
+      "naive": {
+        "mae": 0.8317899999999989,
+        "rmse": 0.878743514399963,
+        "mape": 7.399589361791718,
+        "r2": -1.483627865924706
+      },
+      "random_forest": {
+        "mae": 1.206082233738817,
+        "rmse": 1.6634936594624135,
+        "mape": 10.394496461385557,
+        "r2": -7.90029821040771
+      },
+      "xgboost": {
+        "mae": 1.4926302287292472,
+        "rmse": 1.8795759385847337,
+        "mape": 12.989644274869661,
+        "r2": -10.362712336235191
+      },
+      "lightgbm": {
+        "mae": 1.2970255939154143,
+        "rmse": 1.3383986938756758,
+        "mape": 11.589215720439649,
+        "r2": -4.761469494627728
+      }
+    },
+    "Costa Rica::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.752751,
+        "rmse": 0.9475642761549212,
+        "mape": 24.56881922485768,
+        "r2": -113.36317243796671
+      },
+      "random_forest": {
+        "mae": 1.5709142450835532,
+        "rmse": 1.6208475988048456,
+        "mape": 52.06422476158894,
+        "r2": -333.6210054496606
+      },
+      "xgboost": {
+        "mae": 1.5920156069030762,
+        "rmse": 1.6303287057441194,
+        "mape": 52.816113820323096,
+        "r2": -337.5471691372012
+      },
+      "lightgbm": {
+        "mae": 1.7037305109503287,
+        "rmse": 1.8455480948432363,
+        "mape": 56.19314040468304,
+        "r2": -432.82998979204194
+      }
+    },
+    "Costa Rica::Calidad del empleo": {
+      "naive": {
+        "mae": 2.66235,
+        "rmse": 3.5210660335330264,
+        "mape": 31.85680160403011,
+        "r2": -1.010394180137392
+      },
+      "random_forest": {
+        "mae": 2.451804916530781,
+        "rmse": 3.430064469668632,
+        "mape": 29.980939564518717,
+        "r2": -0.9078202073164858
+      },
+      "xgboost": {
+        "mae": 2.682990144195556,
+        "rmse": 3.743976308789134,
+        "mape": 32.776212589750486,
+        "r2": -1.2729980468865478
+      },
+      "lightgbm": {
+        "mae": 2.9080983780531033,
+        "rmse": 3.7068901351029533,
+        "mape": 34.289652313643074,
+        "r2": -1.2281904466116136
+      }
+    },
+    "Costa Rica::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.33610149999999983,
+        "rmse": 0.3400156643369536,
+        "mape": 5.436558562979808,
+        "r2": -2.079027484100465
+      },
+      "random_forest": {
+        "mae": 0.4742015220397602,
+        "rmse": 0.6357040860718857,
+        "mape": 7.924010997983257,
+        "r2": -9.762811174090817
+      },
+      "xgboost": {
+        "mae": 0.44750184341430677,
+        "rmse": 0.497362394729179,
+        "mape": 7.384526642404825,
+        "r2": -5.588121591219368
+      },
+      "lightgbm": {
+        "mae": 0.7273573088782688,
+        "rmse": 0.9757898422268358,
+        "mape": 12.154844957118398,
+        "r2": -24.358776781389476
+      }
+    },
+    "Costa Rica::Hacinamiento": {
+      "naive": {
+        "mae": 1.0791209999999998,
+        "rmse": 1.169755999952554,
+        "mape": 14.914415962324979,
+        "r2": -12.893666559117436
+      },
+      "random_forest": {
+        "mae": 0.8662014513635028,
+        "rmse": 0.8721970909563551,
+        "mape": 11.821319902151787,
+        "r2": -6.724236749903238
+      },
+      "xgboost": {
+        "mae": 0.6137828937530516,
+        "rmse": 0.6775451223778604,
+        "mape": 8.168949900338417,
+        "r2": -3.6612538512942967
+      },
+      "lightgbm": {
+        "mae": 0.9965122287490873,
+        "rmse": 1.0854440067056887,
+        "mape": 13.283317633659808,
+        "r2": -10.963029093650254
+      }
+    },
+    "Costa Rica::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.4853209999999999,
+        "rmse": 0.4860849715893302,
+        "mape": 8.180502709273973,
+        "r2": -2.597409471220567
+      },
+      "random_forest": {
+        "mae": 2.685290043201955,
+        "rmse": 2.712960552661309,
+        "mape": 45.65521648901538,
+        "r2": -111.06047102058771
+      },
+      "xgboost": {
+        "mae": 4.75081343939209,
+        "rmse": 4.798334627147751,
+        "mape": 80.7657775503517,
+        "r2": -349.5472373003495
+      },
+      "lightgbm": {
+        "mae": 3.7474495796973857,
+        "rmse": 3.9791229485948723,
+        "mape": 64.29723083186599,
+        "r2": -240.0683538441883
+      }
+    },
+    "Costa Rica::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 0.5858499999999998,
+        "rmse": 0.8070189796163398,
+        "mape": 3.506011680127266,
+        "r2": -2741.776393795582
+      },
+      "random_forest": {
+        "mae": 0.6910611258403137,
+        "rmse": 0.712195857716562,
+        "mape": 4.1310906633923,
+        "r2": -2135.1010448631678
+      },
+      "xgboost": {
+        "mae": 0.1807184523315435,
+        "rmse": 0.223193757014737,
+        "mape": 1.0812855890169975,
+        "r2": -208.7910666663845
+      },
+      "lightgbm": {
+        "mae": 0.20657084091476818,
+        "rmse": 0.2151624375270118,
+        "mape": 1.2354739594405375,
+        "r2": -193.96462421133648
+      }
+    },
+    "Costa Rica::Logro educativo": {
+      "naive": {
+        "mae": 0.7498700000000005,
+        "rmse": 0.7600859536262994,
+        "mape": 4.815065720033838,
+        "r2": -4.903298470758562
+      },
+      "random_forest": {
+        "mae": 0.4497133304092049,
+        "rmse": 0.5024987979416123,
+        "mape": 2.9068749973598296,
+        "r2": -1.5801168937422854
+      },
+      "xgboost": {
+        "mae": 0.6711065988159177,
+        "rmse": 0.8276537901919513,
+        "mape": 4.357115191313322,
+        "r2": -5.999495593071732
+      },
+      "lightgbm": {
+        "mae": 0.6160936632236869,
+        "rmse": 0.7681301680304178,
+        "mape": 4.00175012052258,
+        "r2": -5.028912383114568
+      }
+    },
+    "Costa Rica::Pensiones": {
+      "naive": {
+        "mae": 0.42823350000000016,
+        "rmse": 0.4462829378931039,
+        "mape": 7.189160390866023,
+        "r2": -1.596957683907668
+      },
+      "random_forest": {
+        "mae": 0.5854765704160223,
+        "rmse": 0.6994895858010711,
+        "mape": 9.660005955061525,
+        "r2": -5.379796298064725
+      },
+      "xgboost": {
+        "mae": 0.1705478616333007,
+        "rmse": 0.2143328678993448,
+        "mape": 2.7992670780763222,
+        "r2": 0.4010068491108255
+      },
+      "lightgbm": {
+        "mae": 0.701964168292962,
+        "rmse": 0.7097126260757167,
+        "mape": 12.033184278925388,
+        "r2": -5.567640456618126
+      }
+    },
+    "Costa Rica::Saneamiento": {
+      "naive": {
+        "mae": 0.560063,
+        "rmse": 0.6255813758137305,
+        "mape": 18.026467219055224,
+        "r2": -1.2250234199937657
+      },
+      "random_forest": {
+        "mae": 0.5958783791093079,
+        "rmse": 0.6098004780305954,
+        "mape": 21.28008820676788,
+        "r2": -1.1141825592897177
+      },
+      "xgboost": {
+        "mae": 0.5750250489959716,
+        "rmse": 0.6129251337965894,
+        "mape": 20.965119840888374,
+        "r2": -1.135904476470432
+      },
+      "lightgbm": {
+        "mae": 0.29137322951014877,
+        "rmse": 0.29678995949077575,
+        "mape": 10.371500013299066,
+        "r2": 0.4991987849152404
+      }
+    },
+    "Dominican Republic::Acceso a Internet": {
+      "naive": {
+        "mae": 0.6002810000000007,
+        "rmse": 0.6214789342544128,
+        "mape": 3.2769848896793463,
+        "r2": -7.003713872178569
+      },
+      "random_forest": {
+        "mae": 0.542195174972468,
+        "rmse": 0.728601836947689,
+        "mape": 2.9374008269152014,
+        "r2": -10.000672956409709
+      },
+      "xgboost": {
+        "mae": 0.8707353609619144,
+        "rmse": 0.9925802118874802,
+        "mape": 4.737406061184464,
+        "r2": -19.415967022278092
+      },
+      "lightgbm": {
+        "mae": 0.24890098039526265,
+        "rmse": 0.24951774157898765,
+        "mape": 1.3643228338457256,
+        "r2": -0.29015411422487647
+      }
+    },
+    "Dominican Republic::Agua": {
+      "naive": {
+        "mae": 0.1803650000000001,
+        "rmse": 0.24000445577947063,
+        "mape": 3.8252016439343692,
+        "r2": -473.8412777814017
+      },
+      "random_forest": {
+        "mae": 0.1896094628557563,
+        "rmse": 0.2203840698393458,
+        "mape": 4.007505174494888,
+        "r2": -399.3780440272229
+      },
+      "xgboost": {
+        "mae": 0.3902158583984372,
+        "rmse": 0.3983902850236247,
+        "mape": 8.254880771003958,
+        "r2": -1307.3602298495664
+      },
+      "lightgbm": {
+        "mae": 0.4988035767444281,
+        "rmse": 0.5556087439622895,
+        "mape": 10.569154263927025,
+        "r2": -2543.7668545605616
+      }
+    },
+    "Dominican Republic::Analfabetismo": {
+      "naive": {
+        "mae": 0.2581669999999998,
+        "rmse": 0.34960012468247204,
+        "mape": 3.6284382150401555,
+        "r2": -970.3812537261072
+      },
+      "random_forest": {
+        "mae": 0.3686765832924843,
+        "rmse": 0.4005779218373339,
+        "mape": 5.177631502105238,
+        "r2": -1274.324134760291
+      },
+      "xgboost": {
+        "mae": 0.5164839010314943,
+        "rmse": 0.5165417757405285,
+        "mape": 7.248393007251298,
+        "r2": -2119.593679531635
+      },
+      "lightgbm": {
+        "mae": 0.562895601899517,
+        "rmse": 0.717921837293423,
+        "mape": 7.909771126118918,
+        "r2": -4095.38613494103
+      }
+    },
+    "Dominican Republic::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.24155950000000015,
+        "rmse": 0.259377718959243,
+        "mape": 3.218664233765453,
+        "r2": -1.383162802994713
+      },
+      "random_forest": {
+        "mae": 0.737833179263768,
+        "rmse": 0.7476715373820981,
+        "mape": 9.882161937554205,
+        "r2": -18.80204643631662
+      },
+      "xgboost": {
+        "mae": 0.4845531899108888,
+        "rmse": 0.5017163766000599,
+        "mape": 6.553438960852019,
+        "r2": -7.916715963772967
+      },
+      "lightgbm": {
+        "mae": 0.9057770358049946,
+        "rmse": 1.0238497668918298,
+        "mape": 12.321418110055793,
+        "r2": -36.13306945611073
+      }
+    },
+    "Dominican Republic::Calidad del empleo": {
+      "naive": {
+        "mae": 0.3151299999999999,
+        "rmse": 0.35579213847413754,
+        "mape": 2.0089606141350256,
+        "r2": -1.1949645653574925
+      },
+      "random_forest": {
+        "mae": 0.4850395373541474,
+        "rmse": 0.4937697095995518,
+        "mape": 3.1081824218608674,
+        "r2": -3.2275008842983786
+      },
+      "xgboost": {
+        "mae": 0.16417548522949232,
+        "rmse": 0.2016353976978754,
+        "mape": 1.066765504207832,
+        "r2": 0.2950336776418684
+      },
+      "lightgbm": {
+        "mae": 0.20771900297014056,
+        "rmse": 0.29085503020276654,
+        "mape": 1.3552013226849118,
+        "r2": -0.46685767079266793
+      }
+    },
+    "Dominican Republic::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.1287649999999998,
+        "rmse": 0.16891401230803785,
+        "mape": 3.5392097707169343,
+        "r2": -300.9322267267538
+      },
+      "random_forest": {
+        "mae": 0.721788670906248,
+        "rmse": 0.7696547158649917,
+        "mape": 19.81367587405167,
+        "r2": -6267.591698864708
+      },
+      "xgboost": {
+        "mae": 0.3132884682159425,
+        "rmse": 0.4135515867315703,
+        "mape": 8.611276096402507,
+        "r2": -1808.8288074984073
+      },
+      "lightgbm": {
+        "mae": 0.40976758875148667,
+        "rmse": 0.5099254984630235,
+        "mape": 11.259546816844745,
+        "r2": -2750.6397330471277
+      }
+    },
+    "Dominican Republic::Hacinamiento": {
+      "naive": {
+        "mae": 0.43139150000000015,
+        "rmse": 0.4316788638843696,
+        "mape": 5.5651782160249725,
+        "r2": -2.728159775328395
+      },
+      "random_forest": {
+        "mae": 0.508463632287433,
+        "rmse": 0.5265826125182009,
+        "mape": 6.501758590168762,
+        "r2": -4.547610685901847
+      },
+      "xgboost": {
+        "mae": 0.35657037384033163,
+        "rmse": 0.35674444766543517,
+        "mape": 4.599250969626183,
+        "r2": -1.546169968431288
+      },
+      "lightgbm": {
+        "mae": 0.614122457551252,
+        "rmse": 0.7231852475293974,
+        "mape": 7.772506358111286,
+        "r2": -9.463381564682852
+      }
+    },
+    "Dominican Republic::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.06337149999999969,
+        "rmse": 0.08550502221799579,
+        "mape": 1.734682010011546,
+        "r2": -820.0802592042011
+      },
+      "random_forest": {
+        "mae": 4.977968014735806,
+        "rmse": 4.982073714393552,
+        "mape": 136.16685715586897,
+        "r2": -2787548.964382564
+      },
+      "xgboost": {
+        "mae": 6.825356544891358,
+        "rmse": 6.850734711580836,
+        "mape": 186.680801852057,
+        "r2": -5270800.523278584
+      },
+      "lightgbm": {
+        "mae": 6.158349078577375,
+        "rmse": 6.181553444067315,
+        "mape": 168.46124843067847,
+        "r2": -4291385.38667438
+      }
+    },
+    "Dominican Republic::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 0.32753500000000013,
+        "rmse": 0.32846471445347075,
+        "mape": 3.920001853213642,
+        "r2": -2.478422117393299
+      },
+      "random_forest": {
+        "mae": 0.46087892397328556,
+        "rmse": 0.4693758999309215,
+        "mape": 5.52949999333918,
+        "r2": -6.103075221234795
+      },
+      "xgboost": {
+        "mae": 1.166137195587158,
+        "rmse": 1.2014314342533927,
+        "mape": 14.007112497087046,
+        "r2": -45.537475554766715
+      },
+      "lightgbm": {
+        "mae": 0.4807596433392014,
+        "rmse": 0.4894050233708974,
+        "mape": 5.721692734652256,
+        "r2": -6.722211378442559
+      }
+    },
+    "Dominican Republic::Logro educativo": {
+      "naive": {
+        "mae": 0.4957494999999996,
+        "rmse": 0.49589061679013413,
+        "mape": 4.6726589232919435,
+        "r2": -3.20034177509595
+      },
+      "random_forest": {
+        "mae": 1.638371923264426,
+        "rmse": 1.808889294059822,
+        "mape": 15.269452138712609,
+        "r2": -54.89034946221702
+      },
+      "xgboost": {
+        "mae": 2.748492856369018,
+        "rmse": 3.172124558578651,
+        "mape": 25.55180785057047,
+        "r2": -170.87523811125055
+      },
+      "lightgbm": {
+        "mae": 1.1119232658288114,
+        "rmse": 1.3838358130763397,
+        "mape": 10.297882594053617,
+        "r2": -31.7101081365687
+      }
+    },
+    "Dominican Republic::Pensiones": {
+      "naive": {
+        "mae": 0.26958100000000007,
+        "rmse": 0.28977649453673787,
+        "mape": 4.76610205070833,
+        "r2": -11.596074099891952
+      },
+      "random_forest": {
+        "mae": 0.3900631788677842,
+        "rmse": 0.4084962604410055,
+        "mape": 6.8267781764541695,
+        "r2": -24.031395854266687
+      },
+      "xgboost": {
+        "mae": 0.3087229169464112,
+        "rmse": 0.3381608478735746,
+        "mape": 5.462225131496488,
+        "r2": -16.15361053878612
+      },
+      "lightgbm": {
+        "mae": 0.33997725188761097,
+        "rmse": 0.3774253767575878,
+        "mape": 6.018219533294164,
+        "r2": -20.36835511601312
+      }
+    },
+    "Dominican Republic::Saneamiento": {
+      "naive": {
+        "mae": 0.16863850000000058,
+        "rmse": 0.2105473660307822,
+        "mape": 2.4023146249735245,
+        "r2": -1.0417487221037924
+      },
+      "random_forest": {
+        "mae": 0.07661948038945132,
+        "rmse": 0.10778492222858414,
+        "mape": 1.096843970370937,
+        "r2": 0.46492003203656385
+      },
+      "xgboost": {
+        "mae": 0.377127551376343,
+        "rmse": 0.4281329998196648,
+        "mape": 5.349343644314016,
+        "r2": -7.442286272656368
+      },
+      "lightgbm": {
+        "mae": 0.661073506732174,
+        "rmse": 0.7335447979461811,
+        "mape": 9.181830351171904,
+        "r2": -23.783118310612895
+      }
+    },
+    "Ecuador::Acceso a Internet": {
+      "naive": {
+        "mae": 0.5578450000000004,
+        "rmse": 0.5729687117548395,
+        "mape": 4.11085882283596,
+        "r2": -6.199853759209941
+      },
+      "random_forest": {
+        "mae": 0.8038205704214736,
+        "rmse": 0.8849502391098084,
+        "mape": 5.9887359520752135,
+        "r2": -16.175111422116945
+      },
+      "xgboost": {
+        "mae": 0.8048135530090335,
+        "rmse": 0.9105918939506795,
+        "mape": 6.002600607188202,
+        "r2": -17.184837357917694
+      },
+      "lightgbm": {
+        "mae": 0.9244706274422425,
+        "rmse": 1.0471476712862715,
+        "mape": 6.895339847777144,
+        "r2": -23.047931369934982
+      }
+    },
+    "Ecuador::Agua": {
+      "naive": {
+        "mae": 0.3846974999999999,
+        "rmse": 0.4142300193449286,
+        "mape": 13.697019996258078,
+        "r2": -11.851965424241163
+      },
+      "random_forest": {
+        "mae": 1.4778923531655022,
+        "rmse": 1.7132787038563544,
+        "mape": 53.01157546123634,
+        "r2": -218.85808632261976
+      },
+      "xgboost": {
+        "mae": 0.7804745216522215,
+        "rmse": 1.0173263882534969,
+        "mape": 28.271351781829285,
+        "r2": -76.51879795758119
+      },
+      "lightgbm": {
+        "mae": 0.9695255265358846,
+        "rmse": 1.3707701966540227,
+        "mape": 35.34378450314415,
+        "r2": -139.73940708606736
+      }
+    },
+    "Ecuador::Analfabetismo": {
+      "naive": {
+        "mae": 0.19329449999999948,
+        "rmse": 0.2265390506524202,
+        "mape": 3.312820408898286,
+        "r2": -1.1164660536344644
+      },
+      "random_forest": {
+        "mae": 0.4340639817697638,
+        "rmse": 0.5249162654995705,
+        "mape": 7.704177044055522,
+        "r2": -10.363319440235323
+      },
+      "xgboost": {
+        "mae": 0.3240483757781982,
+        "rmse": 0.3955792574967295,
+        "mape": 5.754599663529238,
+        "r2": -5.453453374266885
+      },
+      "lightgbm": {
+        "mae": 0.7320951246756815,
+        "rmse": 1.013660200157317,
+        "mape": 13.089977754248919,
+        "r2": -41.375022768661424
+      }
+    },
+    "Ecuador::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.2739750000000001,
+        "rmse": 0.2850364254792711,
+        "mape": 1.7292931661398332,
+        "r2": -7.516837297251643
+      },
+      "random_forest": {
+        "mae": 0.21764065517688191,
+        "rmse": 0.24315277281349715,
+        "mape": 1.3719238175028556,
+        "r2": -5.19777887614344
+      },
+      "xgboost": {
+        "mae": 0.3363637141418456,
+        "rmse": 0.3391483518030493,
+        "mape": 2.1251585031247084,
+        "r2": -11.057493769959866
+      },
+      "lightgbm": {
+        "mae": 0.3991938436991118,
+        "rmse": 0.5380881441743506,
+        "mape": 2.510042578667112,
+        "r2": -29.351801343264604
+      }
+    },
+    "Ecuador::Calidad del empleo": {
+      "naive": {
+        "mae": 0.30802900000000033,
+        "rmse": 0.31126838731390666,
+        "mape": 1.938644253496229,
+        "r2": -2.1133367141484993
+      },
+      "random_forest": {
+        "mae": 0.12958174573857928,
+        "rmse": 0.14255514309977094,
+        "mape": 0.8100991589319331,
+        "r2": 0.3469869766579805
+      },
+      "xgboost": {
+        "mae": 0.19740681561279239,
+        "rmse": 0.2439949784968322,
+        "mape": 1.2504086069660973,
+        "r2": -0.9130126370270706
+      },
+      "lightgbm": {
+        "mae": 0.2528970494880989,
+        "rmse": 0.35037660906996937,
+        "mape": 1.5722101493916822,
+        "r2": -2.94481165244344
+      }
+    },
+    "Ecuador::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.43683899999999953,
+        "rmse": 0.5443636623526584,
+        "mape": 5.435088913009594,
+        "r2": -93.44970094496904
+      },
+      "random_forest": {
+        "mae": 0.6711771205900185,
+        "rmse": 0.6712087423684421,
+        "mape": 8.307304093306508,
+        "r2": -142.594412659291
+      },
+      "xgboost": {
+        "mae": 0.22324038568115157,
+        "rmse": 0.22504483683698134,
+        "mape": 2.7608396646898923,
+        "r2": -15.142115095467776
+      },
+      "lightgbm": {
+        "mae": 0.5914672058638999,
+        "rmse": 0.597750869569149,
+        "mape": 7.313791602420823,
+        "r2": -112.8840139349442
+      }
+    },
+    "Ecuador::Hacinamiento": {
+      "naive": {
+        "mae": 0.19215999999999944,
+        "rmse": 0.2288362147912775,
+        "mape": 1.7628185274634014,
+        "r2": -44.432847143746365
+      },
+      "random_forest": {
+        "mae": 0.4738026805962816,
+        "rmse": 0.4738451766619483,
+        "mape": 4.337986463836545,
+        "r2": -193.80198198927556
+      },
+      "xgboost": {
+        "mae": 0.6440200979614259,
+        "rmse": 0.6456989903145696,
+        "mape": 5.8948733147052526,
+        "r2": -360.726775790662
+      },
+      "lightgbm": {
+        "mae": 0.19623548751842623,
+        "rmse": 0.19639761466115938,
+        "mape": 1.796821880919833,
+        "r2": -32.46515649982835
+      }
+    },
+    "Ecuador::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.17078349999999998,
+        "rmse": 0.17080537431386636,
+        "mape": 5.4144965635920945,
+        "r2": -3.132244598148368
+      },
+      "random_forest": {
+        "mae": 3.5204870506919184,
+        "rmse": 4.012078323129545,
+        "mape": 109.94285624332475,
+        "r2": -2278.9313115731716
+      },
+      "xgboost": {
+        "mae": 5.383848155075073,
+        "rmse": 5.936974780210493,
+        "mape": 168.5059983274383,
+        "r2": -4991.44588263459
+      },
+      "lightgbm": {
+        "mae": 4.466761157433785,
+        "rmse": 4.65115286860735,
+        "mape": 140.45990702174927,
+        "r2": -3063.1088201589705
+      }
+    },
+    "Ecuador::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 0.24749099999999835,
+        "rmse": 0.27380746741095136,
+        "mape": 2.8747948620233963,
+        "r2": -16.645550530940408
+      },
+      "random_forest": {
+        "mae": 0.27162060952384515,
+        "rmse": 0.36563512619190325,
+        "mape": 3.1652266759484773,
+        "r2": -30.46592177961507
+      },
+      "xgboost": {
+        "mae": 0.39973824539184566,
+        "rmse": 0.40261358549948084,
+        "mape": 4.6309369079455,
+        "r2": -37.15236697446917
+      },
+      "lightgbm": {
+        "mae": 0.18308647091903474,
+        "rmse": 0.20650205706299876,
+        "mape": 2.1107819545823614,
+        "r2": -9.036756792428454
+      }
+    },
+    "Ecuador::Logro educativo": {
+      "naive": {
+        "mae": 0.14573800000000015,
+        "rmse": 0.16372740886302456,
+        "mape": 2.191963501191843,
+        "r2": -20.196209826779448
+      },
+      "random_forest": {
+        "mae": 0.08966348758052245,
+        "rmse": 0.1120030535976662,
+        "mape": 1.3395353315050005,
+        "r2": -8.919166014101767
+      },
+      "xgboost": {
+        "mae": 0.1423449602355955,
+        "rmse": 0.19935379173655526,
+        "mape": 2.146266759718641,
+        "r2": -30.42421470039264
+      },
+      "lightgbm": {
+        "mae": 0.07312821760582722,
+        "rmse": 0.08206449465333443,
+        "mape": 1.0939055500820105,
+        "r2": -4.325078710446952
+      }
+    },
+    "Ecuador::Pensiones": {
+      "naive": {
+        "mae": 0.1908185,
+        "rmse": 0.19081868331612606,
+        "mape": 4.787710720550775,
+        "r2": -3.0111198774661316
+      },
+      "random_forest": {
+        "mae": 0.859329912874139,
+        "rmse": 0.9102931836152968,
+        "mape": 21.741670605730455,
+        "r2": -90.28227038766141
+      },
+      "xgboost": {
+        "mae": 0.7642560798797609,
+        "rmse": 0.8005278843127024,
+        "mape": 19.03329660944793,
+        "r2": -69.59546124297036
+      },
+      "lightgbm": {
+        "mae": 0.4561319645562716,
+        "rmse": 0.4912766374997609,
+        "mape": 11.335517111465782,
+        "r2": -25.58741263165467
+      }
+    },
+    "Ecuador::Saneamiento": {
+      "naive": {
+        "mae": 0.04722500000000007,
+        "rmse": 0.054180513000524344,
+        "mape": 1.0027423016937629,
+        "r2": -1.15691781619465
+      },
+      "random_forest": {
+        "mae": 0.9645755877650926,
+        "rmse": 0.9669668784761543,
+        "mape": 20.583542613106214,
+        "r2": -686.0218809045803
+      },
+      "xgboost": {
+        "mae": 0.7617560047149659,
+        "rmse": 0.7652007123686835,
+        "mape": 16.258641471168207,
+        "r2": -429.2274372228338
+      },
+      "lightgbm": {
+        "mae": 0.7845874201840415,
+        "rmse": 0.7862501992361531,
+        "mape": 16.741988212342484,
+        "r2": -453.2227781303169
+      }
+    },
+    "El Salvador::Acceso a Internet": {
+      "naive": {
+        "mae": 0.2035499999999999,
+        "rmse": 0.2035499999999999,
+        "mape": 1.4211586824382343,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.5998832169196469,
+        "rmse": 0.5998832169196469,
+        "mape": 4.188303818100394,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.1943642575073241,
+        "rmse": 0.1943642575073241,
+        "mape": 1.3570250656457605,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.09113638697633597,
+        "rmse": 0.09113638697633597,
+        "mape": 0.6363019780764959,
+        "r2": null
+      }
+    },
+    "El Salvador::Agua": {
+      "naive": {
+        "mae": 0.2542019999999998,
+        "rmse": 0.2542019999999998,
+        "mape": 8.736478670031083,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.228432605465128,
+        "rmse": 0.228432605465128,
+        "mape": 7.850829596878538,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.04644130831909177,
+        "rmse": 0.04644130831909177,
+        "mape": 1.5961066377844495,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.03525839611196657,
+        "rmse": 0.03525839611196657,
+        "mape": 1.2117694808526411,
+        "r2": null
+      }
+    },
+    "El Salvador::Analfabetismo": {
+      "naive": {
+        "mae": 0.15566000000000013,
+        "rmse": 0.15566000000000013,
+        "mape": 2.5757343846309793,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.7247157117692806,
+        "rmse": 0.7247157117692806,
+        "mape": 11.99200294158068,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.04451364974975558,
+        "rmse": 0.04451364974975558,
+        "mape": 0.7365754737624665,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.08436308486374067,
+        "rmse": 0.08436308486374067,
+        "mape": 1.3959713380256837,
+        "r2": null
+      }
+    },
+    "El Salvador::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.2682600000000015,
+        "rmse": 0.2682600000000015,
+        "mape": 2.095606070430062,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.0947487967195837,
+        "rmse": 0.0947487967195837,
+        "mape": 0.7401631013624932,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.169252182312011,
+        "rmse": 0.169252182312011,
+        "mape": 1.3221721489845069,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.1150046169781831,
+        "rmse": 0.1150046169781831,
+        "mape": 0.8983984696449836,
+        "r2": null
+      }
+    },
+    "El Salvador::Calidad del empleo": {
+      "naive": {
+        "mae": 0.3368700000000011,
+        "rmse": 0.3368700000000011,
+        "mape": 2.657829064832671,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.2987722284175156,
+        "rmse": 0.2987722284175156,
+        "mape": 2.35724615564727,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.05336968719482371,
+        "rmse": 0.05336968719482371,
+        "mape": 0.42107491259960816,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.39309455721584463,
+        "rmse": 0.39309455721584463,
+        "mape": 3.1014282643031366,
+        "r2": null
+      }
+    },
+    "El Salvador::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.1972959999999997,
+        "rmse": 0.1972959999999997,
+        "mape": 2.920860832001791,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.13167981868670076,
+        "rmse": 0.13167981868670076,
+        "mape": 1.949448669851808,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.11731512765502927,
+        "rmse": 0.11731512765502927,
+        "mape": 1.7367871693742685,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.9057168380815455,
+        "rmse": 0.9057168380815455,
+        "mape": 13.408649122318234,
+        "r2": null
+      }
+    },
+    "El Salvador::Hacinamiento": {
+      "naive": {
+        "mae": 0.11136199999999974,
+        "rmse": 0.11136199999999974,
+        "mape": 1.1829120294023114,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.31674025954872675,
+        "rmse": 0.31674025954872675,
+        "mape": 3.3644857600994955,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.32359732971191413,
+        "rmse": 0.32359732971191413,
+        "mape": 3.4373230904499743,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.09365388643140626,
+        "rmse": 0.09365388643140626,
+        "mape": 0.9948124931304092,
+        "r2": null
+      }
+    },
+    "El Salvador::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.6283179999999997,
+        "rmse": 0.6283179999999997,
+        "mape": 20.310870578560365,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 5.139649203921074,
+        "rmse": 5.139649203921074,
+        "mape": 166.14317877259893,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 7.314212658447266,
+        "rmse": 7.314212658447266,
+        "mape": 236.4376425469117,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 7.23038382576024,
+        "rmse": 7.23038382576024,
+        "mape": 233.72780999164831,
+        "r2": null
+      }
+    },
+    "El Salvador::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 0.04754199999999997,
+        "rmse": 0.04754199999999997,
+        "mape": 0.5553031320629095,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.073594114509973,
+        "rmse": 0.073594114509973,
+        "mape": 0.859598718791478,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.7620086715698235,
+        "rmse": 0.7620086715698235,
+        "mape": 8.900462790413114,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.21601340821056958,
+        "rmse": 0.21601340821056958,
+        "mape": 2.5230937307415164,
+        "r2": null
+      }
+    },
+    "El Salvador::Logro educativo": {
+      "naive": {
+        "mae": 0.4931140000000003,
+        "rmse": 0.4931140000000003,
+        "mape": 5.2349458971865035,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.1200537044759447,
+        "rmse": 1.1200537044759447,
+        "mape": 11.890598411066991,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.3514864988403321,
+        "rmse": 1.3514864988403321,
+        "mape": 14.34751133045735,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.5036095441862471,
+        "rmse": 1.5036095441862471,
+        "mape": 15.962464286773969,
+        "r2": null
+      }
+    },
+    "El Salvador::Pensiones": {
+      "naive": {
+        "mae": 0.14743700000000004,
+        "rmse": 0.14743700000000004,
+        "mape": 3.3922814822620615,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.37768412783982264,
+        "rmse": 0.37768412783982264,
+        "mape": 8.689887023035785,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.6062809072265622,
+        "rmse": 1.6062809072265622,
+        "mape": 36.95786659316027,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.3942468235669994,
+        "rmse": 1.3942468235669994,
+        "mape": 32.07931307127133,
+        "r2": null
+      }
+    },
+    "El Salvador::Saneamiento": {
+      "naive": {
+        "mae": 0.15367200000000025,
+        "rmse": 0.15367200000000025,
+        "mape": 1.5910228838439018,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.7172137751246268,
+        "rmse": 0.7172137751246268,
+        "mape": 7.425578692483691,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.780724165527344,
+        "rmse": 0.780724165527344,
+        "mape": 8.083125184314232,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.07046400338508008,
+        "rmse": 0.07046400338508008,
+        "mape": 0.7295398112402804,
+        "r2": null
+      }
+    },
+    "Honduras::Acceso a Internet": {
+      "naive": {
+        "mae": 7.880269000000001,
+        "rmse": 7.880269000000001,
+        "mape": 139.33319671602163,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 7.20659994513228,
+        "rmse": 7.20659994513228,
+        "mape": 127.42186945760182,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 6.352239292358399,
+        "rmse": 6.352239292358399,
+        "mape": 112.31568451653295,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 8.033318378525038,
+        "rmse": 8.033318378525038,
+        "mape": 142.03930473914795,
+        "r2": null
+      }
+    },
+    "Honduras::Agua": {
+      "naive": {
+        "mae": 0.674134,
+        "rmse": 0.674134,
+        "mape": 24.467706325387024,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.5964977973759016,
+        "rmse": 0.5964977973759016,
+        "mape": 21.649898877572966,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.7202287164916994,
+        "rmse": 0.7202287164916994,
+        "mape": 26.140714935353103,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.721935294763433,
+        "rmse": 0.721935294763433,
+        "mape": 26.20265522611735,
+        "r2": null
+      }
+    },
+    "Honduras::Analfabetismo": {
+      "naive": {
+        "mae": 1.2455499999999997,
+        "rmse": 1.2455499999999997,
+        "mape": 17.51708427284938,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.9635022708664138,
+        "rmse": 0.9635022708664138,
+        "mape": 13.550439946889908,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.0537576832885742,
+        "rmse": 1.0537576832885742,
+        "mape": 14.819768087454124,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.769092803376112,
+        "rmse": 0.769092803376112,
+        "mape": 10.816316848284963,
+        "r2": null
+      }
+    },
+    "Honduras::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.6277600000000003,
+        "rmse": 0.6277600000000003,
+        "mape": 4.508940884435049,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.560753928088026,
+        "rmse": 0.560753928088026,
+        "mape": 4.0276639360004625,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.2617823843383782,
+        "rmse": 0.2617823843383782,
+        "mape": 1.880274779482927,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.3563989336867355,
+        "rmse": 0.3563989336867355,
+        "mape": 2.559866387264522,
+        "r2": null
+      }
+    },
+    "Honduras::Calidad del empleo": {
+      "naive": {
+        "mae": 1.1282200000000007,
+        "rmse": 1.1282200000000007,
+        "mape": 7.674250767105383,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.8675750742965374,
+        "rmse": 0.8675750742965374,
+        "mape": 5.901321266633907,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.5041491976928718,
+        "rmse": 0.5041491976928718,
+        "mape": 3.429266780530466,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.4542873046360114,
+        "rmse": 0.4542873046360114,
+        "mape": 3.0901018383729637,
+        "r2": null
+      }
+    },
+    "Honduras::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.6752400000000005,
+        "rmse": 0.6752400000000005,
+        "mape": 6.343003523577728,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.0775914563837095,
+        "rmse": 1.0775914563837095,
+        "mape": 10.122573314405425,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.155678360290528,
+        "rmse": 1.155678360290528,
+        "mape": 10.856098441214005,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.6680143162221377,
+        "rmse": 1.6680143162221377,
+        "mape": 15.66882987556292,
+        "r2": null
+      }
+    },
+    "Honduras::Hacinamiento": {
+      "naive": {
+        "mae": 0.6304560000000006,
+        "rmse": 0.6304560000000006,
+        "mape": 6.796916388751678,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.4168289536380101,
+        "rmse": 0.4168289536380101,
+        "mape": 4.4938132816380545,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.07479516979980438,
+        "rmse": 0.07479516979980438,
+        "mape": 0.8063631964986526,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.10928100754090764,
+        "rmse": 0.10928100754090764,
+        "mape": 1.1781533860159792,
+        "r2": null
+      }
+    },
+    "Honduras::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.790559,
+        "rmse": 0.790559,
+        "mape": 13.351427769944285,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.0998366692872823,
+        "rmse": 0.0998366692872823,
+        "mape": 1.6861006942947516,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 2.6983326697998047,
+        "rmse": 2.6983326697998047,
+        "mape": 45.57103738002226,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 2.014009440544518,
+        "rmse": 2.014009440544518,
+        "mape": 34.01378211293026,
+        "r2": null
+      }
+    },
+    "Honduras::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 1.4541520000000006,
+        "rmse": 1.4541520000000006,
+        "mape": 13.966679408888952,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.228999665833614,
+        "rmse": 1.228999665833614,
+        "mape": 11.804160999902164,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.7842930889892585,
+        "rmse": 0.7842930889892585,
+        "mape": 7.532892116175052,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.5556539493178043,
+        "rmse": 1.5556539493178043,
+        "mape": 14.941574182955941,
+        "r2": null
+      }
+    },
+    "Honduras::Logro educativo": {
+      "naive": {
+        "mae": 0.8661580000000004,
+        "rmse": 0.8661580000000004,
+        "mape": 8.496376456185924,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.7662903812713981,
+        "rmse": 0.7662903812713981,
+        "mape": 7.516748161462504,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.9619313406372072,
+        "rmse": 0.9619313406372072,
+        "mape": 9.435842877462687,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.2838352749527484,
+        "rmse": 0.2838352749527484,
+        "mape": 2.784216444971459,
+        "r2": null
+      }
+    },
+    "Honduras::Pensiones": {
+      "naive": {
+        "mae": 0.8847280000000004,
+        "rmse": 0.8847280000000004,
+        "mape": 18.20680481202538,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.9617533023971001,
+        "rmse": 0.9617533023971001,
+        "mape": 19.79190740438283,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.5728601267089841,
+        "rmse": 0.5728601267089841,
+        "mape": 11.788880324328602,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.2408937402227549,
+        "rmse": 0.2408937402227549,
+        "mape": 4.957348822094975,
+        "r2": null
+      }
+    },
+    "Honduras::Saneamiento": {
+      "naive": {
+        "mae": 0.2537829999999994,
+        "rmse": 0.2537829999999994,
+        "mape": 5.581163871572719,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.31544889182879654,
+        "rmse": 0.31544889182879654,
+        "mape": 6.937312422039829,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.3974870861206057,
+        "rmse": 0.3974870861206057,
+        "mape": 8.741486090372655,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.2594312897210296,
+        "rmse": 0.2594312897210296,
+        "mape": 5.705380349930959,
+        "r2": null
+      }
+    },
+    "Latin America (simple average)::Acceso a Internet": {
+      "naive": {
+        "mae": 0.68485,
+        "rmse": 0.8020811197129623,
+        "mape": 6.220499957738692,
+        "r2": -35.00548712876561
+      },
+      "random_forest": {
+        "mae": 0.5373213568923463,
+        "rmse": 0.5651528425054153,
+        "mape": 4.897553602763654,
+        "r2": -16.87573617910218
+      },
+      "xgboost": {
+        "mae": 0.369482567443848,
+        "rmse": 0.4044994485358015,
+        "mape": 3.399651527997019,
+        "r2": -8.15731116249678
+      },
+      "lightgbm": {
+        "mae": 0.39963086245662627,
+        "rmse": 0.40354814168149494,
+        "mape": 3.6508417600064282,
+        "r2": -8.114289254295894
+      }
+    },
+    "Latin America (simple average)::Agua": {
+      "naive": {
+        "mae": 0.12684300000000004,
+        "rmse": 0.13484922757657922,
+        "mape": 3.0985504834287516,
+        "r2": -10.067169757326804
+      },
+      "random_forest": {
+        "mae": 0.36298286294793103,
+        "rmse": 0.3760874557814228,
+        "mape": 8.811939397867361,
+        "r2": -85.08298958634703
+      },
+      "xgboost": {
+        "mae": 0.03647161145019551,
+        "rmse": 0.041792483657064165,
+        "mape": 0.8926770574963078,
+        "r2": -0.06300671483384579
+      },
+      "lightgbm": {
+        "mae": 0.33350300082891016,
+        "rmse": 0.4222327755575323,
+        "mape": 8.180175095826339,
+        "r2": -107.50344555412453
+      }
+    },
+    "Latin America (simple average)::Analfabetismo": {
+      "naive": {
+        "mae": 0.14674049999999994,
+        "rmse": 0.17393569487169677,
+        "mape": 2.1543425057035828,
+        "r2": -1.0987419890082797
+      },
+      "random_forest": {
+        "mae": 0.3933146600291244,
+        "rmse": 0.3952306516960189,
+        "mape": 5.850910391687893,
+        "r2": -9.83634579737132
+      },
+      "xgboost": {
+        "mae": 0.011013186370849581,
+        "rmse": 0.011444591898899917,
+        "mape": 0.16436684250262032,
+        "r2": 0.9909138010873831
+      },
+      "lightgbm": {
+        "mae": 0.5034591146634178,
+        "rmse": 0.6666240744017986,
+        "mape": 7.360593686492095,
+        "r2": -29.827876161711735
+      }
+    },
+    "Latin America (simple average)::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.0534015000000001,
+        "rmse": 0.05454628103271588,
+        "mape": 0.7321653844192919,
+        "r2": -5.656065896533336
+      },
+      "random_forest": {
+        "mae": 0.26697467539497355,
+        "rmse": 0.2726627987100836,
+        "mape": 3.6647928812077293,
+        "r2": -165.31794021442147
+      },
+      "xgboost": {
+        "mae": 0.1565745049285887,
+        "rmse": 0.17991483190737398,
+        "mape": 2.1515501494498563,
+        "r2": -71.41378634139897
+      },
+      "lightgbm": {
+        "mae": 0.4898890393271045,
+        "rmse": 0.5990277669591569,
+        "mape": 6.707001836362829,
+        "r2": -801.7516912459009
+      }
+    },
+    "Latin America (simple average)::Calidad del empleo": {
+      "naive": {
+        "mae": 0.3200100000000017,
+        "rmse": 0.3205682270593907,
+        "mape": 2.1104599851574846,
+        "r2": -3.5339782339106183
+      },
+      "random_forest": {
+        "mae": 0.33342744850276684,
+        "rmse": 0.36292322784639625,
+        "mape": 2.190844938763471,
+        "r2": -4.8112292703989175
+      },
+      "xgboost": {
+        "mae": 0.5656834762573251,
+        "rmse": 0.572918101502615,
+        "mape": 3.7388124965377973,
+        "r2": -13.48183411756172
+      },
+      "lightgbm": {
+        "mae": 0.833262333822006,
+        "rmse": 0.8440608367540967,
+        "mape": 5.5073991600845345,
+        "r2": -30.43301070621131
+      }
+    },
+    "Latin America (simple average)::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.02117549999999957,
+        "rmse": 0.026943905813745353,
+        "mape": 0.2728148089539392,
+        "r2": -1.0284796777800769
+      },
+      "random_forest": {
+        "mae": 0.27888347874919495,
+        "rmse": 0.28677419968709267,
+        "mape": 3.5978092466897578,
+        "r2": -228.7892515542664
+      },
+      "xgboost": {
+        "mae": 0.25127161349487315,
+        "rmse": 0.25819753646871046,
+        "mape": 3.245365041916908,
+        "r2": -185.2746457729167
+      },
+      "lightgbm": {
+        "mae": 0.49330458306799985,
+        "rmse": 0.5285170480502461,
+        "mape": 6.361750626390078,
+        "r2": -779.4903881212439
+      }
+    },
+    "Latin America (simple average)::Hacinamiento": {
+      "naive": {
+        "mae": 0.11515499999999967,
+        "rmse": 0.11954935068832401,
+        "mape": 1.0977511728395462,
+        "r2": -1.6358813726174244
+      },
+      "random_forest": {
+        "mae": 0.5226482892908875,
+        "rmse": 0.5245138442208586,
+        "mape": 4.989131151864516,
+        "r2": -49.739400186418486
+      },
+      "xgboost": {
+        "mae": 0.7834481567382809,
+        "rmse": 0.7856325125052344,
+        "mape": 7.487075417805642,
+        "r2": -112.83355881604564
+      },
+      "lightgbm": {
+        "mae": 0.10754817372633951,
+        "rmse": 0.1484053615075722,
+        "mape": 1.02038204467283,
+        "r2": -3.0619128391944495
+      }
+    },
+    "Latin America (simple average)::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.033720500000000264,
+        "rmse": 0.03499237877738542,
+        "mape": 0.782874282079079,
+        "r2": -7.245644103597874
+      },
+      "random_forest": {
+        "mae": 3.4725438783994824,
+        "rmse": 3.478426071010298,
+        "mape": 80.54415567782578,
+        "r2": -81477.53419087976
+      },
+      "xgboost": {
+        "mae": 5.180503327270507,
+        "rmse": 5.215428828592231,
+        "mape": 120.21883672789957,
+        "r2": -183170.41440252945
+      },
+      "lightgbm": {
+        "mae": 5.55733333802657,
+        "rmse": 5.605168201917582,
+        "mape": 128.9690898503475,
+        "r2": -211569.4216610013
+      }
+    },
+    "Latin America (simple average)::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 0.1376900000000001,
+        "rmse": 0.16219264625746727,
+        "mape": 1.2289974093305618,
+        "r2": -37.95981418506705
+      },
+      "random_forest": {
+        "mae": 0.2272562079085727,
+        "rmse": 0.2335703625477582,
+        "mape": 2.024416039739145,
+        "r2": -79.79603104407848
+      },
+      "xgboost": {
+        "mae": 0.44805864212036184,
+        "rmse": 0.45526617714115386,
+        "mape": 3.995202389720408,
+        "r2": -305.96250552731084
+      },
+      "lightgbm": {
+        "mae": 0.26535376907546837,
+        "rmse": 0.30265237541050244,
+        "mape": 2.368096879058048,
+        "r2": -134.65716332270276
+      }
+    },
+    "Latin America (simple average)::Logro educativo": {
+      "naive": {
+        "mae": 0.06246300000000016,
+        "rmse": 0.06295871340807406,
+        "mape": 0.6500604723794098,
+        "r2": -2.203820458730247
+      },
+      "random_forest": {
+        "mae": 0.6647248748845174,
+        "rmse": 0.6667806232410015,
+        "mape": 6.919081907609932,
+        "r2": -358.35394989369513
+      },
+      "xgboost": {
+        "mae": 0.8189420350646976,
+        "rmse": 0.8193936737116252,
+        "mape": 8.525739776777545,
+        "r2": -541.6773488249372
+      },
+      "lightgbm": {
+        "mae": 0.1868132250705612,
+        "rmse": 0.25955789334418095,
+        "mape": 1.9382173451744396,
+        "r2": -53.45339511330633
+      }
+    },
+    "Latin America (simple average)::Pensiones": {
+      "naive": {
+        "mae": 0.15565099999999976,
+        "rmse": 0.15584968235450442,
+        "mape": 3.9557000164565483,
+        "r2": -3.448534876507546
+      },
+      "random_forest": {
+        "mae": 0.8063709760418774,
+        "rmse": 0.8133616856230039,
+        "mape": 20.461655441987592,
+        "r2": -120.16371424294984
+      },
+      "xgboost": {
+        "mae": 0.5034748431396485,
+        "rmse": 0.50563048649542,
+        "mape": 12.829718972631094,
+        "r2": -45.82433947345585
+      },
+      "lightgbm": {
+        "mae": 0.5633923679763053,
+        "rmse": 0.5963521384825724,
+        "mape": 14.238160537052574,
+        "r2": -64.13444527352465
+      }
+    },
+    "Latin America (simple average)::Saneamiento": {
+      "naive": {
+        "mae": 0.11526450000000033,
+        "rmse": 0.11567701725278054,
+        "mape": 1.3573371395018965,
+        "r2": -3.808574000458835
+      },
+      "random_forest": {
+        "mae": 0.88609872192986,
+        "rmse": 0.8884858125371657,
+        "mape": 10.433836175574223,
+        "r2": -282.67635308627337
+      },
+      "xgboost": {
+        "mae": 0.8301750450134282,
+        "rmse": 0.8307302526934863,
+        "mape": 9.76865867381694,
+        "r2": -246.99458229288425
+      },
+      "lightgbm": {
+        "mae": 0.9247909083452561,
+        "rmse": 0.9354910915083179,
+        "mape": 10.874164697768174,
+        "r2": -313.4860985033394
+      }
+    },
+    "Latin America (weighted average)::Acceso a Internet": {
+      "naive": {
+        "mae": 0.5023749999999998,
+        "rmse": 0.5152347587750652,
+        "mape": 4.468671676357494,
+        "r2": -6.054262580597969
+      },
+      "random_forest": {
+        "mae": 0.005984237606150522,
+        "rmse": 0.0075066535939188024,
+        "mape": 0.05274017222169881,
+        "r2": 0.9985026129798333
+      },
+      "xgboost": {
+        "mae": 0.2789638121032718,
+        "rmse": 0.3367207945633478,
+        "mape": 2.5203982465279386,
+        "r2": -2.0128755220297014
+      },
+      "lightgbm": {
+        "mae": 0.1662996859958863,
+        "rmse": 0.19458570638680767,
+        "mape": 1.5007338187622528,
+        "r2": -0.006151049407731701
+      }
+    },
+    "Latin America (weighted average)::Agua": {
+      "naive": {
+        "mae": 0.13911300000000004,
+        "rmse": 0.14771739846747922,
+        "mape": 2.8657735281232353,
+        "r2": -1.4488157942790725
+      },
+      "random_forest": {
+        "mae": 0.019089571920880122,
+        "rmse": 0.024031993185803204,
+        "mape": 0.40194837795042726,
+        "r2": 0.935185466260892
+      },
+      "xgboost": {
+        "mae": 0.2193430710754396,
+        "rmse": 0.26876352505911205,
+        "mape": 4.61342133876362,
+        "r2": -7.106501622930882
+      },
+      "lightgbm": {
+        "mae": 0.38491485673448356,
+        "rmse": 0.4154467779608093,
+        "mape": 8.04867544138955,
+        "r2": -18.369731783874172
+      }
+    },
+    "Latin America (weighted average)::Analfabetismo": {
+      "naive": {
+        "mae": 0.10673649999999979,
+        "rmse": 0.1316630665315825,
+        "mape": 1.374179837294313,
+        "r2": -1.052029023101288
+      },
+      "random_forest": {
+        "mae": 0.2916462148070389,
+        "rmse": 0.3038794813921676,
+        "mape": 3.774217844661697,
+        "r2": -9.930960381890307
+      },
+      "xgboost": {
+        "mae": 0.29600782884216326,
+        "rmse": 0.29613843728166406,
+        "mape": 3.842725250897558,
+        "r2": -9.381141906168272
+      },
+      "lightgbm": {
+        "mae": 0.583177677826666,
+        "rmse": 0.5942804699128622,
+        "mape": 7.55568192108704,
+        "r2": -40.80598720689309
+      }
+    },
+    "Latin America (weighted average)::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.03686549999999977,
+        "rmse": 0.0446703636933928,
+        "mape": 0.7966874427566221,
+        "r2": -1.0702732492144045
+      },
+      "random_forest": {
+        "mae": 0.8621971426334571,
+        "rmse": 1.2168475199509412,
+        "mape": 18.42451301271439,
+        "r2": -1535.2468886430163
+      },
+      "xgboost": {
+        "mae": 0.7480258003692626,
+        "rmse": 0.9417535503145043,
+        "mape": 16.00958559037627,
+        "r2": -919.1597366317402
+      },
+      "lightgbm": {
+        "mae": 0.8147268586969472,
+        "rmse": 1.1031230423206528,
+        "mape": 17.419834273997797,
+        "r2": -1261.5151735086642
+      }
+    },
+    "Latin America (weighted average)::Calidad del empleo": {
+      "naive": {
+        "mae": 0.11692999999999998,
+        "rmse": 0.11977707000924663,
+        "mape": 0.773103337027506,
+        "r2": -5.934433252574382
+      },
+      "random_forest": {
+        "mae": 0.06499387966918846,
+        "rmse": 0.08065768501824534,
+        "mape": 0.4303804359113066,
+        "r2": -2.144525406189421
+      },
+      "xgboost": {
+        "mae": 0.21599003662109428,
+        "rmse": 0.3032572945513622,
+        "mape": 1.4228771832954785,
+        "r2": -43.451468639885896
+      },
+      "lightgbm": {
+        "mae": 0.2629677728682811,
+        "rmse": 0.27250398071195897,
+        "mape": 1.7360796292702911,
+        "r2": -34.89296235795923
+      }
+    },
+    "Latin America (weighted average)::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.053901999999999894,
+        "rmse": 0.05472531820830276,
+        "mape": 0.8284101706388988,
+        "r2": -5.064440805357387
+      },
+      "random_forest": {
+        "mae": 0.04965509491689435,
+        "rmse": 0.0625333561036009,
+        "mape": 0.7606907717191598,
+        "r2": -6.918403805466763
+      },
+      "xgboost": {
+        "mae": 0.05333141723632817,
+        "rmse": 0.07519976443569226,
+        "mape": 0.8219299042983108,
+        "r2": -10.451097977408327
+      },
+      "lightgbm": {
+        "mae": 0.458475127635825,
+        "rmse": 0.5055674433655023,
+        "mape": 7.030834429184788,
+        "r2": -516.5739011486482
+      }
+    },
+    "Latin America (weighted average)::Hacinamiento": {
+      "naive": {
+        "mae": 0.06099500000000013,
+        "rmse": 0.07969028328472687,
+        "mape": 0.5600471478328798,
+        "r2": -1.014957659670357
+      },
+      "random_forest": {
+        "mae": 0.03544830833267465,
+        "rmse": 0.03630387358254109,
+        "mape": 0.3265300899962158,
+        "r2": 0.5818220628967553
+      },
+      "xgboost": {
+        "mae": 0.5464570582580572,
+        "rmse": 0.5518429993057412,
+        "mape": 5.043096860373327,
+        "r2": -95.62427722577222
+      },
+      "lightgbm": {
+        "mae": 0.24507242469896084,
+        "rmse": 0.26498806392580987,
+        "mape": 2.2648688699883657,
+        "r2": -21.279621453500486
+      }
+    },
+    "Latin America (weighted average)::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.05666800000000016,
+        "rmse": 0.060702581040677384,
+        "mape": 1.2326327471776068,
+        "r2": -1.3961883422883083
+      },
+      "random_forest": {
+        "mae": 0.9319969532100862,
+        "rmse": 0.9343783062378107,
+        "mape": 20.351927851969815,
+        "r2": -566.7434461228596
+      },
+      "xgboost": {
+        "mae": 2.748189607162476,
+        "rmse": 2.7484127633683073,
+        "mape": 59.98178070933656,
+        "r2": -4911.137889626668
+      },
+      "lightgbm": {
+        "mae": 2.8602437081088885,
+        "rmse": 2.9209939036432804,
+        "mape": 62.53133290491111,
+        "r2": -5547.402224932561
+      }
+    },
+    "Latin America (weighted average)::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 0.16493999999999964,
+        "rmse": 0.16494124165896132,
+        "mape": 1.4612930865332452,
+        "r2": -3.031283895343118
+      },
+      "random_forest": {
+        "mae": 0.15414172304413487,
+        "rmse": 0.20417547090765636,
+        "mape": 1.3569539935084856,
+        "r2": -5.177204743688618
+      },
+      "xgboost": {
+        "mae": 0.5091203387451175,
+        "rmse": 0.5262426536277848,
+        "mape": 4.519030770647879,
+        "r2": -40.03523800556573
+      },
+      "lightgbm": {
+        "mae": 0.3019602751635331,
+        "rmse": 0.37194453927279847,
+        "mape": 2.661152871746,
+        "r2": -19.499404181350492
+      }
+    },
+    "Latin America (weighted average)::Logro educativo": {
+      "naive": {
+        "mae": 0.10286500000000043,
+        "rmse": 0.10410421917482546,
+        "mape": 0.991250409021203,
+        "r2": -4.747209228253412
+      },
+      "random_forest": {
+        "mae": 0.5118661459105054,
+        "rmse": 0.514226623898017,
+        "mape": 4.927366219206373,
+        "r2": -139.22629596183816
+      },
+      "xgboost": {
+        "mae": 0.681226348266601,
+        "rmse": 0.7835916757992587,
+        "mape": 6.544718120901765,
+        "r2": -324.6116786998086
+      },
+      "lightgbm": {
+        "mae": 0.33501451862443066,
+        "rmse": 0.35477072451723757,
+        "mape": 3.2309415107610007,
+        "r2": -65.74456325090728
+      }
+    },
+    "Latin America (weighted average)::Pensiones": {
+      "naive": {
+        "mae": 0.3933484999999999,
+        "rmse": 0.4534061380534012,
+        "mape": 14.576863401387433,
+        "r2": -1.1471093653872724
+      },
+      "random_forest": {
+        "mae": 0.5284794936948054,
+        "rmse": 0.7238285275611205,
+        "mape": 20.29939700958371,
+        "r2": -4.472058946057985
+      },
+      "xgboost": {
+        "mae": 0.8582979405288695,
+        "rmse": 0.9321025110883397,
+        "mape": 31.32761434694336,
+        "r2": -8.07416625152169
+      },
+      "lightgbm": {
+        "mae": 0.9215131927974218,
+        "rmse": 1.010089299592097,
+        "mape": 33.722055251945434,
+        "r2": -9.656115443472403
+      }
+    },
+    "Latin America (weighted average)::Saneamiento": {
+      "naive": {
+        "mae": 0.11638600000000032,
+        "rmse": 0.11641625621879478,
+        "mape": 1.1654680419080068,
+        "r2": -2.8256163307355084
+      },
+      "random_forest": {
+        "mae": 0.8997735145677437,
+        "rmse": 0.9001921428568578,
+        "mape": 9.00975297452598,
+        "r2": -227.74130308971013
+      },
+      "xgboost": {
+        "mae": 0.7928510429382323,
+        "rmse": 0.7976262431161528,
+        "mape": 7.935341508997519,
+        "r2": -178.58622601657453
+      },
+      "lightgbm": {
+        "mae": 0.21269976800914225,
+        "rmse": 0.22467402901647524,
+        "mape": 2.1345463088966254,
+        "r2": -13.248852862126382
+      }
+    },
+    "Mexico::Acceso a Internet": {
+      "naive": {
+        "mae": 1.6128,
+        "rmse": 1.6128,
+        "mape": 14.345512668845299,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.14276698905843688,
+        "rmse": 0.14276698905843688,
+        "mape": 1.2698819755894744,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.5050092916870117,
+        "rmse": 1.5050092916870117,
+        "mape": 13.38673726477301,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.6475643554957013,
+        "rmse": 0.6475643554957013,
+        "mape": 5.759947089320574,
+        "r2": null
+      }
+    },
+    "Mexico::Agua": {
+      "naive": {
+        "mae": 0.9705819999999998,
+        "rmse": 0.9705819999999998,
+        "mape": 29.82430803003504,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.376727045699855,
+        "rmse": 1.376727045699855,
+        "mape": 42.30444360624101,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.1112841903991697,
+        "rmse": 1.1112841903991697,
+        "mape": 34.14784325628638,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.9442700698869619,
+        "rmse": 0.9442700698869619,
+        "mape": 29.01578787557514,
+        "r2": null
+      }
+    },
+    "Mexico::Analfabetismo": {
+      "naive": {
+        "mae": 0.2621930000000008,
+        "rmse": 0.2621930000000008,
+        "mape": 4.779035695355513,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.32552493384571424,
+        "rmse": 0.32552493384571424,
+        "mape": 5.933397453695963,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.007122720703124585,
+        "rmse": 0.007122720703124585,
+        "mape": 0.129827022415854,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.3151085765960753,
+        "rmse": 0.3151085765960753,
+        "mape": 5.7435367666768595,
+        "r2": null
+      }
+    },
+    "Mexico::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.05538600000000038,
+        "rmse": 0.05538600000000038,
+        "mape": 0.6331786721699348,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 3.709746445920393,
+        "rmse": 3.709746445920393,
+        "mape": 42.4102179019065,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 5.543502620071411,
+        "rmse": 5.543502620071411,
+        "mape": 63.373914493686975,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 2.5586480266576457,
+        "rmse": 2.5586480266576457,
+        "mape": 29.250737732807945,
+        "r2": null
+      }
+    },
+    "Mexico::Calidad del empleo": {
+      "naive": {
+        "mae": 0.7764389999999981,
+        "rmse": 0.7764389999999981,
+        "mape": 4.822755554539639,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.7995279789974834,
+        "rmse": 0.7995279789974834,
+        "mape": 4.9661699138244915,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.6129739548339828,
+        "rmse": 0.6129739548339828,
+        "mape": 3.807412488893174,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.3847254643337266,
+        "rmse": 1.3847254643337266,
+        "mape": 8.601052271495863,
+        "r2": null
+      }
+    },
+    "Mexico::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.19351900000000022,
+        "rmse": 0.19351900000000022,
+        "mape": 2.4391710304845047,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.12943911102817118,
+        "rmse": 0.12943911102817118,
+        "mape": 1.6314890518842187,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.06965602307128904,
+        "rmse": 0.06965602307128904,
+        "mape": 0.8779652311878849,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.3314283347351594,
+        "rmse": 0.3314283347351594,
+        "mape": 4.177421301100776,
+        "r2": null
+      }
+    },
+    "Mexico::Hacinamiento": {
+      "naive": {
+        "mae": 0.6192600000000006,
+        "rmse": 0.6192600000000006,
+        "mape": 4.7390847840527535,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.26057869685359414,
+        "rmse": 0.26057869685359414,
+        "mape": 1.99416164019501,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.36047699157714774,
+        "rmse": 0.36047699157714774,
+        "mape": 2.7586652226599035,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.07816096849046339,
+        "rmse": 0.07816096849046339,
+        "mape": 0.5981517560959555,
+        "r2": null
+      }
+    },
+    "Mexico::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.3965449999999997,
+        "rmse": 0.3965449999999997,
+        "mape": 9.16333354053442,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.3513165478479827,
+        "rmse": 1.3513165478479827,
+        "mape": 31.226126282703387,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.8995417948303226,
+        "rmse": 1.8995417948303226,
+        "mape": 43.8944761381827,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 3.615750090013928,
+        "rmse": 3.615750090013928,
+        "mape": 83.55249485938543,
+        "r2": null
+      }
+    },
+    "Mexico::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 0.7238159999999993,
+        "rmse": 0.7238159999999993,
+        "mape": 7.10434260273488,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.7319903007842381,
+        "rmse": 0.7319903007842381,
+        "mape": 7.184574365101333,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.419860625610351,
+        "rmse": 0.419860625610351,
+        "mape": 4.120983412544816,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.8384929066036513,
+        "rmse": 0.8384929066036513,
+        "mape": 8.229910472378785,
+        "r2": null
+      }
+    },
+    "Mexico::Logro educativo": {
+      "naive": {
+        "mae": 0.11795500000000025,
+        "rmse": 0.11795500000000025,
+        "mape": 1.4433161753828327,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.3087501415421592,
+        "rmse": 1.3087501415421592,
+        "mape": 16.01407527296313,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.0664736638793944,
+        "rmse": 1.0664736638793944,
+        "mape": 13.049541687057953,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.4092944202790445,
+        "rmse": 1.4092944202790445,
+        "mape": 17.24435108868223,
+        "r2": null
+      }
+    },
+    "Mexico::Pensiones": {
+      "naive": {
+        "mae": 3.1391300000000006,
+        "rmse": 3.1391300000000006,
+        "mape": 200.04307853484553,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 3.7335683763231895,
+        "rmse": 3.7335683763231895,
+        "mape": 237.9240464460011,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 3.8019730846862796,
+        "rmse": 3.8019730846862796,
+        "mape": 242.28318048862783,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 3.37092832334372,
+        "rmse": 3.37092832334372,
+        "mape": 214.8145757971103,
+        "r2": null
+      }
+    },
+    "Mexico::Saneamiento": {
+      "naive": {
+        "mae": 0.6362229999999993,
+        "rmse": 0.6362229999999993,
+        "mape": 6.419013232960082,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.4205318414061736,
+        "rmse": 0.4205318414061736,
+        "mape": 4.242851099170105,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.4001940903320307,
+        "rmse": 0.4001940903320307,
+        "mape": 4.037658433589685,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.11445758882338097,
+        "rmse": 0.11445758882338097,
+        "mape": 1.1547912874416473,
+        "r2": null
+      }
+    },
+    "Paraguay::Acceso a Internet": {
+      "naive": {
+        "mae": 0.4765599999999992,
+        "rmse": 0.666784135384158,
+        "mape": 3.464822603749133,
+        "r2": -1.0002340349100076
+      },
+      "random_forest": {
+        "mae": 0.6579352521597333,
+        "rmse": 0.88195166480621,
+        "mape": 4.770309268651637,
+        "r2": -2.4994505823736346
+      },
+      "xgboost": {
+        "mae": 0.7323280725097652,
+        "rmse": 0.8888143317176137,
+        "mape": 5.27464214779369,
+        "r2": -2.5541225104830216
+      },
+      "lightgbm": {
+        "mae": 1.0732177330289563,
+        "rmse": 1.1142138333250948,
+        "mape": 7.487609722628245,
+        "r2": -4.585311359949817
+      }
+    },
+    "Paraguay::Agua": {
+      "naive": {
+        "mae": 0.15467349999999996,
+        "rmse": 0.17552017469368011,
+        "mape": 17.851630576078023,
+        "r2": -22.965746963439514
+      },
+      "random_forest": {
+        "mae": 0.17738324088227575,
+        "rmse": 0.18707536946190018,
+        "mape": 20.309538717675984,
+        "r2": -26.22513913126602
+      },
+      "xgboost": {
+        "mae": 0.39857321687316893,
+        "rmse": 0.4017278845151161,
+        "mape": 45.2542463726223,
+        "r2": -124.54541026036696
+      },
+      "lightgbm": {
+        "mae": 0.12455225634179012,
+        "rmse": 0.12456133981931078,
+        "mape": 14.07688815591143,
+        "r2": -11.069893181944474
+      }
+    },
+    "Paraguay::Analfabetismo": {
+      "naive": {
+        "mae": 0.30718400000000035,
+        "rmse": 0.315681585398959,
+        "mape": 6.863384375917139,
+        "r2": -6.253117349349966
+      },
+      "random_forest": {
+        "mae": 0.31070704087393297,
+        "rmse": 0.3308240435041588,
+        "mape": 6.833975992566577,
+        "r2": -6.9656338023904505
+      },
+      "xgboost": {
+        "mae": 0.19007186044311553,
+        "rmse": 0.24429857737617147,
+        "mape": 4.309405874544848,
+        "r2": -3.3437826062131304
+      },
+      "lightgbm": {
+        "mae": 0.2885892272352044,
+        "rmse": 0.39615668350677224,
+        "mape": 6.5652070416382085,
+        "r2": -10.422474061739976
+      }
+    },
+    "Paraguay::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.41438050000000004,
+        "rmse": 0.419568994803596,
+        "mape": 2.599414628500462,
+        "r2": -4.7944138304787165
+      },
+      "random_forest": {
+        "mae": 0.5365289584164961,
+        "rmse": 0.5910791559938193,
+        "mape": 3.3767829703389154,
+        "r2": -10.499898922469908
+      },
+      "xgboost": {
+        "mae": 0.4106212392883295,
+        "rmse": 0.49641586007723826,
+        "mape": 2.5904430026828495,
+        "r2": -7.1113666146594365
+      },
+      "lightgbm": {
+        "mae": 0.4727281827052874,
+        "rmse": 0.4921769076119512,
+        "mape": 2.9696641803076145,
+        "r2": -6.97343027105794
+      }
+    },
+    "Paraguay::Calidad del empleo": {
+      "naive": {
+        "mae": 0.36326500000000017,
+        "rmse": 0.3861349472011049,
+        "mape": 2.294714526596286,
+        "r2": -10.047216271431429
+      },
+      "random_forest": {
+        "mae": 0.3958194483172859,
+        "rmse": 0.468012591695676,
+        "mape": 2.505295810375201,
+        "r2": -15.22892350480274
+      },
+      "xgboost": {
+        "mae": 0.21032684631347642,
+        "rmse": 0.256033587637139,
+        "mape": 1.3318541268850477,
+        "r2": -3.857004671737794
+      },
+      "lightgbm": {
+        "mae": 0.30025295016172304,
+        "rmse": 0.3792230411727045,
+        "mape": 1.9023645504763758,
+        "r2": -9.655260483301133
+      }
+    },
+    "Paraguay::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.24317050000000062,
+        "rmse": 0.30552997819608496,
+        "mape": 2.8103291868580405,
+        "r2": -1.03694738022425
+      },
+      "random_forest": {
+        "mae": 0.24993284409919703,
+        "rmse": 0.2547130462467923,
+        "mape": 2.849635986297535,
+        "r2": -0.41571075606651786
+      },
+      "xgboost": {
+        "mae": 0.46656827484130936,
+        "rmse": 0.47939208445853987,
+        "mape": 5.324711538713561,
+        "r2": -4.0148029160294865
+      },
+      "lightgbm": {
+        "mae": 0.15467909515125466,
+        "rmse": 0.16655944786418564,
+        "mape": 1.772235262683675,
+        "r2": 0.39464421500847635
+      }
+    },
+    "Paraguay::Hacinamiento": {
+      "naive": {
+        "mae": 0.18647550000000024,
+        "rmse": 0.1866287853105734,
+        "mape": 2.209840685129932,
+        "r2": -3.3524466272895967
+      },
+      "random_forest": {
+        "mae": 0.10448429362740974,
+        "rmse": 0.10448508562662855,
+        "mape": 1.2376154012231018,
+        "r2": -0.3642212222469161
+      },
+      "xgboost": {
+        "mae": 0.21418851776123038,
+        "rmse": 0.23685852903646798,
+        "mape": 2.5498567674431403,
+        "r2": -6.010584866965073
+      },
+      "lightgbm": {
+        "mae": 0.2208723688990908,
+        "rmse": 0.23152189110201563,
+        "mape": 2.6250503912196277,
+        "r2": -5.698234035646702
+      }
+    },
+    "Paraguay::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.17735199999999995,
+        "rmse": 0.19981587052333952,
+        "mape": 6.922897626323317,
+        "r2": -1.2005335359512195
+      },
+      "random_forest": {
+        "mae": 5.581694691096563,
+        "rmse": 5.59220007773088,
+        "mape": 224.89726908097327,
+        "r2": -1722.5878942527145
+      },
+      "xgboost": {
+        "mae": 7.873659923309326,
+        "rmse": 7.876599518492836,
+        "mape": 316.66420051464473,
+        "r2": -3418.3657859081454
+      },
+      "lightgbm": {
+        "mae": 6.4655310598049045,
+        "rmse": 6.549332095032681,
+        "mape": 261.91120638702523,
+        "r2": -2363.0793962071857
+      }
+    },
+    "Paraguay::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 0.21983850000000071,
+        "rmse": 0.2199743422595015,
+        "mape": 2.363791837031939,
+        "r2": -3.3021530258071685
+      },
+      "random_forest": {
+        "mae": 1.1073056528112537,
+        "rmse": 1.2770804991087903,
+        "mape": 11.97936584082519,
+        "r2": -144.00345324036005
+      },
+      "xgboost": {
+        "mae": 0.7595306336364747,
+        "rmse": 0.8296772769224996,
+        "mape": 8.204407608871733,
+        "r2": -60.201235580514066
+      },
+      "lightgbm": {
+        "mae": 1.6343923322965814,
+        "rmse": 1.8413376271779582,
+        "mape": 17.670496282557906,
+        "r2": -300.44539531822784
+      }
+    },
+    "Paraguay::Logro educativo": {
+      "naive": {
+        "mae": 0.15100050000000032,
+        "rmse": 0.20518230547613045,
+        "mape": 2.199489255745347,
+        "r2": -1152.8092952036961
+      },
+      "random_forest": {
+        "mae": 0.24537221024229794,
+        "rmse": 0.3122042218647316,
+        "mape": 3.579493442135271,
+        "r2": -2670.355984720302
+      },
+      "xgboost": {
+        "mae": 0.1133752986755372,
+        "rmse": 0.11896322407797952,
+        "mape": 1.653238090517355,
+        "r2": -386.86418047483977
+      },
+      "lightgbm": {
+        "mae": 0.5960402992749825,
+        "rmse": 0.618334290130104,
+        "mape": 8.691137450586623,
+        "r2": -10477.542644332421
+      }
+    },
+    "Paraguay::Pensiones": {
+      "naive": {
+        "mae": 0.39864900000000003,
+        "rmse": 0.4645016509873782,
+        "mape": 12.597934425276433,
+        "r2": -32.61354562400159
+      },
+      "random_forest": {
+        "mae": 1.7634964221357607,
+        "rmse": 1.8724103741806741,
+        "mape": 56.080078333811166,
+        "r2": -545.1876533324403
+      },
+      "xgboost": {
+        "mae": 1.604941021987915,
+        "rmse": 1.7072810593796013,
+        "mape": 51.0300959693667,
+        "r2": -453.098268366452
+      },
+      "lightgbm": {
+        "mae": 1.2198376073724013,
+        "rmse": 1.2981441856124563,
+        "mape": 38.78423121388984,
+        "r2": -261.53406686448164
+      }
+    },
+    "Paraguay::Saneamiento": {
+      "naive": {
+        "mae": 0.2092179999999999,
+        "rmse": 0.2929822379001833,
+        "mape": 2.2004312089346367,
+        "r2": -20256.26648435039
+      },
+      "random_forest": {
+        "mae": 0.3942639289698393,
+        "rmse": 0.47560628938358607,
+        "mape": 4.148121278229233,
+        "r2": -53380.82724205356
+      },
+      "xgboost": {
+        "mae": 0.3793356817626954,
+        "rmse": 0.4926683054218658,
+        "mape": 3.9911916380315238,
+        "r2": -57279.592975400745
+      },
+      "lightgbm": {
+        "mae": 0.4278889147083582,
+        "rmse": 0.4416420576811344,
+        "mape": 4.500989020174091,
+        "r2": -46028.801989346066
+      }
+    },
+    "Peru::Acceso a Internet": {
+      "naive": {
+        "mae": 3.2659249999999997,
+        "rmse": 3.968469199038969,
+        "mape": 88.78703794317349,
+        "r2": -60.57206098283658
+      },
+      "random_forest": {
+        "mae": 5.631241837669432,
+        "rmse": 5.657710746298512,
+        "mape": 168.27647929408153,
+        "r2": -124.14662540237487
+      },
+      "xgboost": {
+        "mae": 4.743100690383911,
+        "rmse": 4.8649232679632135,
+        "mape": 138.91126840520764,
+        "r2": -91.5315106675506
+      },
+      "lightgbm": {
+        "mae": 4.598585006462283,
+        "rmse": 4.692631557800205,
+        "mape": 135.1977384254091,
+        "r2": -85.09354223584248
+      }
+    },
+    "Peru::Agua": {
+      "naive": {
+        "mae": 0.5720505,
+        "rmse": 0.7073664209746604,
+        "mape": 8.202312501408358,
+        "r2": -81.27794453510296
+      },
+      "random_forest": {
+        "mae": 0.4233814200578587,
+        "rmse": 0.43241201903295806,
+        "mape": 6.035918311569813,
+        "r2": -29.74610228481512
+      },
+      "xgboost": {
+        "mae": 1.0278845152587892,
+        "rmse": 1.1002872623288595,
+        "mape": 14.558397261162867,
+        "r2": -198.07041628825596
+      },
+      "lightgbm": {
+        "mae": 0.8337613101235735,
+        "rmse": 0.8894266786945647,
+        "mape": 11.810312813997637,
+        "r2": -129.0812969456532
+      }
+    },
+    "Peru::Analfabetismo": {
+      "naive": {
+        "mae": 0.22901399999999983,
+        "rmse": 0.2704051596623112,
+        "mape": 2.9115091439771557,
+        "r2": -39.255334316732394
+      },
+      "random_forest": {
+        "mae": 2.330731812441012,
+        "rmse": 2.373588600553869,
+        "mape": 29.56175419837763,
+        "r2": -3100.7328130860137
+      },
+      "xgboost": {
+        "mae": 2.098203589141846,
+        "rmse": 2.1270779390300505,
+        "mape": 26.60873274035177,
+        "r2": -2489.922961380739
+      },
+      "lightgbm": {
+        "mae": 2.0574570329963326,
+        "rmse": 2.1856886233786295,
+        "mape": 26.119031772474244,
+        "r2": -2629.086746721284
+      }
+    },
+    "Peru::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.162028,
+        "rmse": 0.16349583684302177,
+        "mape": 19.610537289257294,
+        "r2": -2.1620689318881596
+      },
+      "random_forest": {
+        "mae": 0.2295381663541367,
+        "rmse": 0.25482704265365136,
+        "mape": 28.81199913610044,
+        "r2": -6.681551814607372
+      },
+      "xgboost": {
+        "mae": 0.5281081755027771,
+        "rmse": 0.5311558123302725,
+        "mape": 63.731317865771686,
+        "r2": -32.37350441724766
+      },
+      "lightgbm": {
+        "mae": 0.5591030128596608,
+        "rmse": 0.5918001140530991,
+        "mape": 69.20213937115932,
+        "r2": -40.4293409935511
+      }
+    },
+    "Peru::Calidad del empleo": {
+      "naive": {
+        "mae": 0.5007955000000006,
+        "rmse": 0.5149383202874894,
+        "mape": 2.678912592734215,
+        "r2": -6.308988195382681
+      },
+      "random_forest": {
+        "mae": 1.1688065808162573,
+        "rmse": 1.1705568281557204,
+        "mape": 6.24061341465182,
+        "r2": -36.76868304840602
+      },
+      "xgboost": {
+        "mae": 1.2272498709106454,
+        "rmse": 1.2827379772850238,
+        "mape": 6.528776398369971,
+        "r2": -44.35474631065762
+      },
+      "lightgbm": {
+        "mae": 1.0379533209131413,
+        "rmse": 1.0393458387136176,
+        "mape": 5.535949453097885,
+        "r2": -28.776044139607613
+      }
+    },
+    "Peru::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.20868999999999982,
+        "rmse": 0.208916703496872,
+        "mape": 1.3550404165232495,
+        "r2": -3.4103674653029
+      },
+      "random_forest": {
+        "mae": 0.7199199868910533,
+        "rmse": 0.7976857021449664,
+        "mape": 4.661488772607679,
+        "r2": -63.29720022671478
+      },
+      "xgboost": {
+        "mae": 0.41694721267700174,
+        "rmse": 0.41923672220573927,
+        "mape": 2.7099226177655575,
+        "r2": -16.760168441417374
+      },
+      "lightgbm": {
+        "mae": 0.36301982595831817,
+        "rmse": 0.3853662126175622,
+        "mape": 2.3632530992425336,
+        "r2": -14.00637228214831
+      }
+    },
+    "Peru::Hacinamiento": {
+      "naive": {
+        "mae": 0.4707714999999997,
+        "rmse": 0.6611841994440725,
+        "mape": 4.352778560966483,
+        "r2": -41260.303828394666
+      },
+      "random_forest": {
+        "mae": 1.5094393779311917,
+        "rmse": 1.520848165477613,
+        "mape": 13.952734858494493,
+        "r2": -218307.0400882767
+      },
+      "xgboost": {
+        "mae": 1.3782429826354976,
+        "rmse": 1.3798643925425178,
+        "mape": 12.739342692289652,
+        "r2": -179708.41473063658
+      },
+      "lightgbm": {
+        "mae": 0.9267502698037271,
+        "rmse": 0.9746219326204402,
+        "mape": 8.565402029027663,
+        "r2": -89653.14536961146
+      }
+    },
+    "Peru::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.21156350000000002,
+        "rmse": 0.2282540687359155,
+        "mape": 6.737594501796944,
+        "r2": -12.15070629430076
+      },
+      "random_forest": {
+        "mae": 5.302198453217292,
+        "rmse": 5.302899529823418,
+        "mape": 170.19436197467854,
+        "r2": -7097.046182938198
+      },
+      "xgboost": {
+        "mae": 6.789537264953614,
+        "rmse": 6.795025243014554,
+        "mape": 218.1849363693215,
+        "r2": -11653.514103085095
+      },
+      "lightgbm": {
+        "mae": 6.6650377837135775,
+        "rmse": 6.689278048800703,
+        "mape": 213.64114768042825,
+        "r2": -11293.591278719825
+      }
+    },
+    "Peru::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 0.8486099999999999,
+        "rmse": 0.91637710820164,
+        "mape": 9.87606196134866,
+        "r2": -12.288521203447775
+      },
+      "random_forest": {
+        "mae": 1.2695855419601552,
+        "rmse": 1.326163457809667,
+        "mape": 14.476045416340295,
+        "r2": -26.830582998975036
+      },
+      "xgboost": {
+        "mae": 0.44178222015380886,
+        "rmse": 0.4755605868965734,
+        "mape": 5.023098867132668,
+        "r2": -2.578820357786768
+      },
+      "lightgbm": {
+        "mae": 1.142342768354586,
+        "rmse": 1.4545111283455066,
+        "mape": 12.840580565323531,
+        "r2": -32.47821446030536
+      }
+    },
+    "Peru::Logro educativo": {
+      "naive": {
+        "mae": 0.36860599999999977,
+        "rmse": 0.43678852183293443,
+        "mape": 4.738267877678331,
+        "r2": -1.0991811157260067
+      },
+      "random_forest": {
+        "mae": 0.4556446510897558,
+        "rmse": 0.6177279179698932,
+        "mape": 5.521836898127519,
+        "r2": -3.1985751930574544
+      },
+      "xgboost": {
+        "mae": 0.3577372406616206,
+        "rmse": 0.49959095381465823,
+        "mape": 4.325239825835813,
+        "r2": -1.746228109931268
+      },
+      "lightgbm": {
+        "mae": 0.4170849475038252,
+        "rmse": 0.42282344847526565,
+        "mape": 5.202726995346138,
+        "r2": -0.9670962216541295
+      }
+    },
+    "Peru::Pensiones": {
+      "naive": {
+        "mae": 0.47436349999999994,
+        "rmse": 0.4790339824088683,
+        "mape": 7.289022721115197,
+        "r2": -4.523976679759291
+      },
+      "random_forest": {
+        "mae": 0.571896666787564,
+        "rmse": 0.5736973503825408,
+        "mape": 8.77101261160735,
+        "r2": -6.922912842897488
+      },
+      "xgboost": {
+        "mae": 0.35570252934265145,
+        "rmse": 0.40261559683367093,
+        "mape": 5.531732754622177,
+        "r2": -2.902117835972078
+      },
+      "lightgbm": {
+        "mae": 0.5663158144730067,
+        "rmse": 0.5922691760363733,
+        "mape": 8.58134487186366,
+        "r2": -7.444179409532726
+      }
+    },
+    "Peru::Saneamiento": {
+      "naive": {
+        "mae": 0.7685200000000005,
+        "rmse": 0.7903335295962085,
+        "mape": 8.105427054250864,
+        "r2": -6.32284137139821
+      },
+      "random_forest": {
+        "mae": 2.519399525187256,
+        "rmse": 2.548489831068482,
+        "mape": 26.255427660068918,
+        "r2": -75.14205999237485
+      },
+      "xgboost": {
+        "mae": 2.7540755720367436,
+        "rmse": 2.8223371574276626,
+        "mape": 28.637966629699545,
+        "r2": -92.38488735510128
+      },
+      "lightgbm": {
+        "mae": 3.119703639182883,
+        "rmse": 3.120845078245694,
+        "mape": 32.63646120275383,
+        "r2": -113.18346898257703
+      }
+    },
+    "Uruguay::Acceso a Internet": {
+      "naive": {
+        "mae": 0.9969795000000001,
+        "rmse": 1.101759191457235,
+        "mape": 6.0591716684626205,
+        "r2": -16.414112913685525
+      },
+      "random_forest": {
+        "mae": 0.6589359815942704,
+        "rmse": 0.7124220794412697,
+        "mape": 4.008573913139363,
+        "r2": -6.281196185015317
+      },
+      "xgboost": {
+        "mae": 1.1723966491394044,
+        "rmse": 1.2029619918163723,
+        "mape": 7.153190494271682,
+        "r2": -19.760212906173418
+      },
+      "lightgbm": {
+        "mae": 0.921844870233615,
+        "rmse": 1.276853674677242,
+        "mape": 5.558002542021358,
+        "r2": -22.38892454769279
+      }
+    },
+    "Uruguay::Agua": {
+      "naive": {
+        "mae": 0.16207649999999996,
+        "rmse": 0.18621624471162548,
+        "mape": 17.14195498400382,
+        "r2": -27.000099295350573
+      },
+      "random_forest": {
+        "mae": 0.1136921532089949,
+        "rmse": 0.13933068329268763,
+        "mape": 12.619330938662413,
+        "r2": -14.675376355462623
+      },
+      "xgboost": {
+        "mae": 0.10965331774139403,
+        "rmse": 0.11045585804331598,
+        "mape": 11.906686024943522,
+        "r2": -8.851490667234515
+      },
+      "lightgbm": {
+        "mae": 0.1959788452856776,
+        "rmse": 0.19703952794128823,
+        "mape": 21.098984728094152,
+        "r2": -30.349539054826273
+      }
+    },
+    "Uruguay::Analfabetismo": {
+      "naive": {
+        "mae": 0.5481045,
+        "rmse": 0.5707030120618778,
+        "mape": 9.899610223821265,
+        "r2": -7.605271083005336
+      },
+      "random_forest": {
+        "mae": 0.16278784325425555,
+        "rmse": 0.16316334224143797,
+        "mape": 2.917731198371333,
+        "r2": 0.2966209766911404
+      },
+      "xgboost": {
+        "mae": 0.5725562769012451,
+        "rmse": 0.5869823700721524,
+        "mape": 10.318404337083928,
+        "r2": -8.103205390871025
+      },
+      "lightgbm": {
+        "mae": 0.8279378767643779,
+        "rmse": 0.8280259602877299,
+        "mape": 14.812106045771433,
+        "r2": -17.114741153865925
+      }
+    },
+    "Uruguay::Aseguramiento en salud": {
+      "naive": {
+        "mae": 0.063774,
+        "rmse": 0.06921667640099458,
+        "mape": 36.202642118592095,
+        "r2": -1.3306529528107425
+      },
+      "random_forest": {
+        "mae": 0.05570388181649832,
+        "rmse": 0.0597083232865311,
+        "mape": 31.966684036622482,
+        "r2": -0.7343066010090036
+      },
+      "xgboost": {
+        "mae": 0.20069541337013244,
+        "rmse": 0.20337176286128913,
+        "mape": 134.20322698295516,
+        "r2": -19.120438075438383
+      },
+      "lightgbm": {
+        "mae": 0.4551108633110815,
+        "rmse": 0.4557083171046059,
+        "mape": 295.4902687408052,
+        "r2": -100.02527370474122
+      }
+    },
+    "Uruguay::Calidad del empleo": {
+      "naive": {
+        "mae": 0.6720799999999993,
+        "rmse": 0.7780661205835908,
+        "mape": 4.500024026554633,
+        "r2": -29.878263131385687
+      },
+      "random_forest": {
+        "mae": 1.1551966799979567,
+        "rmse": 1.1900137309914773,
+        "mape": 7.7594431566708035,
+        "r2": -71.23102843350107
+      },
+      "xgboost": {
+        "mae": 1.033270908813476,
+        "rmse": 1.2018509253607952,
+        "mape": 6.9177332777332845,
+        "r2": -72.6751549210706
+      },
+      "lightgbm": {
+        "mae": 0.5499988582091229,
+        "rmse": 0.6022576810720419,
+        "mape": 3.687396972696448,
+        "r2": -17.50054611998898
+      }
+    },
+    "Uruguay::Condiciones de la vivienda": {
+      "naive": {
+        "mae": 0.30669499999999994,
+        "rmse": 0.32604485201425887,
+        "mape": 11.152474046500972,
+        "r2": -1.441317456827841
+      },
+      "random_forest": {
+        "mae": 0.28625307245117804,
+        "rmse": 0.3197712725163476,
+        "mape": 11.122667309106797,
+        "r2": -1.348272283006969
+      },
+      "xgboost": {
+        "mae": 0.44069442783355717,
+        "rmse": 0.4434266591921913,
+        "mape": 16.62937274298177,
+        "r2": -3.515576052340352
+      },
+      "lightgbm": {
+        "mae": 0.34364451242358296,
+        "rmse": 0.34437279406773724,
+        "mape": 12.92097041127337,
+        "r2": -1.723499063345629
+      }
+    },
+    "Uruguay::Hacinamiento": {
+      "naive": {
+        "mae": 1.0474750000000004,
+        "rmse": 1.1921401795300757,
+        "mape": 6.937881795267699,
+        "r2": -1.175036308123388
+      },
+      "random_forest": {
+        "mae": 1.3880992098211138,
+        "rmse": 1.388132862339213,
+        "mape": 9.480986482165749,
+        "r2": -1.948994288520168
+      },
+      "xgboost": {
+        "mae": 1.365005085906982,
+        "rmse": 1.3985251645451806,
+        "mape": 9.20533917296833,
+        "r2": -1.9933150592049382
+      },
+      "lightgbm": {
+        "mae": 0.6489208532403259,
+        "rmse": 0.6674940468766088,
+        "mape": 4.371815387736783,
+        "r2": 0.3181220395610168
+      }
+    },
+    "Uruguay::Inasistencia o rezago escolar": {
+      "naive": {
+        "mae": 0.7074564999999997,
+        "rmse": 0.7077085820085126,
+        "mape": 10.708778037706226,
+        "r2": -2.7973813120504234
+      },
+      "random_forest": {
+        "mae": 3.690719120544253,
+        "rmse": 3.690722205947301,
+        "mape": 55.78100516928768,
+        "r2": -102.27566504503886
+      },
+      "xgboost": {
+        "mae": 5.44547066998291,
+        "rmse": 5.5097127575087175,
+        "mape": 81.61392471117064,
+        "r2": -229.1617762889569
+      },
+      "lightgbm": {
+        "mae": 4.644390973219554,
+        "rmse": 4.668136746224923,
+        "mape": 69.81063488983088,
+        "r2": -164.21992616600954
+      }
+    },
+    "Uruguay::Inserci\u00f3n laboral": {
+      "naive": {
+        "mae": 0.4921849999999992,
+        "rmse": 0.5907809179222013,
+        "mape": 2.992028459526518,
+        "r2": -50.020196590804446
+      },
+      "random_forest": {
+        "mae": 0.22560299811218876,
+        "rmse": 0.22726315851168513,
+        "mape": 1.3769095495945478,
+        "r2": -6.550005806333087
+      },
+      "xgboost": {
+        "mae": 0.5571463480834957,
+        "rmse": 0.5584941152310166,
+        "mape": 3.399508192651626,
+        "r2": -44.59596503332705
+      },
+      "lightgbm": {
+        "mae": 0.368466069994728,
+        "rmse": 0.4990941433518795,
+        "mape": 2.2578179716161753,
+        "r2": -35.412806767751704
+      }
+    },
+    "Uruguay::Logro educativo": {
+      "naive": {
+        "mae": 1.0006040000000018,
+        "rmse": 1.0422040875188523,
+        "mape": 6.020285042885468,
+        "r2": -7.641000674685282
+      },
+      "random_forest": {
+        "mae": 0.5079867693680828,
+        "rmse": 0.5692506358937677,
+        "mape": 3.0422324104307643,
+        "r2": -1.5778968962387814
+      },
+      "xgboost": {
+        "mae": 0.3417786156005871,
+        "rmse": 0.4795234687639202,
+        "mape": 2.025604337307672,
+        "r2": -0.8292717571134987
+      },
+      "lightgbm": {
+        "mae": 0.6104315569058567,
+        "rmse": 0.7240668366266009,
+        "mape": 3.645268894569013,
+        "r2": -3.170765840727081
+      }
+    },
+    "Uruguay::Pensiones": {
+      "naive": {
+        "mae": 0.34011900000000006,
+        "rmse": 0.4041444890258929,
+        "mape": 20.12477459731495,
+        "r2": -1.0951920063679044
+      },
+      "random_forest": {
+        "mae": 0.2457852355132275,
+        "rmse": 0.24622192558571776,
+        "mape": 13.401391582947161,
+        "r2": 0.2223145867294113
+      },
+      "xgboost": {
+        "mae": 0.32191535411834704,
+        "rmse": 0.45503600858335214,
+        "mape": 19.965161082476758,
+        "r2": -1.65608541369836
+      },
+      "lightgbm": {
+        "mae": 0.32872222693895603,
+        "rmse": 0.3874856765198292,
+        "mape": 19.403933161615388,
+        "r2": -0.9260245257392403
+      }
+    },
+    "Uruguay::Saneamiento": {
+      "naive": {
+        "mae": 0.38479700000000006,
+        "rmse": 0.40917844660367936,
+        "mape": 11.426227768518155,
+        "r2": -1.4397049013219996
+      },
+      "random_forest": {
+        "mae": 0.3611466500311442,
+        "rmse": 0.3776069329741657,
+        "mape": 10.773369154239882,
+        "r2": -1.0777424798332467
+      },
+      "xgboost": {
+        "mae": 0.26541768181610115,
+        "rmse": 0.3709972970945575,
+        "mape": 8.74561353587469,
+        "r2": -1.0056414260525717
+      },
+      "lightgbm": {
+        "mae": 0.3618846009073653,
+        "rmse": 0.36777648816238395,
+        "mape": 11.223796238218863,
+        "r2": -0.9709686800143911
+      }
+    }
+  },
+  "available_models": [
+    "lightgbm",
+    "naive",
+    "random_forest",
+    "xgboost"
   ],
+  "unavailable_models": [],
   "feature_names": [
     "year",
     "year_squared",
@@ -65,8 +4582,6 @@
     "value_lag2",
     "value_lag3",
     "value_trend",
-    "global_mean",
-    "deviation_from_global",
     "country_encoded",
     "privation_encoded"
   ],
@@ -103,6 +4618,17 @@
     "Pensiones",
     "Saneamiento"
   ],
-  "train_date": "2026-09-09T20:56:38.508805",
-  "n_samples": 2316
+  "train_years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
+  ],
+  "test_years": [
+    2023,
+    2024
+  ],
+  "n_samples": 2316,
+  "train_date": "2026-10-01T04:56:11.454985"
 }

@@ -9,6 +9,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import pandas as pd
 import numpy as np
 import joblib
+import json
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -25,13 +26,21 @@ class DomainPredictor:
         self.scaler = joblib.load(os.path.join(models_dir, 'scaler.pkl'))
         self.le = joblib.load(os.path.join(models_dir, 'label_encoder.pkl'))
         self.feature_cols = joblib.load(os.path.join(models_dir, 'feature_cols.pkl'))
+        try:
+            self.arima_models = joblib.load(os.path.join(models_dir, 'arima_models.pkl'))
+        except FileNotFoundError:
+            self.arima_models = {}
+        self.model_dir = models_dir
         
         # Cargar métricas (opcional)
         try:
-            import json
             with open(os.path.join(models_dir, 'metrics.json'), 'r') as f:
                 self.metrics = json.load(f)
-            print(f"Modelo cargado (R²: {self.metrics['r2']:.4f})")
+            random_forest_metrics = self.metrics.get('candidates', {}).get(
+                'random_forest', self.metrics.get('random_forest', self.metrics)
+            )
+            r2 = random_forest_metrics.get('r2')
+            print(f"Modelo cargado (R²: {r2:.4f})" if r2 is not None else "Modelo cargado")
         except:
             print("Modelo cargado")
 
@@ -47,10 +56,28 @@ class DomainPredictor:
         data_frame = data_frame[~data_frame['dominio'].str.contains('__test__', na=False)]
         data_frame = data_frame.sort_values('anio')
         
+        data_frame['anio'] = pd.to_numeric(data_frame['anio'], errors='raise').astype(int)
+        data_frame = data_frame.drop_duplicates(subset=['dominio', 'anio'])
+        data_frame = data_frame.sort_values('anio')
         if len(data_frame) < 3:
             raise ValueError(f"Datos insuficientes para {dominio} (solo {len(data_frame)} años)")
-        
-        return data_frame.tail(3)
+
+        recent_data = data_frame.tail(3)
+        recent_years = recent_data['anio'].to_numpy()
+        if not np.all(np.diff(recent_years) == 1):
+            raise ValueError(
+                f"La ventana reciente de {dominio} contiene años faltantes: "
+                f"{recent_years.tolist()}"
+            )
+
+        all_years = data_frame['anio'].to_numpy()
+        if not np.all(np.diff(all_years) == 1):
+            print(
+                f"Advertencia: {dominio} tiene huecos históricos; "
+                f"se usará la ventana consecutiva {recent_years.tolist()}"
+            )
+
+        return recent_data
 
 
     def predict(self, domain: str, begin_year: int, years: int = 5):
@@ -66,13 +93,14 @@ class DomainPredictor:
         # 3. Codificar dominio
         domain_encoded = self.le.transform([domain])[0]
         
-        # 4. Inicializar variables para predicción recursiva
-        # Usamos los últimos 3 años históricos
+        # 4. Inicializar la ventana histórica para el pronóstico temporal
         current_year = historical_years[-1]
         current_ipm = historical_ipms[-1]
         lag1 = historical_ipms[-2] if len(historical_ipms) >= 2 else current_ipm
         lag2 = historical_ipms[-3] if len(historical_ipms) >= 3 else current_ipm
-        trend = current_ipm - lag1 if len(historical_ipms) >= 2 else 0
+        changes = list(np.diff(historical_ipms))
+        trend = float(np.mean(changes[-3:])) if changes else 0.0
+        selected_model = self.metrics.get('selected_model', 'RandomForestRegressor')
         
         # 5. Hacer predicciones recursivas
         predicciones = []
@@ -80,22 +108,26 @@ class DomainPredictor:
         for i in range(years):
             year = begin_year + i
             
-            # Preparar features (mismo orden que en entrenamiento)
-            features = [
-                year,
-                year ** 2,
-                year - 2010,
-                current_ipm,   # lag1 (IPM más reciente)
-                lag1,          # lag2 (IPM anterior)
-                trend,         # tendencia del dominio
-                domain_encoded
-            ]
-            
-            # Escalar
-            features_scaled = self.scaler.transform([features])
-            
-            # Predecir
-            pred = self.model.predict(features_scaled)[0]
+            if selected_model == 'naive':
+                pred = current_ipm
+            elif selected_model == 'arima':
+                arima_model = self.arima_models.get(domain)
+                pred = (
+                    arima_model.forecast(steps=i + 1)[-1]
+                    if arima_model is not None else current_ipm
+                )
+            else:
+                features = {
+                    'year': year,
+                    'years_since_2010': year - 2010,
+                    'ipm_lag1': current_ipm,
+                    'ipm_lag2': lag1,
+                    'domain_trend': trend,
+                    'domain_encoded': domain_encoded,
+                }
+                feature_values = [features[col] for col in self.feature_cols]
+                features_scaled = self.scaler.transform([feature_values])
+                pred = self.model.predict(features_scaled)[0]
             
             predicciones.append({
                 'año': year,
@@ -108,7 +140,8 @@ class DomainPredictor:
             lag1 = current_ipm
             current_ipm = pred
             current_year = year
-            trend = current_ipm - lag1 if len(predicciones) >= 2 else trend
+            changes.append(current_ipm - lag1)
+            trend = float(np.mean(changes[-3:]))
         
         return pd.DataFrame(predicciones)
 

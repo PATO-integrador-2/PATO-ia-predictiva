@@ -1,8 +1,3 @@
-"""
-Entrenamiento
-Contribuciones a la incidencia Ajustada del IPM
-"""
-
 import json
 import os
 import sys
@@ -14,220 +9,217 @@ import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-import warnings
-warnings.filterwarnings('ignore')
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from database import Database
-
-# Best hyperparameters found
-PARAMS = {
-    'n_estimators': 150,
-    'max_depth': 12,
-    'min_samples_split': 3,
-    'min_samples_leaf': 1,
-    'random_state': 42,
-    'n_jobs': -1
-}
+from model_selection import select_best_model
 
 
-def prepare_data():
-    """Prepare data for training."""
-    
-    database = Database()
-    data_frame = database.get_data_view_dimension_contribution()
-    data_frame = data_frame.dropna().copy()
-    
-    # Renombrar columnas en ingles
-    rename_map = {}
-    for col in data_frame.columns:
-        if col.lower() == 'porcentaje':
-            rename_map[col] = 'percentage'
-        elif col.lower() == 'dominio':
-            rename_map[col] = 'domain'
-        elif col.lower() == 'anio':
-            rename_map[col] = 'year'
-        elif col.lower() == 'dimension':
-            rename_map[col] = 'dimension'
-    
-    if rename_map:
-        data_frame = data_frame.rename(columns=rename_map)
-    
-    print(f"   Filas Totales: {len(data_frame)}")
-    print(f"   Años: {data_frame['year'].min()} - {data_frame['year'].max()}")
-    print(f"   Dominios: {data_frame['domain'].nunique()}")
-    print(f"   Dimensiones: {data_frame['dimension'].nunique()}")
-    
-    # Codificar variables categóricas
-    le_domain = LabelEncoder()
-    le_dimension = LabelEncoder()
-    
-    data_frame['domain_encoded'] = le_domain.fit_transform(data_frame['domain'])
-    data_frame['dimension_encoded'] = le_dimension.fit_transform(data_frame['dimension'])
-    
-    # Crar variables
-    data_frame['year_squared'] = data_frame['year'] ** 2
-    data_frame['years_since_2010'] = data_frame['year'] - 2010
-    
-    # Lags por dominio y dimensión
-    data_frame['lag1'] = data_frame.groupby(['domain', 'dimension'])['percentage'].shift(1)
-    data_frame['lag2'] = data_frame.groupby(['domain', 'dimension'])['percentage'].shift(2)
-    data_frame['lag3'] = data_frame.groupby(['domain', 'dimension'])['percentage'].shift(3)
-    
-    # Moviendo promedio
-    data_frame['ma2'] = data_frame.groupby(['domain', 'dimension'])['percentage'].transform(
-        lambda x: x.rolling(2, min_periods=1).mean().shift(1)
-    )
-    data_frame['ma3'] = data_frame.groupby(['domain', 'dimension'])['percentage'].transform(
-        lambda x: x.rolling(3, min_periods=1).mean().shift(1)
-    )
-    
-    # Trend
-    data_frame['trend'] = data_frame.groupby(['domain', 'dimension'])['percentage'].transform(
-        lambda x: x.diff().fillna(0).rolling(3, min_periods=1).mean()
-    )
-    
-    # Caracteristicas globales (por año y dimensión)
-    data_frame['global_mean'] = data_frame.groupby(['year', 'dimension'])['percentage'].transform('mean')
-    data_frame['deviation_from_global'] = data_frame['percentage'] - data_frame['global_mean']
-    
-    # Caracteristicas estructurales
-    data_frame['domain_mean'] = data_frame.groupby(['domain', 'dimension'])['percentage'].transform('mean')
-    data_frame['domain_std'] = data_frame.groupby(['domain', 'dimension'])['percentage'].transform('std')
-    data_frame['domain_norm'] = data_frame.groupby(['domain', 'dimension'])['percentage'].transform(
-        lambda x: (x - x.mean()) / x.std() if x.std() > 0 else 0
-    )
-    
-    # Caracteristicas de la estructura
-    data_frame['sum_dimensions'] = data_frame.groupby(['year', 'domain'])['percentage'].transform('sum')
-    
-    data_frame = data_frame.dropna()
-    
-    feature_cols = [
-        'year',
-        'year_squared',
-        'years_since_2010',
-        'lag1',
-        'lag2',
-        'lag3',
-        'ma2',
-        'ma3',
-        'trend',
-        'global_mean',
-        'deviation_from_global',
-        'domain_mean',
-        'domain_std',
-        'domain_norm',
-        'sum_dimensions',
-        'domain_encoded',
-        'dimension_encoded'
-    ]
-    
-    X = data_frame[feature_cols]
-    y = data_frame['percentage']
-    
-    # Escalar características
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X)
-    
-    # Split Temporal
-    years = sorted(data_frame['year'].unique())
-    split_idx = int(len(years) * 0.8)
-    train_years = years[:split_idx]
-    test_years = years[split_idx:]
-    
-    train_mask = data_frame['year'].isin(train_years)
-    test_mask = data_frame['year'].isin(test_years)
-    
+FEATURE_COLS = [
+    'year', 'year_squared', 'years_since_2010',
+    'lag1', 'lag2', 'lag3', 'ma2', 'ma3', 'trend',
+    'domain_encoded', 'dimension_encoded'
+]
+GROUP_COLS = ['domain', 'dimension']
+
+
+def _mape(y_true, y_pred):
+    actual = np.asarray(y_true, dtype=float)
+    predicted = np.asarray(y_pred, dtype=float)
+    mask = np.abs(actual) > 1e-8
+    return float(np.mean(np.abs((actual[mask] - predicted[mask]) / actual[mask])) * 100) if np.any(mask) else None
+
+
+def _metrics(y_true, y_pred):
     return {
-        'X_train': X_scaled[train_mask],
-        'X_test': X_scaled[test_mask],
-        'y_train': y[train_mask],
-        'y_test': y[test_mask],
-        'feature_cols': feature_cols,
-        'le_domain': le_domain,
-        'le_dimension': le_dimension,
+        'mae': float(mean_absolute_error(y_true, y_pred)),
+        'rmse': float(np.sqrt(mean_squared_error(y_true, y_pred))),
+        'mape': _mape(y_true, y_pred),
+        'r2': float(r2_score(y_true, y_pred)) if len(y_true) > 1 else None,
+    }
+
+
+def _prepare_data(data_frame):
+    frame = data_frame.dropna().copy()
+    frame = frame.rename(columns={'dominio': 'domain', 'anio': 'year'})
+    frame['domain'] = frame['domain'].astype(str)
+    frame['dimension'] = frame['dimension'].astype(str)
+    frame['year'] = pd.to_numeric(frame['year'], errors='raise').astype(int)
+    frame['percentage'] = pd.to_numeric(frame['porcentaje'], errors='raise')
+    frame = frame.drop_duplicates(subset=GROUP_COLS + ['year']).sort_values(GROUP_COLS + ['year'])
+    frame['year_squared'] = frame['year'] ** 2
+    frame['years_since_2010'] = frame['year'] - 2010
+
+    grouped = frame.groupby(GROUP_COLS)['percentage']
+    frame['lag1'] = grouped.shift(1)
+    frame['lag2'] = grouped.shift(2)
+    frame['lag3'] = grouped.shift(3)
+    frame['ma2'] = grouped.transform(lambda values: values.shift(1).rolling(2, min_periods=2).mean())
+    frame['ma3'] = grouped.transform(lambda values: values.shift(1).rolling(3, min_periods=3).mean())
+    changes = grouped.diff()
+    frame['trend'] = changes.groupby([frame['domain'], frame['dimension']]).transform(
+        lambda values: values.shift(1).rolling(3, min_periods=1).mean()
+    )
+
+    domain_encoder = LabelEncoder()
+    dimension_encoder = LabelEncoder()
+    frame['domain_encoded'] = domain_encoder.fit_transform(frame['domain'])
+    frame['dimension_encoded'] = dimension_encoder.fit_transform(frame['dimension'])
+    frame = frame.dropna(subset=FEATURE_COLS + ['percentage'])
+
+    available_years = sorted(frame['year'].unique().tolist())
+    train_years = [year for year in available_years if 2018 <= year <= 2022]
+    test_years = [year for year in available_years if 2023 <= year <= 2025]
+    if len(train_years) < 2 or not test_years:
+        split_index = max(1, int(len(available_years) * 0.8))
+        train_years = available_years[:split_index]
+        test_years = available_years[split_index:]
+
+    train_mask = frame['year'].isin(train_years)
+    test_mask = frame['year'].isin(test_years)
+    if not train_mask.any() or not test_mask.any():
+        raise ValueError('La vista 4 no tiene años suficientes para un split temporal')
+
+    scaler = StandardScaler()
+    x_train = scaler.fit_transform(frame.loc[train_mask, FEATURE_COLS])
+    x_test = scaler.transform(frame.loc[test_mask, FEATURE_COLS])
+    return {
+        'frame': frame,
+        'x_train': x_train,
+        'x_test': x_test,
+        'y_train': frame.loc[train_mask, 'percentage'].to_numpy(),
+        'y_test': frame.loc[test_mask, 'percentage'].to_numpy(),
+        'test_lag1': frame.loc[test_mask, 'lag1'].to_numpy(),
         'scaler': scaler,
-        'n_samples': len(data_frame),
+        'domain_encoder': domain_encoder,
+        'dimension_encoder': dimension_encoder,
         'train_years': train_years,
         'test_years': test_years,
-        'dimensions': sorted(data_frame['dimension'].unique().tolist()),
-        'domains': sorted(data_frame['domain'].unique().tolist())
     }
+
+
+def _fit_arima_predictions(frame, train_years, test_years):
+    try:
+        from statsmodels.tsa.arima.model import ARIMA
+    except ImportError:
+        return None, None
+
+    predictions = []
+    fitted_models = {}
+    for key, series in frame.groupby(GROUP_COLS):
+        train_series = series[series['year'].isin(train_years)].sort_values('year')
+        test_series = series[series['year'].isin(test_years)].sort_values('year')
+        if len(train_series) < 3:
+            continue
+        try:
+            model = ARIMA(train_series['percentage'].to_numpy(), order=(1, 1, 0)).fit()
+            forecast = model.forecast(steps=len(test_series))
+            predictions.extend((key[0], key[1], year, value) for year, value in zip(test_series['year'], forecast))
+            fitted_models[key] = ARIMA(series['percentage'].to_numpy(), order=(1, 1, 0)).fit()
+        except Exception:
+            continue
+    if not predictions:
+        return None, None
+    prediction_frame = pd.DataFrame(predictions, columns=GROUP_COLS + ['year', 'prediction'])
+    test_frame = frame[frame['year'].isin(test_years)][GROUP_COLS + ['year', 'percentage']]
+    merged = test_frame.merge(prediction_frame, on=GROUP_COLS + ['year'], how='inner')
+    return merged['prediction'].to_numpy(), fitted_models
 
 
 def train_lv1_vw4():
-
-    print("ENTRENAMIENTO DEL MODELO DE CONTRIBUCIÓN POR DIMENSIÓN")
-
-    data = prepare_data()
-    
-    print(f"\nDatos:")
-    print(f"Entrenamiento: {len(data['X_train'])} records (years {data['train_years'][0]}-{data['train_years'][-1]})")
-    print(f"Pruebas: {len(data['X_test'])} records (years {data['test_years'][0]}-{data['test_years'][-1]})")
-    print(f"Características: {len(data['feature_cols'])}")
-    
-    model = RandomForestRegressor(**PARAMS)
-    model.fit(data['X_train'], data['y_train'])
-    
-    # Evaluation
-    y_pred = model.predict(data['X_test'])
-    mae = mean_absolute_error(data['y_test'], y_pred)
-    rmse = np.sqrt(mean_squared_error(data['y_test'], y_pred))
-    r2 = r2_score(data['y_test'], y_pred)
-    
-    print(f"\nEVALUACIÓN:")
-    print(f"MAE:  {mae:.4f}")
-    print(f"RMSE: {rmse:.4f}")
-    print(f"R²:   {r2:.4f}")
-    
-    # Importancia de Caracteristicas
-    importance = pd.DataFrame({
-        'Feature': data['feature_cols'],
-        'Importance': model.feature_importances_
-    }).sort_values('Importance', ascending=False)
-    
-    print("\nTOP 10 CARACTERÍSTICAS MÁS IMPORTANTES:")
-    for _, row in importance.head(10).iterrows():
-        print(f"   - {row['Feature']}: {row['Importance']:.4f}")
-    
-    # Save model
-    print("\nMODELO GUARDADO...")
-    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    model_dir = os.path.join(base_dir, 'models', 'train_lv1_vw4')
-    os.makedirs(model_dir, exist_ok=True)
-    
-    joblib.dump(model, os.path.join(model_dir, 'model.pkl'))
-    joblib.dump(data['scaler'], os.path.join(model_dir, 'scaler.pkl'))
-    joblib.dump(data['le_domain'], os.path.join(model_dir, 'label_encoder_domain.pkl'))
-    joblib.dump(data['le_dimension'], os.path.join(model_dir, 'label_encoder_dimension.pkl'))
-    joblib.dump(data['feature_cols'], os.path.join(model_dir, 'feature_cols.pkl'))
-    joblib.dump(data['dimensions'], os.path.join(model_dir, 'dimensions.pkl'))
-    joblib.dump(data['domains'], os.path.join(model_dir, 'domains.pkl'))
-    
-    metrics = {
-        'model': 'RandomForestRegressor_DimensionContribution',
-        'mae': float(mae),
-        'rmse': float(rmse),
-        'r2': float(r2),
-        'params': PARAMS,
-        'feature_importance': importance.to_dict('records'),
-        'feature_names': data['feature_cols'],
-        'dimensions': data['dimensions'],
-        'domains': data['domains'],
-        'train_date': datetime.now().isoformat(),
-        'n_samples': data['n_samples']
+    data = _prepare_data(Database().get_data_view_dimension_contribution())
+    candidates = {'naive': data['test_lag1']}
+    fitted_models = {}
+    unavailable_models = []
+    tree_models = {
+        'random_forest': RandomForestRegressor(
+            n_estimators=150, max_depth=10, min_samples_split=10,
+            min_samples_leaf=4, random_state=42, n_jobs=-1
+        )
     }
-    
-    with open(os.path.join(model_dir, 'metrics.json'), 'w') as f:
-        json.dump(metrics, f, indent=2)
-    
-    print("ENTRENAMIENTO COMPLETADO")
-    print(f"\nModelo guardado en: {model_dir}")
-    
-    return model, metrics
+    try:
+        from xgboost import XGBRegressor
+        tree_models['xgboost'] = XGBRegressor(
+            n_estimators=200, max_depth=4, learning_rate=0.05,
+            objective='reg:squarederror', random_state=42, n_jobs=-1
+        )
+    except ImportError:
+        unavailable_models.append('xgboost')
+    try:
+        from lightgbm import LGBMRegressor
+        tree_models['lightgbm'] = LGBMRegressor(
+            n_estimators=200, max_depth=4, learning_rate=0.05,
+            random_state=42, verbosity=-1, n_jobs=-1
+        )
+    except ImportError:
+        unavailable_models.append('lightgbm')
+
+    for name, model in tree_models.items():
+        model.fit(data['x_train'], data['y_train'])
+        fitted_models[name] = model
+        candidates[name] = model.predict(data['x_test'])
+
+    arima_prediction, arima_models = _fit_arima_predictions(data['frame'], data['train_years'], data['test_years'])
+    if arima_prediction is not None and len(arima_prediction) == len(data['y_test']):
+        candidates['arima'] = arima_prediction
+    else:
+        unavailable_models.append('arima')
+
+    candidate_metrics = {name: _metrics(data['y_test'], prediction) for name, prediction in candidates.items()}
+    selected_model, variation_required = select_best_model(candidates, candidate_metrics)
+    test_meta = data['frame'].loc[data['frame']['year'].isin(data['test_years']), GROUP_COLS].reset_index(drop=True)
+    metrics_by_series = {}
+    selected_model_by_series = {}
+    for series_key in sorted(test_meta.itertuples(index=False, name=None)):
+        series_mask = test_meta.eq(series_key).all(axis=1).to_numpy()
+        series_metrics = {
+            name: _metrics(data['y_test'][series_mask], prediction[series_mask])
+            for name, prediction in candidates.items()
+        }
+        key = f'{series_key[0]}::{series_key[1]}'
+        metrics_by_series[key] = series_metrics
+        selected_model_by_series[key], _ = select_best_model(
+            {name: prediction[series_mask] for name, prediction in candidates.items()},
+            series_metrics
+        )
+
+    model_dir = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+        'models', 'train_lv1_vw4'
+    )
+    os.makedirs(model_dir, exist_ok=True)
+    joblib.dump(fitted_models.get(selected_model, fitted_models.get('random_forest')), os.path.join(model_dir, 'model.pkl'))
+    joblib.dump(fitted_models, os.path.join(model_dir, 'candidate_models.pkl'))
+    joblib.dump(data['scaler'], os.path.join(model_dir, 'scaler.pkl'))
+    joblib.dump(data['domain_encoder'], os.path.join(model_dir, 'label_encoder_domain.pkl'))
+    joblib.dump(data['dimension_encoder'], os.path.join(model_dir, 'label_encoder_dimension.pkl'))
+    joblib.dump(FEATURE_COLS, os.path.join(model_dir, 'feature_cols.pkl'))
+    joblib.dump(sorted(data['frame']['dimension'].unique().tolist()), os.path.join(model_dir, 'dimensions.pkl'))
+    joblib.dump(sorted(data['frame']['domain'].unique().tolist()), os.path.join(model_dir, 'domains.pkl'))
+    joblib.dump(arima_models or {}, os.path.join(model_dir, 'arima_models.pkl'))
+
+    metrics = {
+        'model': 'temporal_benchmark',
+        'selected_model': selected_model,
+        'variation_required': variation_required,
+        'selected_model_by_series': selected_model_by_series,
+        'candidates': candidate_metrics,
+        'metrics_by_series': metrics_by_series,
+        'available_models': sorted(candidates),
+        'unavailable_models': unavailable_models,
+        'feature_names': FEATURE_COLS,
+        'dimensions': sorted(data['frame']['dimension'].unique().tolist()),
+        'domains': sorted(data['frame']['domain'].unique().tolist()),
+        'train_years': [int(year) for year in data['train_years']],
+        'test_years': [int(year) for year in data['test_years']],
+        'n_samples': int(len(data['frame'])),
+        'train_date': datetime.now().isoformat(),
+    }
+    with open(os.path.join(model_dir, 'metrics.json'), 'w', encoding='utf-8') as file:
+        json.dump(metrics, file, indent=2)
+    print(json.dumps(metrics, indent=2))
+    return fitted_models.get(selected_model), metrics
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     train_lv1_vw4()

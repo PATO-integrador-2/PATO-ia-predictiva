@@ -16,6 +16,22 @@ POST	/predict/privacion               Privación específica
     "begin_year": 2026,
     "years": 10
 }
+// Privaciones por (variable): o solo la variable
+Analfabetismo
+Bajo logro educativo
+Barreras a servicios para cuidado de la primera infancia
+Barreras de acceso a servicios de salud
+Desempleo de larga duración
+Hacinamiento crítico
+Inadecuada eliminación de excretas
+Inasistencia escolar
+Material inadecuado de paredes exteriores
+Material inadecuado de pisos
+Rezago escolar
+Sin acceso a fuente de agua mejorada
+Sin aseguramiento en salud
+Trabajo infantil
+Trabajo informal
 
 VISTA 3 
 POST	/predict/porcentaje        Porcentaje de privaciones

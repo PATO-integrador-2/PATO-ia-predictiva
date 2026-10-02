@@ -4,12 +4,12 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, root_validator
-from typing import List, Optional
 import uvicorn
 import unicodedata
+from typing import List, Optional
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, model_validator
 
 
 # PREDICTORES 
@@ -151,7 +151,7 @@ class PredictDepartmentPovertyRequest(BaseModel):
     begin_year: int = 2026
     years: int = 5
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
     def normalize_fields(cls, values):
         if isinstance(values, dict):
             if 'region' not in values and 'region_name' in values:
@@ -170,7 +170,7 @@ class PredictMultipleDepartmentsRequest(BaseModel):
     begin_year: int = 2026
     years: int = 5
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
     def normalize_fields(cls, values):
         if isinstance(values, dict):
             if 'region' not in values and 'region_name' in values:
@@ -205,7 +205,7 @@ class PredictHouseholdPovertyRequest(BaseModel):
     begin_year: int = 2026
     years: int = 5
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
     def normalize_fields(cls, values):
         if isinstance(values, dict):
             if 'region' not in values and 'region_name' in values:
@@ -373,7 +373,7 @@ print("\nAPI lista para usar")
 # NIVEL 1 
 
 @app.post("/predict/ipm", response_model=APIResponse)
-async def predict_ipm(request: PredictIPMRequest):
+def predict_ipm(request: PredictIPMRequest):
     """Predice IPM para un dominio."""
     if predictors['ipm'] is None:
         raise HTTPException(status_code=500, detail="Predictor IPM no disponible")
@@ -392,7 +392,7 @@ async def predict_ipm(request: PredictIPMRequest):
 
 
 @app.post("/predict/privacion", response_model=APIResponse)
-async def predict_privacion(request: PredictPrivacionRequest):
+def predict_privacion(request: PredictPrivacionRequest):
     """Predice una privación específica."""
     if predictors['privacion'] is None:
         raise HTTPException(status_code=500, detail="Predictor Privaciones no disponible")
@@ -416,7 +416,7 @@ async def predict_privacion(request: PredictPrivacionRequest):
 
 
 @app.post("/predict/porcentaje", response_model=APIResponse)
-async def predict_porcentaje(request: PredictPorcentajeRequest):
+def predict_porcentaje(request: PredictPorcentajeRequest):
     """Predice porcentaje de privaciones."""
     if predictors['porcentaje'] is None:
         raise HTTPException(status_code=500, detail="Predictor Porcentaje no disponible")
@@ -439,7 +439,7 @@ async def predict_porcentaje(request: PredictPorcentajeRequest):
 
 
 @app.post("/predict/dimension", response_model=APIResponse)
-async def predict_dimension(request: PredictDimensionRequest):
+def predict_dimension(request: PredictDimensionRequest):
     """Predice contribución de una dimensión."""
     if predictors['dimension'] is None:
         raise HTTPException(status_code=500, detail="Predictor Dimension no disponible")
@@ -463,7 +463,7 @@ async def predict_dimension(request: PredictDimensionRequest):
 
 
 @app.post("/predict/incidence_by_sex", response_model=APIResponse)
-async def predict_incidence_by_sex(request: PredictIncidenceBySexRequest):
+def predict_incidence_by_sex(request: PredictIncidenceBySexRequest):
     """Predice incidencia por sexo de la persona."""
     if predictors['incidence_sex'] is None:
         raise HTTPException(status_code=500, detail="Predictor Incidencia por Sexo no disponible")
@@ -487,7 +487,7 @@ async def predict_incidence_by_sex(request: PredictIncidenceBySexRequest):
 
 
 @app.post("/predict/incidence_by_head_sex", response_model=APIResponse)
-async def predict_incidence_by_head_sex(request: PredictIncidenceByHeadSexRequest):
+def predict_incidence_by_head_sex(request: PredictIncidenceByHeadSexRequest):
     """Predice incidencia por sexo del jefe del hogar."""
     if predictors['incidence_head_sex'] is None:
         raise HTTPException(status_code=500, detail="Predictor Incidencia por Sexo del Jefe del Hogar no disponible")
@@ -512,7 +512,7 @@ async def predict_incidence_by_head_sex(request: PredictIncidenceByHeadSexReques
 # NIVEL 2
 
 @app.post("/predict/department_poverty", response_model=APIResponse)
-async def predict_department_poverty(request: PredictDepartmentPovertyRequest):
+def predict_department_poverty(request: PredictDepartmentPovertyRequest):
     """
     Predice el IPM promedio para un departamento específico para múltiples años.
     """
@@ -544,7 +544,7 @@ async def predict_department_poverty(request: PredictDepartmentPovertyRequest):
 
 
 @app.post("/predict/multiple_departments", response_model=APIResponse)
-async def predict_multiple_departments(request: PredictMultipleDepartmentsRequest):
+def predict_multiple_departments(request: PredictMultipleDepartmentsRequest):
     """
     Predice el IPM para múltiples departamentos de una región para múltiples años.
     """
@@ -576,7 +576,7 @@ async def predict_multiple_departments(request: PredictMultipleDepartmentsReques
 
 
 @app.post("/predict/household_poverty", response_model=APIResponse)
-async def predict_household_poverty(request: PredictHouseholdPovertyRequest):
+def predict_household_poverty(request: PredictHouseholdPovertyRequest):
     """
     Predice el IPM para un hogar específico basado en sus características.
     """
@@ -589,7 +589,7 @@ async def predict_household_poverty(request: PredictHouseholdPovertyRequest):
         region = _coerce_level2_name(request.region, accepted_regions)
         department = _coerce_level2_name(request.department, accepted_departments)
 
-        hogar = request.dict()
+        hogar = request.model_dump()
         hogar['region'] = region
         hogar['departamento'] = department
 
@@ -660,7 +660,7 @@ async def predict_household_poverty(request: PredictHouseholdPovertyRequest):
 
 
 @app.post("/predict/multiple_households", response_model=APIResponse)
-async def predict_multiple_households(request: PredictMultipleHouseholdsRequest):
+def predict_multiple_households(request: PredictMultipleHouseholdsRequest):
     """
     Predice el IPM para múltiples hogares para múltiples años.
     """
@@ -674,7 +674,7 @@ async def predict_multiple_households(request: PredictMultipleHouseholdsRequest)
         accepted_departments = list(predictors['department_poverty'].le_departamento.classes_)
 
         for idx, hogar_request in enumerate(request.households):
-            hogar = hogar_request.dict()
+            hogar = hogar_request.model_dump()
             hogar['region'] = _coerce_level2_name(hogar_request.region, accepted_regions)
             hogar['departamento'] = _coerce_level2_name(hogar_request.department, accepted_departments)
 
@@ -742,7 +742,7 @@ async def predict_multiple_households(request: PredictMultipleHouseholdsRequest)
 # NIVEL 3 
 
 @app.post("/predict/contribution_latam", response_model=APIResponse)
-async def predict_contribution_latam(request: PredictContributionLatamRequest):
+def predict_contribution_latam(request: PredictContributionLatamRequest):
     """Predice contribución relativa de privaciones en Latinoamérica."""
     if predictors['contribution_latam'] is None:
         raise HTTPException(status_code=500, detail="Predictor Contribución Latam no disponible")
@@ -766,7 +766,7 @@ async def predict_contribution_latam(request: PredictContributionLatamRequest):
 
 
 @app.post("/predict/national_poverty", response_model=APIResponse)
-async def predict_national_poverty(request: PredictNationalPovertyRequest):
+def predict_national_poverty(request: PredictNationalPovertyRequest):
     """Predice población en situación de pobreza multidimensional (cifras nacionales)."""
     if predictors['national_poverty'] is None:
         raise HTTPException(status_code=500, detail="Predictor Pobreza Nacional no disponible")
@@ -791,7 +791,7 @@ async def predict_national_poverty(request: PredictNationalPovertyRequest):
 
 
 @app.post("/predict/poverty_by_age", response_model=APIResponse)
-async def predict_poverty_by_age(request: PredictPovertyByAgeRequest):
+def predict_poverty_by_age(request: PredictPovertyByAgeRequest):
     """Predice incidencia de pobreza multidimensional por grupo de edad y área."""
     if predictors['poverty_by_age'] is None:
         raise HTTPException(status_code=500, detail="Predictor Pobreza por Edad no disponible")
@@ -817,7 +817,7 @@ async def predict_poverty_by_age(request: PredictPovertyByAgeRequest):
 # ENDPOINTS GET
 
 @app.get("/")
-async def root():
+def root():
     return {
         "name": "IPM Predictor API",
         "version": "2.0.0",
@@ -844,7 +844,7 @@ async def root():
 
 
 @app.get("/health")
-async def health():
+def health():
     return {
         "status": "healthy",
         "predictors": {

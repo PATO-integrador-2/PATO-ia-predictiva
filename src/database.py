@@ -2,15 +2,21 @@
 
 import pandas as pd
 from sqlalchemy import create_engine, text
-from typing import Optional
 import os
+from threading import RLock
+import time
 from urllib.parse import quote_plus
 from dotenv import load_dotenv
 
 load_dotenv()  # Cargar variables de entorno desde el archivo .env
 
 class Database:
-    def __init__(self): 
+    _engine = None
+    _engine_lock = RLock()
+    _cache = {}
+    _cache_lock = RLock()
+
+    def __init__(self):
         # Cargar las variables de entorno para la conexión a la base de datos
         self.host = os.getenv("DB_HOST")
         self.port = os.getenv("DB_PORT")
@@ -24,15 +30,35 @@ class Database:
             f"@{self.host}:{self.port}/{self.database}"
         )
 
-        self.engine = create_engine(
-            self.connection_string,
-            pool_size=5,
-            max_overflow=10,
-            pool_timeout=30,
-            pool_recycle=3600
-        )
+        if Database._engine is None:
+            with Database._engine_lock:
+                if Database._engine is None:
+                    pool_size = int(os.getenv("DB_POOL_SIZE", "10"))
+                    max_overflow = int(os.getenv("DB_MAX_OVERFLOW", "20"))
+                    pool_timeout = int(os.getenv("DB_POOL_TIMEOUT", "30"))
+                    pool_recycle = int(os.getenv("DB_POOL_RECYCLE", "1800"))
+                    Database._engine = create_engine(
+                        self.connection_string,
+                        pool_size=pool_size,
+                        max_overflow=max_overflow,
+                        pool_timeout=pool_timeout,
+                        pool_recycle=pool_recycle,
+                        pool_pre_ping=True,
+                        pool_use_lifo=True,
+                    )
+        self.engine = Database._engine
 
-        print("Conexión a la base de datos establecida.")
+    @classmethod
+    def dispose(cls):
+        """Cierra el pool compartido durante apagados controlados."""
+        with cls._engine_lock:
+            if cls._engine is not None:
+                cls._engine.dispose()
+                cls._engine = None
+
+    @staticmethod
+    def _cache_ttl():
+        return max(0, float(os.getenv("DB_CACHE_TTL_SECONDS", "30")))
 
         #prueba de conexión 
     def test_connection(self) -> bool:
@@ -48,8 +74,19 @@ class Database:
         # Método para ejecutar consultas SQL y devolver un DataFrame
 
     def execute_query(self, query:str) -> pd.DataFrame:
+        ttl = self._cache_ttl()
+        now = time.monotonic()
+        if ttl:
+            with self._cache_lock:
+                cached = self._cache.get(query)
+                if cached and now - cached[0] < ttl:
+                    return cached[1].copy(deep=True)
         with self.engine.connect() as connection:
-            return pd.read_sql(text(query), connection)
+            result = pd.read_sql(text(query), connection)
+        if ttl:
+            with self._cache_lock:
+                self._cache[query] = (now, result.copy(deep=True))
+        return result
 
     # NIVEL 1 
 

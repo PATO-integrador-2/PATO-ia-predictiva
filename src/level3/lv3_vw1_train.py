@@ -1,13 +1,6 @@
-"""
-Entrenamiento optimizado para contribucion relativa de privaciones en Latinoamerica.
-Usa los mejores hiperparametros encontrados.
-"""
-
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 import json
+import os
+import sys
 from datetime import datetime
 
 import joblib
@@ -16,189 +9,181 @@ import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-import warnings
-warnings.filterwarnings('ignore')
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from database import Database
+from model_selection import select_best_model
 
-PARAMS = {
-    'n_estimators': 50,
-    'max_depth': 15,
-    'min_samples_split': 2,
-    'min_samples_leaf': 1,
-    'random_state': 42,
-    'n_jobs': -1
-}
 
-# Prepara los datos para el entrenamiento.
-def prepare_data():
-    
-    database = Database()
-    data_frame = database.get_data_view_dashboard03_deprivation_contribution()
-    data_frame = data_frame.dropna().copy()
-    
-    rename_map = {
-        'anio': 'year',
-        'privacion': 'privation',
-        'pais': 'country',
-        'valor_porcentaje': 'value'
-    }
-    
-    data_frame = data_frame.rename(columns=rename_map)
-    
-    print(f"Registros totales: {len(data_frame)}")
-    print(f"Años: {data_frame['year'].min()} - {data_frame['year'].max()}")
-    print(f"Paises: {data_frame['country'].nunique()}")
-    print(f"Privaciones: {data_frame['privation'].nunique()}")
-    
-    le_country = LabelEncoder()
-    le_privation = LabelEncoder()
-    
-    data_frame['country_encoded'] = le_country.fit_transform(data_frame['country'])
-    data_frame['privation_encoded'] = le_privation.fit_transform(data_frame['privation'])
-    
-    data_frame['year_squared'] = data_frame['year'] ** 2
-    data_frame['years_since_2010'] = data_frame['year'] - 2010
-    
-    data_frame['value_lag1'] = data_frame.groupby(['country', 'privation'])['value'].shift(1)
-    data_frame['value_lag2'] = data_frame.groupby(['country', 'privation'])['value'].shift(2)
-    data_frame['value_lag3'] = data_frame.groupby(['country', 'privation'])['value'].shift(3)
-    
-    data_frame['value_trend'] = data_frame.groupby(['country', 'privation'])['value'].transform(
-        lambda x: x.diff().fillna(0).rolling(3, min_periods=1).mean()
-    )
-    
-    data_frame['global_mean'] = data_frame.groupby(['year', 'privation'])['value'].transform('mean')
-    data_frame['deviation_from_global'] = data_frame['value'] - data_frame['global_mean']
-    
-    data_frame = data_frame.dropna()
-    
-    feature_cols = [
-        'year',
-        'year_squared',
-        'years_since_2010',
-        'value_lag1',
-        'value_lag2',
-        'value_lag3',
-        'value_trend',
-        'global_mean',
-        'deviation_from_global',
-        'country_encoded',
-        'privation_encoded'
-    ]
-    
-    x_matrix = data_frame[feature_cols]
-    y_matrix = data_frame['value']
-    
-    scaler = StandardScaler()
-    x_scaled = scaler.fit_transform(x_matrix)
-    
-    years = sorted(data_frame['year'].unique())
-    split_idx = int(len(years) * 0.8)
-    train_years = years[:split_idx]
-    test_years = years[split_idx:]
-    
-    train_mask = data_frame['year'].isin(train_years)
-    test_mask = data_frame['year'].isin(test_years)
-    
+FEATURE_COLS = [
+    'year', 'year_squared', 'years_since_2010',
+    'value_lag1', 'value_lag2', 'value_lag3', 'value_trend',
+    'country_encoded', 'privation_encoded'
+]
+GROUP_COLS = ['country', 'privation']
+
+
+def _mape(y_true, y_pred):
+    actual = np.asarray(y_true, dtype=float)
+    predicted = np.asarray(y_pred, dtype=float)
+    mask = np.abs(actual) > 1e-8
+    return float(np.mean(np.abs((actual[mask] - predicted[mask]) / actual[mask])) * 100) if np.any(mask) else None
+
+
+def _metrics(y_true, y_pred):
     return {
-        'x_train': x_scaled[train_mask],
-        'x_test': x_scaled[test_mask],
-        'y_train': y_matrix[train_mask],
-        'y_test': y_matrix[test_mask],
-        'feature_cols': feature_cols,
-        'le_country': le_country,
-        'le_privation': le_privation,
+        'mae': float(mean_absolute_error(y_true, y_pred)),
+        'rmse': float(np.sqrt(mean_squared_error(y_true, y_pred))),
+        'mape': _mape(y_true, y_pred),
+        'r2': float(r2_score(y_true, y_pred)) if len(y_true) > 1 else None,
+    }
+
+
+def _prepare_data(data_frame):
+    frame = data_frame.dropna().copy()
+    frame = frame.rename(columns={
+        'anio': 'year', 'privacion': 'privation',
+        'pais': 'country', 'valor_porcentaje': 'value'
+    })
+    frame['country'] = frame['country'].astype(str)
+    frame['privation'] = frame['privation'].astype(str)
+    frame['year'] = pd.to_numeric(frame['year'], errors='raise').astype(int)
+    frame['value'] = pd.to_numeric(frame['value'], errors='raise')
+    frame = frame.drop_duplicates(subset=GROUP_COLS + ['year']).sort_values(GROUP_COLS + ['year'])
+    frame['year_squared'] = frame['year'] ** 2
+    frame['years_since_2010'] = frame['year'] - 2010
+
+    country_encoder = LabelEncoder()
+    privation_encoder = LabelEncoder()
+    frame['country_encoded'] = country_encoder.fit_transform(frame['country'])
+    frame['privation_encoded'] = privation_encoder.fit_transform(frame['privation'])
+    grouped = frame.groupby(GROUP_COLS)['value']
+    frame['value_lag1'] = grouped.shift(1)
+    frame['value_lag2'] = grouped.shift(2)
+    frame['value_lag3'] = grouped.shift(3)
+    changes = grouped.diff()
+    frame['value_trend'] = changes.groupby([frame['country'], frame['privation']]).transform(
+        lambda values: values.shift(1).rolling(3, min_periods=1).mean()
+    )
+    frame = frame.dropna(subset=FEATURE_COLS + ['value'])
+
+    available_years = sorted(frame['year'].unique().tolist())
+    train_years = [year for year in available_years if 2018 <= year <= 2022]
+    test_years = [year for year in available_years if 2023 <= year <= 2025]
+    if len(train_years) < 2 or not test_years:
+        split_index = max(1, int(len(available_years) * 0.8))
+        train_years = available_years[:split_index]
+        test_years = available_years[split_index:]
+    train_mask = frame['year'].isin(train_years)
+    test_mask = frame['year'].isin(test_years)
+    if not train_mask.any() or not test_mask.any():
+        raise ValueError('Nivel 3 vista 1 no tiene años suficientes para un split temporal')
+
+    scaler = StandardScaler()
+    x_train = scaler.fit_transform(frame.loc[train_mask, FEATURE_COLS])
+    x_test = scaler.transform(frame.loc[test_mask, FEATURE_COLS])
+    return {
+        'frame': frame,
+        'x_train': x_train,
+        'x_test': x_test,
+        'y_train': frame.loc[train_mask, 'value'].to_numpy(),
+        'y_test': frame.loc[test_mask, 'value'].to_numpy(),
+        'test_lag1': frame.loc[test_mask, 'value_lag1'].to_numpy(),
         'scaler': scaler,
-        'n_samples': len(data_frame),
+        'country_encoder': country_encoder,
+        'privation_encoder': privation_encoder,
         'train_years': train_years,
         'test_years': test_years,
-        'countries': sorted(data_frame['country'].unique().tolist()),
-        'privations': sorted(data_frame['privation'].unique().tolist())
     }
 
-# Entrena el modelo con los mejores hiperparametros.
+
 def train_lv3_vw1():
-    
-    print("ENTRENAMIENTO OPTIMIZADO")
-    print("CONTRIBUCION RELATIVA DE PRIVACIONES LATINOAMERICA")
-    print("")
-    
-    data = prepare_data()
-    
-    print("")
-    print("Datos preparados:")
-    print(f"Entrenamiento: {len(data['x_train'])} registros")
-    print(f"Prueba: {len(data['x_test'])} registros")
-    print(f"Features: {len(data['feature_cols'])}")
-    print("")
-    
-    print("Usando mejores hiperparametros:")
-    print(f"   n_estimators: {PARAMS['n_estimators']}")
-    print(f"   max_depth: {PARAMS['max_depth']}")
-    print(f"   min_samples_split: {PARAMS['min_samples_split']}")
-    print(f"   min_samples_leaf: {PARAMS['min_samples_leaf']}")
-    print("")
-    
-    model = RandomForestRegressor(**PARAMS)
-    model.fit(data['x_train'], data['y_train'])
-    
-    y_pred = model.predict(data['x_test'])
-    mae = mean_absolute_error(data['y_test'], y_pred)
-    rmse = np.sqrt(mean_squared_error(data['y_test'], y_pred))
-    r2 = r2_score(data['y_test'], y_pred)
-    
-    print("EVALUACION:")
-    print(f"   R²:  {r2:.4f}")
-    print(f"   MAE: {mae:.4f}")
-    print(f"   RMSE: {rmse:.4f}")
-    print("")
-    
-    importance = pd.DataFrame({
-        'Feature': data['feature_cols'],
-        'Importance': model.feature_importances_
-    }).sort_values('Importance', ascending=False)
-    
-    print("TOP 10 VARIABLES MAS IMPORTANTES:")
-    for _, row in importance.head(10).iterrows():
-        print(f"   - {row['Feature']}: {row['Importance']:.4f}")
-    print("")
-    
-    print("Guardando modelo...")
-    
-    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    model_dir = os.path.join(base_dir, 'models', 'train_lv3_vw1')
-    os.makedirs(model_dir, exist_ok=True)
-    
-    joblib.dump(model, os.path.join(model_dir, 'model.pkl'))
-    joblib.dump(data['scaler'], os.path.join(model_dir, 'scaler.pkl'))
-    joblib.dump(data['le_country'], os.path.join(model_dir, 'label_encoder_country.pkl'))
-    joblib.dump(data['le_privation'], os.path.join(model_dir, 'label_encoder_privation.pkl'))
-    joblib.dump(data['feature_cols'], os.path.join(model_dir, 'feature_cols.pkl'))
-    joblib.dump(data['countries'], os.path.join(model_dir, 'countries.pkl'))
-    joblib.dump(data['privations'], os.path.join(model_dir, 'privations.pkl'))
-    
-    metrics = {
-        'model': 'RandomForestRegressor_ContributionLatam',
-        'r2': float(r2),
-        'mae': float(mae),
-        'rmse': float(rmse),
-        'params': PARAMS,
-        'feature_importance': importance.to_dict('records'),
-        'feature_names': data['feature_cols'],
-        'countries': data['countries'],
-        'privations': data['privations'],
-        'train_date': datetime.now().isoformat(),
-        'n_samples': data['n_samples']
+    data = _prepare_data(Database().get_data_view_dashboard03_deprivation_contribution())
+    candidates = {'naive': data['test_lag1']}
+    fitted_models = {}
+    unavailable_models = []
+    tree_models = {
+        'random_forest': RandomForestRegressor(
+            n_estimators=150, max_depth=12, min_samples_split=6,
+            min_samples_leaf=2, random_state=42, n_jobs=-1
+        )
     }
-    
-    with open(os.path.join(model_dir, 'metrics.json'), 'w') as file:
+    try:
+        from xgboost import XGBRegressor
+        tree_models['xgboost'] = XGBRegressor(
+            n_estimators=200, max_depth=4, learning_rate=0.05,
+            objective='reg:squarederror', random_state=42, n_jobs=-1
+        )
+    except ImportError:
+        unavailable_models.append('xgboost')
+    try:
+        from lightgbm import LGBMRegressor
+        tree_models['lightgbm'] = LGBMRegressor(
+            n_estimators=200, max_depth=5, learning_rate=0.05,
+            random_state=42, verbosity=-1, n_jobs=-1
+        )
+    except ImportError:
+        unavailable_models.append('lightgbm')
+
+    for name, model in tree_models.items():
+        model.fit(data['x_train'], data['y_train'])
+        fitted_models[name] = model
+        candidates[name] = model.predict(data['x_test'])
+
+    candidate_metrics = {name: _metrics(data['y_test'], prediction) for name, prediction in candidates.items()}
+    selected_model, variation_required = select_best_model(candidates, candidate_metrics)
+    test_meta = data['frame'].loc[data['frame']['year'].isin(data['test_years']), GROUP_COLS].reset_index(drop=True)
+    metrics_by_series = {}
+    selected_model_by_series = {}
+    for series_key in sorted(test_meta.itertuples(index=False, name=None)):
+        series_mask = test_meta.eq(series_key).all(axis=1).to_numpy()
+        series_metrics = {
+            name: _metrics(data['y_test'][series_mask], prediction[series_mask])
+            for name, prediction in candidates.items()
+        }
+        key = f'{series_key[0]}::{series_key[1]}'
+        metrics_by_series[key] = series_metrics
+        selected_model_by_series[key], _ = select_best_model(
+            {name: prediction[series_mask] for name, prediction in candidates.items()},
+            series_metrics
+        )
+
+    model_dir = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+        'models', 'train_lv3_vw1'
+    )
+    os.makedirs(model_dir, exist_ok=True)
+    joblib.dump(fitted_models.get(selected_model, fitted_models.get('random_forest')), os.path.join(model_dir, 'model.pkl'))
+    joblib.dump(fitted_models, os.path.join(model_dir, 'candidate_models.pkl'))
+    joblib.dump(data['scaler'], os.path.join(model_dir, 'scaler.pkl'))
+    joblib.dump(data['country_encoder'], os.path.join(model_dir, 'label_encoder_country.pkl'))
+    joblib.dump(data['privation_encoder'], os.path.join(model_dir, 'label_encoder_privation.pkl'))
+    joblib.dump(FEATURE_COLS, os.path.join(model_dir, 'feature_cols.pkl'))
+    joblib.dump(sorted(data['frame']['country'].unique().tolist()), os.path.join(model_dir, 'countries.pkl'))
+    joblib.dump(sorted(data['frame']['privation'].unique().tolist()), os.path.join(model_dir, 'privations.pkl'))
+
+    metrics = {
+        'model': 'temporal_benchmark',
+        'selected_model': selected_model,
+        'variation_required': variation_required,
+        'selected_model_by_series': selected_model_by_series,
+        'candidates': candidate_metrics,
+        'metrics_by_series': metrics_by_series,
+        'available_models': sorted(candidates),
+        'unavailable_models': unavailable_models,
+        'feature_names': FEATURE_COLS,
+        'countries': sorted(data['frame']['country'].unique().tolist()),
+        'privations': sorted(data['frame']['privation'].unique().tolist()),
+        'train_years': [int(year) for year in data['train_years']],
+        'test_years': [int(year) for year in data['test_years']],
+        'n_samples': int(len(data['frame'])),
+        'train_date': datetime.now().isoformat(),
+    }
+    with open(os.path.join(model_dir, 'metrics.json'), 'w', encoding='utf-8') as file:
         json.dump(metrics, file, indent=2)
-    
-    print("")
-    print("ENTRENAMIENTO COMPLETADO")
-    print(f"Modelo guardado en: {model_dir}")
+    print(json.dumps(metrics, indent=2))
+    return fitted_models.get(selected_model), metrics
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     train_lv3_vw1()

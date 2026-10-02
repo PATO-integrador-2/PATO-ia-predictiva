@@ -1,65 +1,61 @@
 {
-  "model": "RandomForestRegressor_Global_Improved",
-  "mae": 1.5723190375917535,
-  "rmse": 2.200353096995565,
-  "r2": 0.9440785816585485,
-  "feature_importance": [
-    {
-      "Feature": "ipm_lag1",
-      "Importance": 0.6044723328082433
+  "model": "temporal_benchmark",
+  "selected_model": "random_forest",
+  "candidates": {
+    "naive": {
+      "mae": 1.5030769230769228,
+      "rmse": 1.8555545027889946,
+      "mape": 19.963737366772953,
+      "r2": 0.9436899654718405
     },
-    {
-      "Feature": "ipm_lag2",
-      "Importance": 0.34808110663389663
+    "random_forest": {
+      "mae": 1.3192655875823132,
+      "rmse": 1.6410499621298416,
+      "mape": 1140.2909653628021,
+      "r2": 0.9559564851716373
     },
-    {
-      "Feature": "domain_trend",
-      "Importance": 0.029186267033664504
+    "xgboost": {
+      "mae": 1.3869206670382275,
+      "rmse": 1.7667561204493725,
+      "mape": 232.04459827383067,
+      "r2": 0.9489504906886699
     },
-    {
-      "Feature": "domain_encoded",
-      "Importance": 0.014678103442195806
-    },
-    {
-      "Feature": "year_squared",
-      "Importance": 0.0014931158516509
-    },
-    {
-      "Feature": "year",
-      "Importance": 0.0010568553792976026
-    },
-    {
-      "Feature": "years_since_2010",
-      "Importance": 0.0010322188510512539
+    "lightgbm": {
+      "mae": 1.9090497354787241,
+      "rmse": 2.348155939482982,
+      "mape": 1250.663381910694,
+      "r2": 0.9098237372506325
     }
+  },
+  "available_models": [
+    "lightgbm",
+    "naive",
+    "random_forest",
+    "xgboost"
+  ],
+  "unavailable_models": [
+    "arima"
   ],
   "feature_names": [
     "year",
-    "year_squared",
     "years_since_2010",
     "ipm_lag1",
     "ipm_lag2",
     "domain_trend",
     "domain_encoded"
   ],
-  "n_estimators": 150,
-  "max_depth": 8,
-  "train_date": "2026-09-07T15:29:34.129101",
-  "n_samples": 199,
-  "years": [
+  "train_years": [
+    2018,
+    2019,
     2020,
     2021,
-    2022,
+    2022
+  ],
+  "test_years": [
     2023,
     2024,
-    2025,
-    2012,
-    2013,
-    2014,
-    2015,
-    2016,
-    2017,
-    2018,
-    2019
-  ]
+    2025
+  ],
+  "n_samples": 217,
+  "train_date": "2026-09-30T22:01:15.856830"
 }

@@ -1,114 +1,39 @@
 {
-  "model": "RandomForestRegressor_LV2_VW1",
-  "n_estimators": 200,
-  "max_depth": 15,
-  "min_samples_split": 2,
-  "min_samples_leaf": 1,
-  "mae": 0.0008625095034374824,
-  "rmse": 0.004790289237792771,
-  "r2": 0.998536723731536,
-  "feature_importance": [
-    {
-      "Feature": "privacion_bajo_logro_educativo",
-      "Importance": 0.3900540812088287
+  "model": "temporal_benchmark",
+  "selected_model": "random_forest",
+  "candidates": {
+    "naive": {
+      "mae": 0.13826530612244894,
+      "rmse": 0.1775944704048168,
+      "mape": 69.17551476556342,
+      "r2": -1.523702919301181
     },
-    {
-      "Feature": "privacion_tasa_empleo_formal",
-      "Importance": 0.17943913092984556
+    "random_forest": {
+      "mae": 0.0485611904761905,
+      "rmse": 0.06196891655098257,
+      "mape": 20.195746756047022,
+      "r2": 0.6927250494345828
     },
-    {
-      "Feature": "privacion_analfabetismo",
-      "Importance": 0.07573511905344159
+    "xgboost": {
+      "mae": 0.0481097959164454,
+      "rmse": 0.06475295416394292,
+      "mape": 19.11796051612406,
+      "r2": 0.6644953648881888
     },
-    {
-      "Feature": "privacion_no_aseguramiento_salud",
-      "Importance": 0.05482342023219123
-    },
-    {
-      "Feature": "privacion_rezago_escolar",
-      "Importance": 0.04349564786818533
-    },
-    {
-      "Feature": "privacion_desempleo_larga_duracion",
-      "Importance": 0.04268001442561222
-    },
-    {
-      "Feature": "privacion_inadecuada_eliminacion_excretas",
-      "Importance": 0.0374086610718993
-    },
-    {
-      "Feature": "ipm_trend",
-      "Importance": 0.02965787620810897
-    },
-    {
-      "Feature": "privacion_barreras_acceso_salud",
-      "Importance": 0.028063219924035862
-    },
-    {
-      "Feature": "ipm_lag3",
-      "Importance": 0.019590684027135406
-    },
-    {
-      "Feature": "privacion_inasistencia_escolar",
-      "Importance": 0.01916476805667958
-    },
-    {
-      "Feature": "privacion_no_acceso_agua_mejorada",
-      "Importance": 0.017022731332273274
-    },
-    {
-      "Feature": "privacion_inadecuado_material_pisos",
-      "Importance": 0.016778226755443458
-    },
-    {
-      "Feature": "privacion_hacinamiento_critico",
-      "Importance": 0.0160544528470232
-    },
-    {
-      "Feature": "privacion_atencion_integral_primera_infancia",
-      "Importance": 0.015080997871718125
-    },
-    {
-      "Feature": "privacion_inadecuado_material_paredes",
-      "Importance": 0.00902441609388925
-    },
-    {
-      "Feature": "privacion_trabajo_infantil",
-      "Importance": 0.004875918689042977
-    },
-    {
-      "Feature": "personas_que_habitan_ese_hogar",
-      "Importance": 0.00022538857703110793
-    },
-    {
-      "Feature": "ipm_lag1",
-      "Importance": 0.00022324543780069634
-    },
-    {
-      "Feature": "ipm_lag2",
-      "Importance": 0.00021336367477812785
-    },
-    {
-      "Feature": "departamento_encoded",
-      "Importance": 0.00017337107142748187
-    },
-    {
-      "Feature": "region_encoded",
-      "Importance": 8.45782833647852e-05
-    },
-    {
-      "Feature": "year",
-      "Importance": 4.490624883233981e-05
-    },
-    {
-      "Feature": "year_squared",
-      "Importance": 4.321648608775509e-05
-    },
-    {
-      "Feature": "years_since_2010",
-      "Importance": 4.25636253237137e-05
+    "lightgbm": {
+      "mae": 0.0762618079015804,
+      "rmse": 0.09746555469204658,
+      "mape": 36.6794733856567,
+      "r2": 0.23988085919287327
     }
+  },
+  "available_models": [
+    "lightgbm",
+    "naive",
+    "random_forest",
+    "xgboost"
   ],
+  "unavailable_models": [],
   "feature_names": [
     "year",
     "year_squared",
@@ -136,63 +61,59 @@
     "region_encoded",
     "departamento_encoded"
   ],
-  "train_date": "2026-09-23T19:52:43.938449",
-  "n_samples": 189062,
   "train_years": [
-    2018,
-    2019,
-    2020,
     2021,
-    2022,
-    2023
+    2022
   ],
   "test_years": [
+    2023,
     2024,
     2025
   ],
-  "n_features": 25,
   "regions": [
-    "Bogotá D.C.",
+    "Bogot\u00e1 D.C.",
     "Caribe",
     "Central",
     "Oriental",
-    "Orinoquía - Amazonía",
-    "Pacífica",
+    "Orinoqu\u00eda - Amazon\u00eda",
+    "Pac\u00edfica",
     "Sin clasificar"
   ],
   "departments": [
-    "Bogotá, D.C.",
-    "Atlántico",
-    "Bolívar",
+    "Amazonas",
+    "Antioquia",
+    "Arauca",
+    "Archipi\u00e9lago de San Andr\u00e9s, Providencia y Santa Catalina",
+    "Atl\u00e1ntico",
+    "Bogot\u00e1, D.C.",
+    "Bol\u00edvar",
+    "Boyac\u00e1",
+    "Caldas",
+    "Caquet\u00e1",
+    "Casanare",
+    "Cauca",
     "Cesar",
-    "Córdoba",
+    "Choc\u00f3",
+    "Cundinamarca",
+    "C\u00f3rdoba",
+    "Guain\u00eda",
+    "Guaviare",
+    "Huila",
     "La Guajira",
     "Magdalena",
-    "Sucre",
-    "Antioquia",
-    "Caldas",
-    "Caquetá",
-    "Huila",
-    "Quindío",
-    "Risaralda",
-    "Tolima",
-    "Boyacá",
-    "Cundinamarca",
     "Meta",
+    "Nari\u00f1o",
     "Norte de Santander",
-    "Santander",
-    "Amazonas",
-    "Arauca",
-    "Casanare",
-    "Guainía",
-    "Guaviare",
     "Putumayo",
-    "Vaupés",
-    "Vichada",
-    "Cauca",
-    "Chocó",
-    "Nariño",
+    "Quind\u00edo",
+    "Risaralda",
+    "Santander",
+    "Sucre",
+    "Tolima",
     "Valle del Cauca",
-    "Archipiélago de San Andrés, Providencia y Santa Catalina"
-  ]
+    "Vaup\u00e9s",
+    "Vichada"
+  ],
+  "n_samples": 164,
+  "train_date": "2026-10-01T04:38:04.311697"
 }

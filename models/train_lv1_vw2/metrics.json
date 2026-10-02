@@ -1,149 +1,482 @@
 {
-  "model": "RandomForestRegressor_PrivationsOnly",
-  "global": {
-    "mae": 0.18042594966141406,
-    "rmse": 0.2306469413730938,
-    "r2": 0.9652832657186091,
-    "feature_importance": [
-      {
-        "Feature": "domain_trend",
-        "Importance": 0.2510494886994954
-      },
-      {
-        "Feature": "ipm_lag1",
-        "Importance": 0.2487203250333489
-      },
-      {
-        "Feature": "variable_trend",
-        "Importance": 0.2392392843377993
-      },
-      {
-        "Feature": "ipm_lag3",
-        "Importance": 0.12454734030085471
-      },
-      {
-        "Feature": "ipm_lag2",
-        "Importance": 0.10993786522037557
-      },
-      {
-        "Feature": "year_squared",
-        "Importance": 0.007661321065022834
-      },
-      {
-        "Feature": "years_since_2010",
-        "Importance": 0.007050401720198763
-      },
-      {
-        "Feature": "year",
-        "Importance": 0.006757755171973181
-      },
-      {
-        "Feature": "variable_encoded",
-        "Importance": 0.003386932780362729
-      },
-      {
-        "Feature": "domain_encoded",
-        "Importance": 0.001649285670568621
-      }
-    ],
-    "feature_names": [
-      "year",
-      "year_squared",
-      "years_since_2010",
-      "ipm_lag1",
-      "ipm_lag2",
-      "ipm_lag3",
-      "domain_trend",
-      "variable_trend",
-      "domain_encoded",
-      "variable_encoded"
-    ]
+  "model": "temporal_benchmark",
+  "selected_model": "naive",
+  "selected_model_by_variable": {
+    "Analfabetismo": "xgboost",
+    "Bajo logro educativo": "naive",
+    "Barreras a servicios para cuidado de la primera infancia": "xgboost",
+    "Barreras de acceso a servicios de salud": "naive",
+    "Desempleo de larga duraci\u00f3n": "random_forest",
+    "Hacinamiento cr\u00edtico": "naive",
+    "Inadecuada eliminaci\u00f3n de excretas": "xgboost",
+    "Inasistencia escolar": "naive",
+    "Material inadecuado de paredes exteriores": "naive",
+    "Material inadecuado de pisos": "naive",
+    "Rezago escolar": "naive",
+    "Sin acceso a fuente de agua mejorada": "naive",
+    "Sin aseguramiento en salud": "naive",
+    "Trabajo infantil": "random_forest",
+    "Trabajo informal": "naive"
   },
-  "by_variable": {
-    "Analfabetismo": {
-      "mae": 0.9244197442808337,
-      "rmse": 1.2607830752296871,
-      "r2": 0.07117694957058329
+  "candidates": {
+    "naive": {
+      "mae": 6.041340782122906,
+      "rmse": 14.4855350697509,
+      "mape": 11.056645056834213,
+      "r2": 0.9969324162574735
     },
-    "Bajo logro educativo": {
-      "mae": 0.5652035551813097,
-      "rmse": 0.8602172797187885,
-      "r2": 0.42050895079426254
+    "random_forest": {
+      "mae": 27.0947280123381,
+      "rmse": 107.07149500248535,
+      "mape": 24.691617649004886,
+      "r2": 0.8323995899278381
     },
-    "Barreras a servicios para cuidado de la primera infancia": {
-      "mae": 0.7515910301651078,
-      "rmse": 0.8457849461440589,
-      "r2": 0.5129837101818524
+    "xgboost": {
+      "mae": 11.4056689176979,
+      "rmse": 22.46477128730773,
+      "mape": 54.17099385032024,
+      "r2": 0.9926221240895118
     },
-    "Barreras de acceso a servicios de salud": {
-      "mae": 0.6279131735961692,
-      "rmse": 1.0688179502742954,
-      "r2": -0.24538873933786043
-    },
-    "Desempleo de larga duración": {
-      "mae": 0.6274208316740134,
-      "rmse": 0.9452717768214641,
-      "r2": -0.4879646298060474
-    },
-    "Hacinamiento crítico": {
-      "mae": 0.6377186673471055,
-      "rmse": 0.9665953635563982,
-      "r2": 0.21510479431506113
-    },
-    "Inadecuada eliminación de excretas": {
-      "mae": 0.5483031033933553,
-      "rmse": 0.7645402729604529,
-      "r2": 0.46670628554911764
-    },
-    "Inasistencia escolar": {
-      "mae": 0.18578702507697473,
-      "rmse": 0.31176031834166634,
-      "r2": 0.8559032840976434
-    },
-    "Material inadecuado de paredes exteriores": {
-      "mae": 0.6484791015382904,
-      "rmse": 0.8956524462672415,
-      "r2": 0.28584880430281423
-    },
-    "Material inadecuado de pisos": {
-      "mae": 0.2671998066931456,
-      "rmse": 0.37203503916020686,
-      "r2": 0.8753232692600607
-    },
-    "Rezago escolar": {
-      "mae": 0.7511082052688197,
-      "rmse": 1.024081322281861,
-      "r2": 0.2955674006815474
-    },
-    "Sin acceso a fuente de agua mejorada": {
-      "mae": 1.203501487919435,
-      "rmse": 1.4948196587162603,
-      "r2": 0.21464559738210598
-    },
-    "Sin aseguramiento en salud": {
-      "mae": 0.7069912502159239,
-      "rmse": 1.0572136298348689,
-      "r2": 0.1059178101639835
-    },
-    "Trabajo infantil": {
-      "mae": 0.5991922890963859,
-      "rmse": 1.0240581489015543,
-      "r2": -0.02169361417946436
-    },
-    "Trabajo informal": {
-      "mae": 0.653600763632167,
-      "rmse": 0.743478711699995,
-      "r2": 0.5499543653982908
+    "lightgbm": {
+      "mae": 47.349831025721485,
+      "rmse": 133.16447707763007,
+      "mape": 88.69804484971039,
+      "r2": 0.7407587423632624
     }
   },
+  "metrics_by_variable": {
+    "Analfabetismo": {
+      "naive": {
+        "mae": 4.3999999999999995,
+        "rmse": 9.59930553043639,
+        "mape": 6.044884408752953,
+        "r2": 0.991296940281376
+      },
+      "random_forest": {
+        "mae": 5.989082866865689,
+        "rmse": 12.769851005498213,
+        "mape": 5.6955766946640525,
+        "r2": 0.984598465459497
+      },
+      "xgboost": {
+        "mae": 4.975867382685344,
+        "rmse": 7.80510208007816,
+        "mape": 13.10660764812803,
+        "r2": 0.9942462695955246
+      },
+      "lightgbm": {
+        "mae": 68.38204790879863,
+        "rmse": 139.25771709609884,
+        "mape": 51.875733827923064,
+        "r2": -0.8316010199046742
+      }
+    },
+    "Bajo logro educativo": {
+      "naive": {
+        "mae": 7.125,
+        "rmse": 16.75790858072689,
+        "mape": 2.9786922986369735,
+        "r2": 0.998522700107134
+      },
+      "random_forest": {
+        "mae": 53.573560954964556,
+        "rmse": 100.92518407193593,
+        "mape": 10.718177162178705,
+        "r2": 0.9464168633322183
+      },
+      "xgboost": {
+        "mae": 19.855228106180828,
+        "rmse": 31.994982073522085,
+        "mape": 26.09707662978311,
+        "r2": 0.9946149123692346
+      },
+      "lightgbm": {
+        "mae": 128.0392654144686,
+        "rmse": 231.6399242662264,
+        "mape": 33.69823562176489,
+        "r2": 0.7177357599055156
+      }
+    },
+    "Barreras a servicios para cuidado de la primera infancia": {
+      "naive": {
+        "mae": 3.208333333333334,
+        "rmse": 7.408384889209433,
+        "mape": 11.79243125693459,
+        "r2": 0.9738616218254922
+      },
+      "random_forest": {
+        "mae": 9.922439502497848,
+        "rmse": 18.873027585153952,
+        "mape": 18.19080324343102,
+        "r2": 0.8303652933925979
+      },
+      "xgboost": {
+        "mae": 3.840571868419648,
+        "rmse": 4.865457110567945,
+        "mape": 30.651286859459415,
+        "r2": 0.9887259784723874
+      },
+      "lightgbm": {
+        "mae": 6.285933775055331,
+        "rmse": 8.755692898930276,
+        "mape": 53.4104602236371,
+        "r2": 0.9634899352063202
+      }
+    },
+    "Barreras de acceso a servicios de salud": {
+      "naive": {
+        "mae": 2.475,
+        "rmse": 4.297576836621618,
+        "mape": 19.00579282292837,
+        "r2": 0.9317481222495845
+      },
+      "random_forest": {
+        "mae": 2.4494316098117497,
+        "rmse": 5.127889587419325,
+        "mape": 18.36537170963124,
+        "r2": 0.9028272183890214
+      },
+      "xgboost": {
+        "mae": 5.0128538813442,
+        "rmse": 6.179222541832718,
+        "mape": 99.22166719893289,
+        "r2": 0.858897412879898
+      },
+      "lightgbm": {
+        "mae": 22.322146551646423,
+        "rmse": 39.07578047023277,
+        "mape": 170.40922943580526,
+        "r2": -4.642643673121219
+      }
+    },
+    "Desempleo de larga duraci\u00f3n": {
+      "naive": {
+        "mae": 13.75,
+        "rmse": 28.789957739924986,
+        "mape": 14.6649004652898,
+        "r2": 0.8848608499215299
+      },
+      "random_forest": {
+        "mae": 9.769778171316899,
+        "rmse": 26.663178112336762,
+        "mape": 11.647304874559607,
+        "r2": 0.9012437041287886
+      },
+      "xgboost": {
+        "mae": 15.66313211917877,
+        "rmse": 29.861033835218244,
+        "mape": 24.528446730962212,
+        "r2": 0.8761344191027921
+      },
+      "lightgbm": {
+        "mae": 34.14368573500919,
+        "rmse": 68.37161073198105,
+        "mape": 27.028092072593264,
+        "r2": 0.35062945234610765
+      }
+    },
+    "Hacinamiento cr\u00edtico": {
+      "naive": {
+        "mae": 3.0999999999999996,
+        "rmse": 5.485739087245522,
+        "mape": 10.499134814726254,
+        "r2": 0.9913882097941824
+      },
+      "random_forest": {
+        "mae": 8.745470696658765,
+        "rmse": 17.174279487129038,
+        "mape": 10.385991703845997,
+        "r2": 0.9155926631621165
+      },
+      "xgboost": {
+        "mae": 7.958442588647208,
+        "rmse": 12.432612865489338,
+        "mape": 29.04867705347594,
+        "r2": 0.9557668399624417
+      },
+      "lightgbm": {
+        "mae": 4.920279315105181,
+        "rmse": 6.149558007246846,
+        "mape": 41.15414222832109,
+        "r2": 0.9891779147546221
+      }
+    },
+    "Inadecuada eliminaci\u00f3n de excretas": {
+      "naive": {
+        "mae": 9.458333333333334,
+        "rmse": 21.275279081600782,
+        "mape": 7.586277929707348,
+        "r2": 0.9836314690338036
+      },
+      "random_forest": {
+        "mae": 13.478931866957836,
+        "rmse": 33.39559890199647,
+        "mape": 8.86997523935102,
+        "r2": 0.9596691248902163
+      },
+      "xgboost": {
+        "mae": 8.8048499584198,
+        "rmse": 14.83007502952413,
+        "mape": 10.82383491448297,
+        "r2": 0.9920467273784552
+      },
+      "lightgbm": {
+        "mae": 42.99773884307834,
+        "rmse": 79.36954445360895,
+        "mape": 38.753745426971584,
+        "r2": 0.7721930611782802
+      }
+    },
+    "Inasistencia escolar": {
+      "naive": {
+        "mae": 7.791666666666668,
+        "rmse": 15.402137297574427,
+        "mape": 24.385965524910034,
+        "r2": 0.7484124855915683
+      },
+      "random_forest": {
+        "mae": 28.356956902686687,
+        "rmse": 69.79946299103159,
+        "mape": 90.586105438674,
+        "r2": -4.166914395134123
+      },
+      "xgboost": {
+        "mae": 15.249553163846334,
+        "rmse": 23.40951095046528,
+        "mape": 93.83964341833274,
+        "r2": 0.41881849479342315
+      },
+      "lightgbm": {
+        "mae": 34.021589724496536,
+        "rmse": 60.94668419083219,
+        "mape": 267.7866615145417,
+        "r2": -2.939374497820721
+      }
+    },
+    "Material inadecuado de paredes exteriores": {
+      "naive": {
+        "mae": 1.9000000000000004,
+        "rmse": 3.6710579764785334,
+        "mape": 5.489613342009476,
+        "r2": 0.9932638409491159
+      },
+      "random_forest": {
+        "mae": 4.822655957146891,
+        "rmse": 8.533476749329864,
+        "mape": 29.271524971900025,
+        "r2": 0.9636016358674128
+      },
+      "xgboost": {
+        "mae": 5.0952823479970295,
+        "rmse": 5.806055895719857,
+        "mape": 125.70998725677968,
+        "r2": 0.9831502961778442
+      },
+      "lightgbm": {
+        "mae": 6.669348129159936,
+        "rmse": 11.93815897416404,
+        "mape": 65.18706378517773,
+        "r2": 0.9287631738182441
+      }
+    },
+    "Material inadecuado de pisos": {
+      "naive": {
+        "mae": 4.075,
+        "rmse": 10.11125610396651,
+        "mape": 7.933184834576583,
+        "r2": 0.986847131247042
+      },
+      "random_forest": {
+        "mae": 4.577945782533745,
+        "rmse": 10.359737276609495,
+        "mape": 7.33462276686888,
+        "r2": 0.9861927321806367
+      },
+      "xgboost": {
+        "mae": 8.65952535532415,
+        "rmse": 15.350858097712038,
+        "mape": 36.873837796786155,
+        "r2": 0.9696837430361771
+      },
+      "lightgbm": {
+        "mae": 43.55512409541384,
+        "rmse": 110.25200425053627,
+        "mape": 96.12088885558433,
+        "r2": -0.563807355832199
+      }
+    },
+    "Rezago escolar": {
+      "naive": {
+        "mae": 8.616666666666667,
+        "rmse": 14.275795366049955,
+        "mape": 7.604684048944603,
+        "r2": 0.995049287909011
+      },
+      "random_forest": {
+        "mae": 20.996556806245025,
+        "rmse": 42.049642782678276,
+        "mape": 8.80053652104386,
+        "r2": 0.9570471817686387
+      },
+      "xgboost": {
+        "mae": 18.393889745076496,
+        "rmse": 36.24431741662231,
+        "mape": 12.42532408860488,
+        "r2": 0.968088523934035
+      },
+      "lightgbm": {
+        "mae": 25.082272923972454,
+        "rmse": 36.46472371894317,
+        "mape": 28.508494683806056,
+        "r2": 0.9676992283578478
+      }
+    },
+    "Sin acceso a fuente de agua mejorada": {
+      "naive": {
+        "mae": 9.658333333333333,
+        "rmse": 21.282289193912703,
+        "mape": 7.4253924355865335,
+        "r2": 0.9910112771697044
+      },
+      "random_forest": {
+        "mae": 22.650036461050977,
+        "rmse": 41.73704362816171,
+        "mape": 27.648137852560644,
+        "r2": 0.9654295784705055
+      },
+      "xgboost": {
+        "mae": 15.438578366239867,
+        "rmse": 31.505481949546468,
+        "mape": 26.53227804736507,
+        "r2": 0.9803014815509212
+      },
+      "lightgbm": {
+        "mae": 30.532124762225532,
+        "rmse": 72.30924623905402,
+        "mape": 42.603642971933795,
+        "r2": 0.8962354570976958
+      }
+    },
+    "Sin aseguramiento en salud": {
+      "naive": {
+        "mae": 5.541666666666667,
+        "rmse": 11.184699370121667,
+        "mape": 22.63236812886601,
+        "r2": 0.8850677689689918
+      },
+      "random_forest": {
+        "mae": 17.39248150937182,
+        "rmse": 30.983912928542548,
+        "mape": 75.36135359266927,
+        "r2": 0.11800579118106114
+      },
+      "xgboost": {
+        "mae": 12.053591123223304,
+        "rmse": 21.078766915428034,
+        "mape": 59.30704242017929,
+        "r2": 0.5917900281154476
+      },
+      "lightgbm": {
+        "mae": 18.790550406485522,
+        "rmse": 28.600040310057828,
+        "mape": 174.98953683755482,
+        "r2": 0.24850430506114563
+      }
+    },
+    "Trabajo infantil": {
+      "naive": {
+        "mae": 1.4454545454545455,
+        "rmse": 2.452271674108797,
+        "mape": 17.24894403811232,
+        "r2": 0.9851025592519526
+      },
+      "random_forest": {
+        "mae": 0.9514697578994792,
+        "rmse": 1.200748341098309,
+        "mape": 26.417803182172054,
+        "r2": 0.9964282710489344
+      },
+      "xgboost": {
+        "mae": 4.6885737814686514,
+        "rmse": 5.3347790411858185,
+        "mape": 229.60540028678528,
+        "r2": 0.9294970359157748
+      },
+      "lightgbm": {
+        "mae": 23.671542782654782,
+        "rmse": 39.93450993491742,
+        "mape": 209.14742562024088,
+        "r2": -2.9506742518989904
+      }
+    },
+    "Trabajo informal": {
+      "naive": {
+        "mae": 7.691666666666666,
+        "rmse": 15.22402158870426,
+        "mape": 1.0734344176378483,
+        "r2": 0.9994832562512064
+      },
+      "random_forest": {
+        "mae": 200.56551648452702,
+        "rmse": 385.5295506444545,
+        "mape": 21.224828575953502,
+        "r2": 0.6686158033941951
+      },
+      "xgboost": {
+        "mae": 24.835336049397785,
+        "rmse": 39.00364793447993,
+        "mape": 9.413331274451277,
+        "r2": 0.9966082260171474
+      },
+      "lightgbm": {
+        "mae": 218.86062433132972,
+        "rmse": 392.42568481897615,
+        "mape": 39.83476803734436,
+        "r2": 0.6566545480989088
+      }
+    }
+  },
+  "available_models": [
+    "lightgbm",
+    "naive",
+    "random_forest",
+    "xgboost"
+  ],
+  "unavailable_models": [
+    "arima"
+  ],
+  "feature_names": [
+    "year",
+    "year_squared",
+    "years_since_2010",
+    "ipm_lag1",
+    "ipm_lag2",
+    "ipm_lag3",
+    "domain_trend",
+    "variable_trend",
+    "domain_encoded",
+    "variable_encoded"
+  ],
+  "train_years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
+  ],
+  "test_years": [
+    2023,
+    2024,
+    2025
+  ],
   "variables": [
     "Analfabetismo",
     "Bajo logro educativo",
     "Barreras a servicios para cuidado de la primera infancia",
     "Barreras de acceso a servicios de salud",
-    "Desempleo de larga duración",
-    "Hacinamiento crítico",
-    "Inadecuada eliminación de excretas",
+    "Desempleo de larga duraci\u00f3n",
+    "Hacinamiento cr\u00edtico",
+    "Inadecuada eliminaci\u00f3n de excretas",
     "Inasistencia escolar",
     "Material inadecuado de paredes exteriores",
     "Material inadecuado de pisos",
@@ -164,8 +497,6 @@
     "Nacional",
     "Nacional*"
   ],
-  "n_estimators": 150,
-  "max_depth": 10,
-  "train_date": "2026-09-10T04:38:29.155067",
-  "n_samples": 948
+  "n_samples": 948,
+  "train_date": "2026-09-30T22:38:00.309340"
 }

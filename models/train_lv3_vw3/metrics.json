@@ -1,70 +1,4363 @@
 {
-  "model": "RandomForestRegressor_PovertyByAge",
-  "r2": 0.9681982225694448,
-  "mae": 2.904297764434612,
-  "rmse": 4.0358293077068765,
-  "params": {
-    "n_estimators": 200,
-    "max_depth": 20,
-    "min_samples_split": 2,
-    "min_samples_leaf": 1,
-    "random_state": 42,
-    "n_jobs": -1
+  "model": "temporal_benchmark",
+  "selected_model": "xgboost",
+  "selected_model_by_series": {
+    "Argentina::Urban::0 a 17 a\u00f1os": "naive",
+    "Argentina::Urban::18 a 59 a\u00f1os": "random_forest",
+    "Argentina::Urban::60 a\u00f1os y m\u00e1s": "naive",
+    "Argentina::Urban::Total": "naive",
+    "Bolivia (Plurinational State of)::National::0 a 17 a\u00f1os": "random_forest",
+    "Bolivia (Plurinational State of)::National::18 a 59 a\u00f1os": "random_forest",
+    "Bolivia (Plurinational State of)::National::60 a\u00f1os y m\u00e1s": "naive",
+    "Bolivia (Plurinational State of)::National::Total": "random_forest",
+    "Bolivia (Plurinational State of)::Rural::0 a 17 a\u00f1os": "lightgbm",
+    "Bolivia (Plurinational State of)::Rural::18 a 59 a\u00f1os": "lightgbm",
+    "Bolivia (Plurinational State of)::Rural::60 a\u00f1os y m\u00e1s": "naive",
+    "Bolivia (Plurinational State of)::Rural::Total": "xgboost",
+    "Bolivia (Plurinational State of)::Urban::0 a 17 a\u00f1os": "naive",
+    "Bolivia (Plurinational State of)::Urban::18 a 59 a\u00f1os": "naive",
+    "Bolivia (Plurinational State of)::Urban::60 a\u00f1os y m\u00e1s": "random_forest",
+    "Bolivia (Plurinational State of)::Urban::Total": "naive",
+    "Colombia::National::0 a 17 a\u00f1os": "xgboost",
+    "Colombia::National::18 a 59 a\u00f1os": "lightgbm",
+    "Colombia::National::60 a\u00f1os y m\u00e1s": "naive",
+    "Colombia::National::Total": "lightgbm",
+    "Colombia::Rural::0 a 17 a\u00f1os": "naive",
+    "Colombia::Rural::18 a 59 a\u00f1os": "random_forest",
+    "Colombia::Rural::60 a\u00f1os y m\u00e1s": "random_forest",
+    "Colombia::Rural::Total": "random_forest",
+    "Colombia::Urban::0 a 17 a\u00f1os": "xgboost",
+    "Colombia::Urban::18 a 59 a\u00f1os": "xgboost",
+    "Colombia::Urban::60 a\u00f1os y m\u00e1s": "xgboost",
+    "Colombia::Urban::Total": "xgboost",
+    "Costa Rica::National::0 a 17 a\u00f1os": "xgboost",
+    "Costa Rica::National::18 a 59 a\u00f1os": "xgboost",
+    "Costa Rica::National::60 a\u00f1os y m\u00e1s": "lightgbm",
+    "Costa Rica::National::Total": "random_forest",
+    "Costa Rica::Rural::0 a 17 a\u00f1os": "xgboost",
+    "Costa Rica::Rural::18 a 59 a\u00f1os": "xgboost",
+    "Costa Rica::Rural::60 a\u00f1os y m\u00e1s": "xgboost",
+    "Costa Rica::Rural::Total": "xgboost",
+    "Costa Rica::Urban::0 a 17 a\u00f1os": "xgboost",
+    "Costa Rica::Urban::18 a 59 a\u00f1os": "random_forest",
+    "Costa Rica::Urban::60 a\u00f1os y m\u00e1s": "random_forest",
+    "Costa Rica::Urban::Total": "random_forest",
+    "Dominican Republic::National::0 a 17 a\u00f1os": "lightgbm",
+    "Dominican Republic::National::18 a 59 a\u00f1os": "random_forest",
+    "Dominican Republic::National::60 a\u00f1os y m\u00e1s": "xgboost",
+    "Dominican Republic::National::Total": "xgboost",
+    "Dominican Republic::Rural::0 a 17 a\u00f1os": "xgboost",
+    "Dominican Republic::Rural::18 a 59 a\u00f1os": "xgboost",
+    "Dominican Republic::Rural::60 a\u00f1os y m\u00e1s": "xgboost",
+    "Dominican Republic::Rural::Total": "xgboost",
+    "Dominican Republic::Urban::0 a 17 a\u00f1os": "random_forest",
+    "Dominican Republic::Urban::18 a 59 a\u00f1os": "xgboost",
+    "Dominican Republic::Urban::60 a\u00f1os y m\u00e1s": "random_forest",
+    "Dominican Republic::Urban::Total": "xgboost",
+    "Ecuador::National::0 a 17 a\u00f1os": "naive",
+    "Ecuador::National::18 a 59 a\u00f1os": "naive",
+    "Ecuador::National::60 a\u00f1os y m\u00e1s": "naive",
+    "Ecuador::National::Total": "naive",
+    "Ecuador::Rural::0 a 17 a\u00f1os": "naive",
+    "Ecuador::Rural::18 a 59 a\u00f1os": "naive",
+    "Ecuador::Rural::60 a\u00f1os y m\u00e1s": "naive",
+    "Ecuador::Rural::Total": "naive",
+    "Ecuador::Urban::0 a 17 a\u00f1os": "naive",
+    "Ecuador::Urban::18 a 59 a\u00f1os": "naive",
+    "Ecuador::Urban::60 a\u00f1os y m\u00e1s": "naive",
+    "Ecuador::Urban::Total": "naive",
+    "El Salvador::National::0 a 17 a\u00f1os": "xgboost",
+    "El Salvador::National::18 a 59 a\u00f1os": "lightgbm",
+    "El Salvador::National::60 a\u00f1os y m\u00e1s": "lightgbm",
+    "El Salvador::National::Total": "lightgbm",
+    "El Salvador::Rural::0 a 17 a\u00f1os": "lightgbm",
+    "El Salvador::Rural::18 a 59 a\u00f1os": "random_forest",
+    "El Salvador::Rural::60 a\u00f1os y m\u00e1s": "lightgbm",
+    "El Salvador::Rural::Total": "random_forest",
+    "El Salvador::Urban::0 a 17 a\u00f1os": "xgboost",
+    "El Salvador::Urban::18 a 59 a\u00f1os": "random_forest",
+    "El Salvador::Urban::60 a\u00f1os y m\u00e1s": "lightgbm",
+    "El Salvador::Urban::Total": "lightgbm",
+    "Honduras::National::0 a 17 a\u00f1os": "random_forest",
+    "Honduras::National::18 a 59 a\u00f1os": "lightgbm",
+    "Honduras::National::60 a\u00f1os y m\u00e1s": "xgboost",
+    "Honduras::National::Total": "lightgbm",
+    "Honduras::Rural::0 a 17 a\u00f1os": "xgboost",
+    "Honduras::Rural::18 a 59 a\u00f1os": "xgboost",
+    "Honduras::Rural::60 a\u00f1os y m\u00e1s": "lightgbm",
+    "Honduras::Rural::Total": "lightgbm",
+    "Honduras::Urban::0 a 17 a\u00f1os": "naive",
+    "Honduras::Urban::18 a 59 a\u00f1os": "lightgbm",
+    "Honduras::Urban::60 a\u00f1os y m\u00e1s": "xgboost",
+    "Honduras::Urban::Total": "random_forest",
+    "Latin America (simple average)::National::0 a 17 a\u00f1os": "lightgbm",
+    "Latin America (simple average)::National::18 a 59 a\u00f1os": "lightgbm",
+    "Latin America (simple average)::National::60 a\u00f1os y m\u00e1s": "lightgbm",
+    "Latin America (simple average)::National::Total": "lightgbm",
+    "Latin America (simple average)::Rural::0 a 17 a\u00f1os": "random_forest",
+    "Latin America (simple average)::Rural::18 a 59 a\u00f1os": "random_forest",
+    "Latin America (simple average)::Rural::60 a\u00f1os y m\u00e1s": "lightgbm",
+    "Latin America (simple average)::Rural::Total": "lightgbm",
+    "Latin America (simple average)::Urban::0 a 17 a\u00f1os": "lightgbm",
+    "Latin America (simple average)::Urban::18 a 59 a\u00f1os": "xgboost",
+    "Latin America (simple average)::Urban::60 a\u00f1os y m\u00e1s": "lightgbm",
+    "Latin America (simple average)::Urban::Total": "random_forest",
+    "Latin America (weighted average)::National::0 a 17 a\u00f1os": "naive",
+    "Latin America (weighted average)::National::18 a 59 a\u00f1os": "xgboost",
+    "Latin America (weighted average)::National::60 a\u00f1os y m\u00e1s": "random_forest",
+    "Latin America (weighted average)::National::Total": "random_forest",
+    "Latin America (weighted average)::Rural::0 a 17 a\u00f1os": "random_forest",
+    "Latin America (weighted average)::Rural::18 a 59 a\u00f1os": "naive",
+    "Latin America (weighted average)::Rural::60 a\u00f1os y m\u00e1s": "random_forest",
+    "Latin America (weighted average)::Rural::Total": "random_forest",
+    "Latin America (weighted average)::Urban::0 a 17 a\u00f1os": "lightgbm",
+    "Latin America (weighted average)::Urban::18 a 59 a\u00f1os": "naive",
+    "Latin America (weighted average)::Urban::60 a\u00f1os y m\u00e1s": "xgboost",
+    "Latin America (weighted average)::Urban::Total": "xgboost",
+    "Mexico::National::0 a 17 a\u00f1os": "lightgbm",
+    "Mexico::National::18 a 59 a\u00f1os": "random_forest",
+    "Mexico::National::60 a\u00f1os y m\u00e1s": "xgboost",
+    "Mexico::National::Total": "xgboost",
+    "Mexico::Rural::0 a 17 a\u00f1os": "xgboost",
+    "Mexico::Rural::18 a 59 a\u00f1os": "lightgbm",
+    "Mexico::Rural::60 a\u00f1os y m\u00e1s": "lightgbm",
+    "Mexico::Rural::Total": "xgboost",
+    "Mexico::Urban::0 a 17 a\u00f1os": "lightgbm",
+    "Mexico::Urban::18 a 59 a\u00f1os": "lightgbm",
+    "Mexico::Urban::60 a\u00f1os y m\u00e1s": "lightgbm",
+    "Mexico::Urban::Total": "lightgbm",
+    "Paraguay::National::0 a 17 a\u00f1os": "lightgbm",
+    "Paraguay::National::18 a 59 a\u00f1os": "xgboost",
+    "Paraguay::National::60 a\u00f1os y m\u00e1s": "xgboost",
+    "Paraguay::National::Total": "xgboost",
+    "Paraguay::Rural::0 a 17 a\u00f1os": "lightgbm",
+    "Paraguay::Rural::18 a 59 a\u00f1os": "xgboost",
+    "Paraguay::Rural::60 a\u00f1os y m\u00e1s": "xgboost",
+    "Paraguay::Rural::Total": "lightgbm",
+    "Paraguay::Urban::0 a 17 a\u00f1os": "lightgbm",
+    "Paraguay::Urban::18 a 59 a\u00f1os": "lightgbm",
+    "Paraguay::Urban::60 a\u00f1os y m\u00e1s": "lightgbm",
+    "Paraguay::Urban::Total": "lightgbm",
+    "Peru::National::0 a 17 a\u00f1os": "xgboost",
+    "Peru::National::18 a 59 a\u00f1os": "xgboost",
+    "Peru::National::60 a\u00f1os y m\u00e1s": "lightgbm",
+    "Peru::National::Total": "random_forest",
+    "Peru::Rural::0 a 17 a\u00f1os": "xgboost",
+    "Peru::Rural::18 a 59 a\u00f1os": "xgboost",
+    "Peru::Rural::60 a\u00f1os y m\u00e1s": "lightgbm",
+    "Peru::Rural::Total": "xgboost",
+    "Peru::Urban::0 a 17 a\u00f1os": "lightgbm",
+    "Peru::Urban::18 a 59 a\u00f1os": "random_forest",
+    "Peru::Urban::60 a\u00f1os y m\u00e1s": "random_forest",
+    "Peru::Urban::Total": "lightgbm",
+    "Uruguay::National::0 a 17 a\u00f1os": "naive",
+    "Uruguay::National::18 a 59 a\u00f1os": "random_forest",
+    "Uruguay::National::60 a\u00f1os y m\u00e1s": "naive",
+    "Uruguay::National::Total": "xgboost",
+    "Uruguay::Rural::0 a 17 a\u00f1os": "xgboost",
+    "Uruguay::Rural::18 a 59 a\u00f1os": "naive",
+    "Uruguay::Rural::60 a\u00f1os y m\u00e1s": "naive",
+    "Uruguay::Rural::Total": "naive",
+    "Uruguay::Urban::0 a 17 a\u00f1os": "naive",
+    "Uruguay::Urban::18 a 59 a\u00f1os": "random_forest",
+    "Uruguay::Urban::60 a\u00f1os y m\u00e1s": "naive",
+    "Uruguay::Urban::Total": "xgboost"
   },
-  "feature_importance": [
-    {
-      "Feature": "value_lag1",
-      "Importance": 0.8646945518686376
+  "candidates": {
+    "naive": {
+      "mae": 2.3904663235294117,
+      "rmse": 3.4137588232503693,
+      "mape": 9.927920435680262,
+      "r2": 0.975293568376188
     },
-    {
-      "Feature": "avg_previous_2",
-      "Importance": 0.05468718339850793
+    "random_forest": {
+      "mae": 1.962399031760574,
+      "rmse": 2.815032747186931,
+      "mape": 8.90146349369601,
+      "r2": 0.9831999236376859
     },
-    {
-      "Feature": "avg_previous_3",
-      "Importance": 0.03910089722641246
+    "xgboost": {
+      "mae": 1.9962259958246173,
+      "rmse": 2.725206008073363,
+      "mape": 9.310632322533632,
+      "r2": 0.9842549868203628
     },
-    {
-      "Feature": "deviation_from_global",
-      "Importance": 0.02759504378217231
-    },
-    {
-      "Feature": "value_trend",
-      "Importance": 0.009890764772123334
-    },
-    {
-      "Feature": "global_mean",
-      "Importance": 0.0013728521555805635
-    },
-    {
-      "Feature": "value_lag2",
-      "Importance": 0.00126410845809192
-    },
-    {
-      "Feature": "country_encoded",
-      "Importance": 0.0003557294232600024
-    },
-    {
-      "Feature": "year_squared",
-      "Importance": 0.00028274918247197584
-    },
-    {
-      "Feature": "years_since_2010",
-      "Importance": 0.00027188378658106975
-    },
-    {
-      "Feature": "year",
-      "Importance": 0.00024380279007581884
-    },
-    {
-      "Feature": "age_range_encoded",
-      "Importance": 0.00014887651340771835
-    },
-    {
-      "Feature": "area_encoded",
-      "Importance": 9.155664267728149e-05
+    "lightgbm": {
+      "mae": 2.025702956230088,
+      "rmse": 2.7918587962436567,
+      "mape": 10.563638166423788,
+      "r2": 0.9834753887427247
     }
+  },
+  "metrics_by_series": {
+    "Argentina::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 2.1949999999999985,
+        "rmse": 2.595428673649113,
+        "mape": 10.662777774283274,
+        "r2": -40.06843468983396
+      },
+      "random_forest": {
+        "mae": 3.8719214299078084,
+        "rmse": 3.994862243259269,
+        "mape": 18.951874037303163,
+        "r2": -96.29568262532256
+      },
+      "xgboost": {
+        "mae": 4.849636039733886,
+        "rmse": 5.197615845017655,
+        "mape": 23.674971914777572,
+        "r2": -163.70178614466502
+      },
+      "lightgbm": {
+        "mae": 4.143259626378214,
+        "rmse": 4.555300944750112,
+        "mape": 20.197606465309818,
+        "r2": -125.50978019961181
+      }
+    },
+    "Argentina::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 1.0100000000000007,
+        "rmse": 1.1182575731914366,
+        "mape": 9.261092854807915,
+        "r2": -16.80704877180485
+      },
+      "random_forest": {
+        "mae": 0.4134826251697996,
+        "rmse": 0.4683527323966006,
+        "mape": 3.786038490411496,
+        "r2": -2.123592480503536
+      },
+      "xgboost": {
+        "mae": 1.485356960296631,
+        "rmse": 1.542293846463857,
+        "mape": 13.686104245600397,
+        "r2": -32.87212970936659
+      },
+      "lightgbm": {
+        "mae": 1.563100255096919,
+        "rmse": 1.7473168978616136,
+        "mape": 14.324013565734187,
+        "r2": -42.476202798899536
+      }
+    },
+    "Argentina::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 0.885,
+        "rmse": 0.9611711606160477,
+        "mape": 18.805243026240976,
+        "r2": -13.20761245674742
+      },
+      "random_forest": {
+        "mae": 1.9084193019480529,
+        "rmse": 1.9177966856389927,
+        "mape": 39.87157430478623,
+        "r2": -55.56200119104819
+      },
+      "xgboost": {
+        "mae": 2.4670226693153383,
+        "rmse": 2.783433338255871,
+        "mape": 49.857471746170035,
+        "r2": -118.146499784917
+      },
+      "lightgbm": {
+        "mae": 2.6089927165057762,
+        "rmse": 2.661348438952173,
+        "mape": 53.646858986367555,
+        "r2": -107.92388332969128
+      }
+    },
+    "Argentina::Urban::Total": {
+      "naive": {
+        "mae": 1.2000000000000002,
+        "rmse": 1.4257980221616249,
+        "mape": 9.599436037344535,
+        "r2": -42.97836668469451
+      },
+      "random_forest": {
+        "mae": 1.1487166326672789,
+        "rmse": 1.57737875359734,
+        "mape": 9.140817213973634,
+        "r2": -52.8263652201255
+      },
+      "xgboost": {
+        "mae": 2.6159698867797854,
+        "rmse": 2.618346517720635,
+        "mape": 21.146955872400643,
+        "r2": -147.31235233877308
+      },
+      "lightgbm": {
+        "mae": 2.3736240096293644,
+        "rmse": 2.4321264230139943,
+        "mape": 19.12753314660772,
+        "r2": -126.96622904322022
+      }
+    },
+    "Bolivia (Plurinational State of)::National::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 2.7000010000000003,
+        "rmse": 2.7000010000000003,
+        "mape": 6.537532845945106,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.6990173919366356,
+        "rmse": 1.6990173919366356,
+        "mape": 4.113843663620029,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 3.5228116525878903,
+        "rmse": 3.5228116525878903,
+        "mape": 8.529810503355922,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 6.81420354392008,
+        "rmse": 6.81420354392008,
+        "mape": 16.499282588166842,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::National::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 3.34,
+        "rmse": 3.34,
+        "mape": 11.860795454545455,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.0136241270716937,
+        "rmse": 1.0136241270716937,
+        "mape": 3.5995174967034576,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 3.681383285522461,
+        "rmse": 3.681383285522461,
+        "mape": 13.073094053701922,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 3.5746424924249496,
+        "rmse": 3.5746424924249496,
+        "mape": 12.694042941849961,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::National::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 0.5,
+        "rmse": 0.5,
+        "mape": 1.2103606581854114,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 4.000635473768575,
+        "rmse": 4.000635473768575,
+        "mape": 9.684423570380876,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 6.265067680908203,
+        "rmse": 6.265067680908203,
+        "mape": 15.165982883680401,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 7.5323619929215795,
+        "rmse": 7.5323619929215795,
+        "mape": 18.23374923888668,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::National::Total": {
+      "naive": {
+        "mae": 2.740002000000004,
+        "rmse": 2.740002000000004,
+        "mape": 8.021083138173314,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.7183135582274502,
+        "rmse": 0.7183135582274502,
+        "mape": 2.1027914468016697,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 4.557397994995114,
+        "rmse": 4.557397994995114,
+        "mape": 13.341329025161341,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 3.71933347428363,
+        "rmse": 3.71933347428363,
+        "mape": 10.887978554694469,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Rural::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 9.5,
+        "rmse": 9.5,
+        "mape": 13.98910240087749,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 8.95423982424424,
+        "rmse": 8.95423982424424,
+        "mape": 13.185450297196624,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 5.069869657226562,
+        "rmse": 5.069869657226562,
+        "mape": 7.4655711362151616,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 3.6765481540544016,
+        "rmse": 3.6765481540544016,
+        "mape": 5.413853537770962,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Rural::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 10.18,
+        "rmse": 10.18,
+        "mape": 17.56383743208829,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 10.054122259070319,
+        "rmse": 10.054122259070319,
+        "mape": 17.346657060967715,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 7.042327965332028,
+        "rmse": 7.042327965332028,
+        "mape": 12.15032451144802,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 5.985903733152725,
+        "rmse": 5.985903733152725,
+        "mape": 10.327646370650772,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Rural::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 0.8400039999999933,
+        "rmse": 0.8400039999999933,
+        "mape": 1.0689793568597687,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 5.2459341825183685,
+        "rmse": 5.2459341825183685,
+        "mape": 6.675915053448802,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 7.151718308593743,
+        "rmse": 7.151718308593743,
+        "mape": 9.101193849032663,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 6.894709499191691,
+        "rmse": 6.894709499191691,
+        "mape": 8.774127416275316,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Rural::Total": {
+      "naive": {
+        "mae": 8.040001000000004,
+        "rmse": 8.040001000000004,
+        "mape": 12.354026971296044,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 6.847872614922096,
+        "rmse": 6.847872614922096,
+        "mape": 10.522237867973786,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 2.730796645019538,
+        "rmse": 2.730796645019538,
+        "mape": 4.196061095725747,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 4.827024678854286,
+        "rmse": 4.827024678854286,
+        "mape": 7.4170628926137505,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 1.239999000000001,
+        "rmse": 1.239999000000001,
+        "mape": 4.243665442972811,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 2.355789176865354,
+        "rmse": 2.355789176865354,
+        "mape": 8.062249341163064,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 5.061067267822267,
+        "rmse": 5.061067267822267,
+        "mape": 17.32055934643347,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 5.0432970336568275,
+        "rmse": 5.0432970336568275,
+        "mape": 17.259744032355467,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 0.8500009999999989,
+        "rmse": 0.8500009999999989,
+        "mape": 4.696138121546955,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.8890427274146937,
+        "rmse": 0.8890427274146937,
+        "mape": 4.911838273009357,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.409198379516603,
+        "rmse": 1.409198379516603,
+        "mape": 7.785626406169078,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.1098598939193316,
+        "rmse": 1.1098598939193316,
+        "mape": 6.131822618338848,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.6000000000000014,
+        "rmse": 1.6000000000000014,
+        "mape": 9.065155807365448,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.13429743757413,
+        "rmse": 1.13429743757413,
+        "mape": 6.426614377190538,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.857142829895018,
+        "rmse": 1.857142829895018,
+        "mape": 10.522055693456194,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 2.5525624390222905,
+        "rmse": 2.5525624390222905,
+        "mape": 14.46211013610363,
+        "r2": null
+      }
+    },
+    "Bolivia (Plurinational State of)::Urban::Total": {
+      "naive": {
+        "mae": 0.370001000000002,
+        "rmse": 0.370001000000002,
+        "mape": 1.7169420750321245,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.8039037701706278,
+        "rmse": 1.8039037701706278,
+        "mape": 8.370783544679645,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 2.9231774820556637,
+        "rmse": 2.9231774820556637,
+        "mape": 13.5646293164824,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 2.797286823679361,
+        "rmse": 2.797286823679361,
+        "mape": 12.980449900157124,
+        "r2": null
+      }
+    },
+    "Colombia::National::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 2.360000999999997,
+        "rmse": 2.400667373877936,
+        "mape": 6.44378203652658,
+        "r2": -5.25346336083561
+      },
+      "random_forest": {
+        "mae": 1.8551879683472166,
+        "rmse": 2.115886535215172,
+        "mape": 5.163904439263272,
+        "r2": -3.857819556083414
+      },
+      "xgboost": {
+        "mae": 1.8325497354736342,
+        "rmse": 2.0390910806128932,
+        "mape": 5.092886507423219,
+        "r2": -3.5115926353870446
+      },
+      "lightgbm": {
+        "mae": 3.2441208676382374,
+        "rmse": 3.247271601685837,
+        "mape": 8.891152270953635,
+        "r2": -10.441786986624221
+      }
+    },
+    "Colombia::National::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 1.7749995000000016,
+        "rmse": 1.8482012092844506,
+        "mape": 7.207295546356246,
+        "r2": -7.6063182413718735
+      },
+      "random_forest": {
+        "mae": 1.6341747843993044,
+        "rmse": 1.8895111760290193,
+        "mape": 6.7853912189283365,
+        "r2": -7.995345135647666
+      },
+      "xgboost": {
+        "mae": 0.9293126678466788,
+        "rmse": 0.9650918861917442,
+        "mape": 3.8292706337089992,
+        "r2": -1.3466927407234475
+      },
+      "lightgbm": {
+        "mae": 0.6207167597643668,
+        "rmse": 0.7557165280475796,
+        "mape": 2.5847868742422566,
+        "r2": -0.4389203093078524
+      }
+    },
+    "Colombia::National::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.415000000000001,
+        "rmse": 1.5764680110934703,
+        "mape": 5.74904898061092,
+        "r2": -18.176375721384705
+      },
+      "random_forest": {
+        "mae": 2.184738107360161,
+        "rmse": 2.6354933043821203,
+        "mape": 9.02998875333507,
+        "r2": -52.59447724877601
+      },
+      "xgboost": {
+        "mae": 2.066809573852538,
+        "rmse": 2.26473676571747,
+        "mape": 8.514320262044428,
+        "r2": -38.57597889918916
+      },
+      "lightgbm": {
+        "mae": 1.6415086488314348,
+        "rmse": 2.1005470637348025,
+        "mape": 6.796949990870186,
+        "r2": -33.04560357541403
+      }
+    },
+    "Colombia::National::Total": {
+      "naive": {
+        "mae": 1.92,
+        "rmse": 1.9918084897903705,
+        "mape": 6.881561808101331,
+        "r2": -7.213460521409839
+      },
+      "random_forest": {
+        "mae": 1.858865625036854,
+        "rmse": 2.0593975182786135,
+        "mape": 6.789066760642931,
+        "r2": -7.780341060249334
+      },
+      "xgboost": {
+        "mae": 1.4730368845825197,
+        "rmse": 2.0307847976561417,
+        "mape": 5.442843063595811,
+        "r2": -7.538052540418528
+      },
+      "lightgbm": {
+        "mae": 1.4189437062838568,
+        "rmse": 1.9249302937891004,
+        "mape": 5.238821015431087,
+        "r2": -6.671159810364114
+      }
+    },
+    "Colombia::Rural::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 2.134998000000003,
+        "rmse": 2.248385785404277,
+        "mape": 2.88329521336979,
+        "r2": -1.5070684785493649
+      },
+      "random_forest": {
+        "mae": 2.537346453333136,
+        "rmse": 2.5396807875445986,
+        "mape": 3.408025509445943,
+        "r2": -2.1987684346434584
+      },
+      "xgboost": {
+        "mae": 2.992591942382809,
+        "rmse": 2.992780733823985,
+        "mape": 4.017063242450392,
+        "r2": -3.4419568295204614
+      },
+      "lightgbm": {
+        "mae": 3.1261976645000047,
+        "rmse": 3.144792634721432,
+        "mape": 4.204239563749848,
+        "r2": -3.90465610683656
+      }
+    },
+    "Colombia::Rural::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 1.869999,
+        "rmse": 1.870961351819433,
+        "mape": 2.836342413844131,
+        "r2": -2.759023200624957
+      },
+      "random_forest": {
+        "mae": 0.3365533237851821,
+        "rmse": 0.435369917335899,
+        "mape": 0.5041072530714653,
+        "r2": 0.796454170666524
+      },
+      "xgboost": {
+        "mae": 3.0274941417236363,
+        "rmse": 3.0336241080432838,
+        "mape": 4.594106673207368,
+        "r2": -8.882547428281397
+      },
+      "lightgbm": {
+        "mae": 2.1421160653873876,
+        "rmse": 2.273727346282787,
+        "mape": 3.2306499774722726,
+        "r2": -4.551650831146208
+      }
+    },
+    "Colombia::Rural::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.6699999999999982,
+        "rmse": 1.8185979654670794,
+        "mape": 2.597325244478619,
+        "r2": -13.658356109820415
+      },
+      "random_forest": {
+        "mae": 1.5650904951658866,
+        "rmse": 1.591870514893399,
+        "mape": 2.43860135021778,
+        "r2": -10.231230587699388
+      },
+      "xgboost": {
+        "mae": 3.9034902531738247,
+        "rmse": 3.9042199388047556,
+        "mape": 6.089625209963299,
+        "r2": -66.5585650536312
+      },
+      "lightgbm": {
+        "mae": 2.340376604716038,
+        "rmse": 2.366623014944651,
+        "mape": 3.6475547355520805,
+        "r2": -23.823901178976286
+      }
+    },
+    "Colombia::Rural::Total": {
+      "naive": {
+        "mae": 1.9499970000000033,
+        "rmse": 1.957393067325266,
+        "mape": 2.849566979102443,
+        "r2": -2.409937426717739
+      },
+      "random_forest": {
+        "mae": 0.7194278754057422,
+        "rmse": 0.7753070029647171,
+        "mape": 1.0564205448081523,
+        "r2": 0.4650197719490965
+      },
+      "xgboost": {
+        "mae": 2.0636554377441385,
+        "rmse": 2.1248792620935397,
+        "mape": 3.0001686912221674,
+        "r2": -3.0184524530509593
+      },
+      "lightgbm": {
+        "mae": 2.048444513251333,
+        "rmse": 2.160818594567751,
+        "mape": 2.9738773861693137,
+        "r2": -3.1555349082758806
+      }
+    },
+    "Colombia::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 2.4499999999999993,
+        "rmse": 2.6277366686941814,
+        "mape": 11.126984126984125,
+        "r2": -11.275555555555547
+      },
+      "random_forest": {
+        "mae": 2.0463361331514776,
+        "rmse": 2.649128903719994,
+        "mape": 9.152598549023889,
+        "r2": -11.476238130710573
+      },
+      "xgboost": {
+        "mae": 1.6801338195800781,
+        "rmse": 1.85483764528641,
+        "mape": 7.609209938654823,
+        "r2": -5.116307005105126
+      },
+      "lightgbm": {
+        "mae": 2.0174181931583135,
+        "rmse": 2.2800633154863363,
+        "mape": 9.117891865930883,
+        "r2": -8.242113284669413
+      }
+    },
+    "Colombia::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 1.700000499999999,
+        "rmse": 1.8236234150724475,
+        "mape": 12.514282166952228,
+        "r2": -11.298825295859844
+      },
+      "random_forest": {
+        "mae": 1.958915827589105,
+        "rmse": 1.9845247902838472,
+        "mape": 14.548654129187183,
+        "r2": -13.564861846343026
+      },
+      "xgboost": {
+        "mae": 1.464307880401611,
+        "rmse": 1.4667844620591681,
+        "mape": 10.919440640298166,
+        "r2": -6.956570481280353
+      },
+      "lightgbm": {
+        "mae": 1.4589262298185046,
+        "rmse": 1.469716999214575,
+        "mape": 10.955488821179527,
+        "r2": -6.9884173734478505
+      }
+    },
+    "Colombia::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.1700000000000008,
+        "rmse": 1.3148764200486684,
+        "mape": 8.48027501129427,
+        "r2": -20.2853185595568
+      },
+      "random_forest": {
+        "mae": 1.2402544150202015,
+        "rmse": 1.3096833043869787,
+        "mape": 9.022403587269805,
+        "r2": -20.117517485872497
+      },
+      "xgboost": {
+        "mae": 0.09086498260498033,
+        "rmse": 0.09207065910260917,
+        "mape": 0.6634527910981561,
+        "r2": 0.8956355030152187
+      },
+      "lightgbm": {
+        "mae": 0.6284221528481488,
+        "rmse": 0.6795830643358988,
+        "mape": 4.564588071105878,
+        "r2": -4.685849693224622
+      }
+    },
+    "Colombia::Urban::Total": {
+      "naive": {
+        "mae": 1.8350004999999996,
+        "rmse": 1.9767273711871598,
+        "mape": 11.63325114185477,
+        "r2": -11.917170233235206
+      },
+      "random_forest": {
+        "mae": 1.6642092386593736,
+        "rmse": 1.8313627051956403,
+        "mape": 10.5282784464151,
+        "r2": -10.08721738846005
+      },
+      "xgboost": {
+        "mae": 1.2933346516723638,
+        "rmse": 1.5051912730133523,
+        "mape": 8.142049012003541,
+        "r2": -6.4895756994613345
+      },
+      "lightgbm": {
+        "mae": 1.4179494451804988,
+        "rmse": 1.9217507913401668,
+        "mape": 8.823657066880141,
+        "r2": -11.20865913801979
+      }
+    },
+    "Costa Rica::National::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 2.219999999999999,
+        "rmse": 2.477579463912307,
+        "mape": 24.13298058400704,
+        "r2": -1.2276092321091596
+      },
+      "random_forest": {
+        "mae": 2.4064537422546017,
+        "rmse": 2.415147677076574,
+        "mape": 24.544418336892583,
+        "r2": -1.116757984500064
+      },
+      "xgboost": {
+        "mae": 1.709445152282714,
+        "rmse": 1.8423172213218462,
+        "mape": 16.073803539493465,
+        "r2": -0.23172185512376653
+      },
+      "lightgbm": {
+        "mae": 2.11312696044176,
+        "rmse": 2.145738104128808,
+        "mape": 20.649025456616236,
+        "r2": -0.6708491840289936
+      }
+    },
+    "Costa Rica::National::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 1.42,
+        "rmse": 1.7542234749312873,
+        "mape": 29.89947435913714,
+        "r2": -1.0506788837984171
+      },
+      "random_forest": {
+        "mae": 1.3717790778665768,
+        "rmse": 1.372636174425789,
+        "mape": 25.203727211095217,
+        "r2": -0.25556356007814385
+      },
+      "xgboost": {
+        "mae": 1.231009340286255,
+        "rmse": 1.2683127356027373,
+        "mape": 21.260858128486486,
+        "r2": -0.07196481152326428
+      },
+      "lightgbm": {
+        "mae": 1.6594678612808789,
+        "rmse": 1.6603026470998437,
+        "mape": 30.056611297713655,
+        "r2": -0.8369711819853376
+      }
+    },
+    "Costa Rica::National::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.29,
+        "rmse": 1.426954799564443,
+        "mape": 26.70264531540299,
+        "r2": -1.2561772853185604
+      },
+      "random_forest": {
+        "mae": 0.9190285200216444,
+        "rmse": 0.9933899704618794,
+        "mape": 18.830421365389835,
+        "r2": -0.09343338882465835
+      },
+      "xgboost": {
+        "mae": 0.9216565608978269,
+        "rmse": 0.9589989338416186,
+        "mape": 18.50376379739855,
+        "r2": -0.019034853306772126
+      },
+      "lightgbm": {
+        "mae": 0.6324318193035232,
+        "rmse": 0.8060839791890337,
+        "mape": 13.766055360208007,
+        "r2": 0.2800317102435159
+      }
+    },
+    "Costa Rica::National::Total": {
+      "naive": {
+        "mae": 1.4400000000000004,
+        "rmse": 1.824280680158621,
+        "mape": 25.80693491146424,
+        "r2": -1.03125
+      },
+      "random_forest": {
+        "mae": 1.396881875485628,
+        "rmse": 1.3979185317249763,
+        "mape": 21.617371699635964,
+        "r2": -0.19273451009528353
+      },
+      "xgboost": {
+        "mae": 1.3479984092712405,
+        "rmse": 1.446440633298532,
+        "mape": 19.44490964724373,
+        "r2": -0.27697174417545023
+      },
+      "lightgbm": {
+        "mae": 1.4943386417293971,
+        "rmse": 1.5291083423868495,
+        "mape": 22.326562665775096,
+        "r2": -0.42710713058902416
+      }
+    },
+    "Costa Rica::Rural::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 2.6049995,
+        "rmse": 3.2994922973088596,
+        "mape": 18.898341857731722,
+        "r2": -1.0313850267530285
+      },
+      "random_forest": {
+        "mae": 1.832545844155634,
+        "rmse": 2.1651865495806426,
+        "mape": 13.03411466935869,
+        "r2": 0.12524053487492492
+      },
+      "xgboost": {
+        "mae": 1.7741941833496089,
+        "rmse": 1.7907473239622662,
+        "mape": 11.780986650604728,
+        "r2": 0.40163438215823766
+      },
+      "lightgbm": {
+        "mae": 2.3892518915854435,
+        "rmse": 2.3916361547031837,
+        "mape": 15.653656479826425,
+        "r2": -0.06730422710064099
+      }
+    },
+    "Costa Rica::Rural::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 2.425,
+        "rmse": 2.753842769658428,
+        "mape": 27.75841916867558,
+        "r2": -1.1803218595691765
+      },
+      "random_forest": {
+        "mae": 1.7778227735031518,
+        "rmse": 1.9303667711540846,
+        "mape": 19.952078226922847,
+        "r2": -0.07132686102130958
+      },
+      "xgboost": {
+        "mae": 1.1905800437927248,
+        "rmse": 1.4080452098035527,
+        "mape": 13.844402770209454,
+        "r2": 0.42999911942133406
+      },
+      "lightgbm": {
+        "mae": 1.3178428490156282,
+        "rmse": 1.531959043666543,
+        "mape": 15.225093013875574,
+        "r2": 0.32525971969274325
+      }
+    },
+    "Costa Rica::Rural::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 2.8599999999999994,
+        "rmse": 2.9420571034566945,
+        "mape": 27.591863835066725,
+        "r2": -6.352630125931743
+      },
+      "random_forest": {
+        "mae": 2.15558424846751,
+        "rmse": 2.3447141717667024,
+        "mape": 20.372690732797267,
+        "r2": -3.670037203834113
+      },
+      "xgboost": {
+        "mae": 1.6037494277954094,
+        "rmse": 1.6705939164355061,
+        "mape": 15.387080282351008,
+        "r2": -1.3707311972064158
+      },
+      "lightgbm": {
+        "mae": 1.9058422061441087,
+        "rmse": 1.9750751330621688,
+        "mape": 18.325047074601937,
+        "r2": -2.3136586304576814
+      }
+    },
+    "Costa Rica::Rural::Total": {
+      "naive": {
+        "mae": 2.415,
+        "rmse": 2.7450409833006133,
+        "mape": 23.448797425895094,
+        "r2": -1.1780697190426643
+      },
+      "random_forest": {
+        "mae": 2.7821267124567157,
+        "rmse": 3.047769764736707,
+        "mape": 26.63952120676003,
+        "r2": -1.684963735357628
+      },
+      "xgboost": {
+        "mae": 2.0798792839050293,
+        "rmse": 2.5403538385324627,
+        "mape": 20.67824832418085,
+        "r2": -0.8653594707326344
+      },
+      "lightgbm": {
+        "mae": 2.3678236828700054,
+        "rmse": 2.878473751386255,
+        "mape": 23.506696171011292,
+        "r2": -1.3949621740720501
+      }
+    },
+    "Costa Rica::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 2.019999999999999,
+        "rmse": 2.134595980507786,
+        "mape": 29.18807746309442,
+        "r2": -1.4817200201522307
+      },
+      "random_forest": {
+        "mae": 0.8777780741468293,
+        "rmse": 0.8898816010484809,
+        "mape": 12.309892880954083,
+        "r2": 0.5686936376767155
+      },
+      "xgboost": {
+        "mae": 0.4566018390655513,
+        "rmse": 0.45669574430709153,
+        "mape": 6.19571261803347,
+        "r2": 0.8864007827408622
+      },
+      "lightgbm": {
+        "mae": 1.016130657474247,
+        "rmse": 1.0212176703774434,
+        "mape": 13.590526578831724,
+        "r2": 0.43198729304277816
+      }
+    },
+    "Costa Rica::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 1.4750000000000003,
+        "rmse": 1.5656468311851177,
+        "mape": 40.50017818205979,
+        "r2": -1.45125
+      },
+      "random_forest": {
+        "mae": 1.0129754220779223,
+        "rmse": 1.1952573702008547,
+        "mape": 21.804178585890327,
+        "r2": -0.428640181019462
+      },
+      "xgboost": {
+        "mae": 1.4407846927642824,
+        "rmse": 1.9602976390650864,
+        "mape": 28.434459710979286,
+        "r2": -2.8427668337241494
+      },
+      "lightgbm": {
+        "mae": 1.5192072982068239,
+        "rmse": 2.054614942416035,
+        "mape": 30.09285308107711,
+        "r2": -3.221442561599245
+      }
+    },
+    "Costa Rica::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.025,
+        "rmse": 1.2790035183688901,
+        "mape": 33.08159908460273,
+        "r2": -1.042195936456415
+      },
+      "random_forest": {
+        "mae": 0.9313276884920632,
+        "rmse": 0.9966996361493801,
+        "mape": 23.336998063395153,
+        "r2": -0.24017373327961877
+      },
+      "xgboost": {
+        "mae": 1.287748546600342,
+        "rmse": 1.530653867808836,
+        "mape": 30.114156407177102,
+        "r2": -1.924879077479666
+      },
+      "lightgbm": {
+        "mae": 1.0093091348910381,
+        "rmse": 1.370178151320025,
+        "mape": 21.822501738472287,
+        "r2": -1.3437323009328814
+      }
+    },
+    "Costa Rica::Urban::Total": {
+      "naive": {
+        "mae": 1.495,
+        "rmse": 1.6203857565407074,
+        "mape": 35.5894485453756,
+        "r2": -1.3368191527233888
+      },
+      "random_forest": {
+        "mae": 1.1182093650793652,
+        "rmse": 1.2085280312456153,
+        "mape": 22.180512675004927,
+        "r2": -0.29987540255108813
+      },
+      "xgboost": {
+        "mae": 1.1900463676452637,
+        "rmse": 1.3948504744600563,
+        "mape": 22.45608356482456,
+        "r2": -0.7315840566940581
+      },
+      "lightgbm": {
+        "mae": 1.666384816568815,
+        "rmse": 1.6953724014495697,
+        "mape": 34.83262827670117,
+        "r2": -1.55810571341837
+      }
+    },
+    "Dominican Republic::National::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 0.6750004999999977,
+        "rmse": 0.8998062402542539,
+        "mape": 2.7890614434969287,
+        "r2": -1.0079360033743834
+      },
+      "random_forest": {
+        "mae": 0.7049719733132349,
+        "rmse": 0.7915772101650677,
+        "mape": 2.811219928534791,
+        "r2": -0.5539549702794222
+      },
+      "xgboost": {
+        "mae": 0.6830977290039062,
+        "rmse": 0.9283085054010978,
+        "mape": 2.695007717356156,
+        "r2": -1.1371574780940943
+      },
+      "lightgbm": {
+        "mae": 0.5468379291227894,
+        "rmse": 0.6637254652681318,
+        "mape": 2.1705879426175247,
+        "r2": -0.09251856778681011
+      }
+    },
+    "Dominican Republic::National::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 0.7650004999999993,
+        "rmse": 0.9166516568470813,
+        "mape": 3.8823154080713027,
+        "r2": -1.0838248124508643
+      },
+      "random_forest": {
+        "mae": 0.4270877723316353,
+        "rmse": 0.4274439055647937,
+        "mape": 2.120497941360084,
+        "r2": 0.5468825286019359
+      },
+      "xgboost": {
+        "mae": 0.6258022689819338,
+        "rmse": 0.6870189464617801,
+        "mape": 3.1555732023571315,
+        "r2": -0.1705500224377321
+      },
+      "lightgbm": {
+        "mae": 0.8841591478604389,
+        "rmse": 0.8873057841547594,
+        "mape": 4.383821629076959,
+        "r2": -0.9525365604674632
+      }
+    },
+    "Dominican Republic::National::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.8849999999999998,
+        "rmse": 1.902169679603005,
+        "mape": 8.753651362176438,
+        "r2": -2.1603221866931177
+      },
+      "random_forest": {
+        "mae": 0.6747161664948589,
+        "rmse": 0.7809477585613384,
+        "mape": 3.2018709243128516,
+        "r2": 0.46730721322113067
+      },
+      "xgboost": {
+        "mae": 0.6188345377807618,
+        "rmse": 0.6745356383063812,
+        "mape": 2.9157261690999823,
+        "r2": 0.6025864681825688
+      },
+      "lightgbm": {
+        "mae": 1.120784260430657,
+        "rmse": 1.188186126342477,
+        "mape": 5.080698671827236,
+        "r2": -0.23310995742867258
+      }
+    },
+    "Dominican Republic::National::Total": {
+      "naive": {
+        "mae": 0.9100000000000001,
+        "rmse": 1.05815826793585,
+        "mape": 4.268404990311753,
+        "r2": -1.1302268050699684
+      },
+      "random_forest": {
+        "mae": 0.5440444671724354,
+        "rmse": 0.6048632301393992,
+        "mape": 2.4619057247699634,
+        "r2": 0.3039523770577477
+      },
+      "xgboost": {
+        "mae": 0.36104281970214913,
+        "rmse": 0.37602531633009884,
+        "mape": 1.6445647367531255,
+        "r2": 0.7309959884918101
+      },
+      "lightgbm": {
+        "mae": 0.8461736774693858,
+        "rmse": 0.901761478452338,
+        "mape": 3.844331994025749,
+        "r2": -0.5470628026457902
+      }
+    },
+    "Dominican Republic::Rural::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 1.7300015000000002,
+        "rmse": 1.787569506341641,
+        "mape": 5.083083509187529,
+        "r2": -1.689505772612189
+      },
+      "random_forest": {
+        "mae": 1.4766050641959971,
+        "rmse": 1.4928847055496575,
+        "mape": 4.2827060319021895,
+        "r2": -0.8758544730092153
+      },
+      "xgboost": {
+        "mae": 0.27937886511230303,
+        "rmse": 0.27999646087968366,
+        "mape": 0.8124311007166408,
+        "r2": 0.9340140171867598
+      },
+      "lightgbm": {
+        "mae": 0.34357300965505644,
+        "rmse": 0.45586458993039425,
+        "mape": 1.0289269312591574,
+        "r2": 0.825088516371647
+      }
+    },
+    "Dominican Republic::Rural::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 2.284998999999999,
+        "rmse": 2.3124113258678687,
+        "mape": 7.51400918515315,
+        "r2": -2.068897004133383
+      },
+      "random_forest": {
+        "mae": 0.520936897996334,
+        "rmse": 0.5220222651672223,
+        "mape": 1.6969445958932647,
+        "r2": 0.8436023614954555
+      },
+      "xgboost": {
+        "mae": 0.2793165969848648,
+        "rmse": 0.3662266276876998,
+        "mape": 0.8791057031677818,
+        "r2": 0.9230245966325152
+      },
+      "lightgbm": {
+        "mae": 0.9471881022233735,
+        "rmse": 0.9525347969546096,
+        "mape": 3.07988339300372,
+        "r2": 0.47926851503135826
+      }
+    },
+    "Dominican Republic::Rural::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 3.945001999999999,
+        "rmse": 3.9881407886388596,
+        "mape": 10.866599567137976,
+        "r2": -2.1003018158944715
+      },
+      "random_forest": {
+        "mae": 0.38910799094724524,
+        "rmse": 0.3905394261724329,
+        "mape": 1.0677227902026283,
+        "r2": 0.9702701457771019
+      },
+      "xgboost": {
+        "mae": 0.38381183215332015,
+        "rmse": 0.38620785526548895,
+        "mape": 1.054871364899057,
+        "r2": 0.9709259711005507
+      },
+      "lightgbm": {
+        "mae": 1.1048122138904155,
+        "rmse": 1.2236590873185886,
+        "mape": 2.927249016877194,
+        "r2": 0.7081337409674082
+      }
+    },
+    "Dominican Republic::Rural::Total": {
+      "naive": {
+        "mae": 2.4000000000000004,
+        "rmse": 2.433105012119288,
+        "mape": 7.384851164168353,
+        "r2": -2.0204081632653055
+      },
+      "random_forest": {
+        "mae": 1.7908189860566637,
+        "rmse": 1.898417535464749,
+        "mape": 5.389265254366067,
+        "r2": -0.8387699688571686
+      },
+      "xgboost": {
+        "mae": 0.6406303405761715,
+        "rmse": 0.692476231692071,
+        "mape": 1.9230103310386981,
+        "r2": 0.755345239051811
+      },
+      "lightgbm": {
+        "mae": 1.0929541607023996,
+        "rmse": 1.3629089955038531,
+        "mape": 3.445495820092049,
+        "r2": 0.05228523978299948
+      }
+    },
+    "Dominican Republic::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 0.7400010000000012,
+        "rmse": 0.8023100896791727,
+        "mape": 3.260598674921266,
+        "r2": -1.3354204223299573
+      },
+      "random_forest": {
+        "mae": 0.4955534125222041,
+        "rmse": 0.49871201515474994,
+        "mape": 2.157162024463168,
+        "r2": 0.09763918251226855
+      },
+      "xgboost": {
+        "mae": 0.7924435847167963,
+        "rmse": 1.038288117096886,
+        "mape": 3.5255443427406803,
+        "r2": -2.911256818843667
+      },
+      "lightgbm": {
+        "mae": 0.7267993095961796,
+        "rmse": 0.9690673322739267,
+        "mape": 3.107934714946215,
+        "r2": -2.4071281840811016
+      }
+    },
+    "Dominican Republic::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 0.5250009999999996,
+        "rmse": 0.6754635815504787,
+        "mape": 2.9500590027253732,
+        "r2": -1.022161061380566
+      },
+      "random_forest": {
+        "mae": 0.977185884849364,
+        "rmse": 1.0448392656720662,
+        "mape": 5.430412993552963,
+        "r2": -3.8385010207244212
+      },
+      "xgboost": {
+        "mae": 0.359529529296875,
+        "rmse": 0.364851187524834,
+        "mape": 1.9873405407076474,
+        "r2": 0.4100117061775317
+      },
+      "lightgbm": {
+        "mae": 0.5711277742050864,
+        "rmse": 0.5753580541399341,
+        "mape": 3.132787522331768,
+        "r2": -0.46719642568430886
+      }
+    },
+    "Dominican Republic::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.209999999999999,
+        "rmse": 1.254193230726828,
+        "mape": 6.561485050169013,
+        "r2": -1.6530588921318734
+      },
+      "random_forest": {
+        "mae": 0.5112966823540379,
+        "rmse": 0.586339784175447,
+        "mape": 2.678353279347638,
+        "r2": 0.42014859837884067
+      },
+      "xgboost": {
+        "mae": 1.2400295298461916,
+        "rmse": 1.2400304442259682,
+        "mape": 6.649239200154973,
+        "r2": -1.5934786736853166
+      },
+      "lightgbm": {
+        "mae": 1.3209574163943891,
+        "rmse": 1.6149500281192308,
+        "mape": 6.878182545733988,
+        "r2": -3.398819710288458
+      }
+    },
+    "Dominican Republic::Urban::Total": {
+      "naive": {
+        "mae": 0.569999000000001,
+        "rmse": 0.7851744137457627,
+        "mape": 2.9768617327978233,
+        "r2": -1.0014608256188873
+      },
+      "random_forest": {
+        "mae": 0.3432792877921109,
+        "rmse": 0.4255395663449944,
+        "mape": 1.7100538798841571,
+        "r2": 0.41211184545779067
+      },
+      "xgboost": {
+        "mae": 0.12342517443847711,
+        "rmse": 0.12511870395355992,
+        "mape": 0.6248755771781924,
+        "r2": 0.9491771178128223
+      },
+      "lightgbm": {
+        "mae": 0.8245547961415856,
+        "rmse": 0.8538369249117596,
+        "mape": 4.162403492526022,
+        "r2": -1.366817004871725
+      }
+    },
+    "Ecuador::National::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 0.8399995000000047,
+        "rmse": 0.8402375735472128,
+        "mape": 1.9096999748694492,
+        "r2": -3.1998863887737805
+      },
+      "random_forest": {
+        "mae": 4.5439255240843295,
+        "rmse": 4.601153325473279,
+        "mape": 10.3173619893467,
+        "r2": -124.94088970997598
+      },
+      "xgboost": {
+        "mae": 5.572362857543947,
+        "rmse": 5.598372320465573,
+        "mape": 12.659895000499171,
+        "r2": -185.44764474742772
+      },
+      "lightgbm": {
+        "mae": 6.158232592694802,
+        "rmse": 6.181593540684219,
+        "mape": 13.99218325473423,
+        "r2": -226.318214768827
+      }
+    },
+    "Ecuador::National::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 0.6850004999999992,
+        "rmse": 0.9616919257228356,
+        "mape": 2.247413480083538,
+        "r2": -1.0001081313288727
+      },
+      "random_forest": {
+        "mae": 3.4213599070029055,
+        "rmse": 3.4759415034224257,
+        "mape": 10.945716429857198,
+        "r2": -25.129220517599748
+      },
+      "xgboost": {
+        "mae": 2.5916394002075194,
+        "rmse": 2.616796000326064,
+        "mape": 8.29845715820969,
+        "r2": -13.80884783153609
+      },
+      "lightgbm": {
+        "mae": 3.0000472247035113,
+        "rmse": 3.000970330480097,
+        "mape": 9.630343729357074,
+        "r2": -18.476232008173078
+      }
+    },
+    "Ecuador::National::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 0.9449995000000015,
+        "rmse": 1.222150309905662,
+        "mape": 2.576450441520416,
+        "r2": -1.019537105462526
+      },
+      "random_forest": {
+        "mae": 2.4435590327541483,
+        "rmse": 2.5510830921141774,
+        "mape": 6.493682281439869,
+        "r2": -7.799374493518851
+      },
+      "xgboost": {
+        "mae": 4.002205005371092,
+        "rmse": 4.073955886305697,
+        "mape": 10.662758247900094,
+        "r2": -21.440639892656645
+      },
+      "lightgbm": {
+        "mae": 3.138654900238283,
+        "rmse": 3.176521632332713,
+        "mape": 8.368715172622037,
+        "r2": -12.642885272840587
+      }
+    },
+    "Ecuador::National::Total": {
+      "naive": {
+        "mae": 0.7399990000000045,
+        "rmse": 0.8713205150815658,
+        "mape": 2.053213134825952,
+        "r2": -1.108887333338893
+      },
+      "random_forest": {
+        "mae": 2.7100671227049986,
+        "rmse": 2.876105451899064,
+        "mape": 7.399594614250242,
+        "r2": -21.977729362343002
+      },
+      "xgboost": {
+        "mae": 3.381227416992189,
+        "rmse": 3.4438722841911518,
+        "mape": 9.256919634515373,
+        "r2": -31.945156416166455
+      },
+      "lightgbm": {
+        "mae": 3.059470147934661,
+        "rmse": 3.104298871972698,
+        "mape": 8.379018371772439,
+        "r2": -25.768531907030336
+      }
+    },
+    "Ecuador::Rural::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 1.805000500000002,
+        "rmse": 1.812526405325039,
+        "mape": 2.7610006917683294,
+        "r2": -3.8858595627610137
+      },
+      "random_forest": {
+        "mae": 3.0015534072060426,
+        "rmse": 3.2351695478078186,
+        "mape": 4.56294165519495,
+        "r2": -14.565618683912906
+      },
+      "xgboost": {
+        "mae": 5.568811332153324,
+        "rmse": 5.747361900506785,
+        "mape": 8.481326816823392,
+        "r2": -48.1257715874434
+      },
+      "lightgbm": {
+        "mae": 4.920415347927015,
+        "rmse": 4.982409031569268,
+        "mape": 7.502858375058718,
+        "r2": -35.91909541621504
+      }
+    },
+    "Ecuador::Rural::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 0.5599995,
+        "rmse": 0.6260988100935043,
+        "mape": 1.084064062857758,
+        "r2": -1.2222206349234623
+      },
+      "random_forest": {
+        "mae": 3.5403243090324352,
+        "rmse": 3.6618014848602085,
+        "mape": 6.866713771095864,
+        "r2": -75.0135494020653
+      },
+      "xgboost": {
+        "mae": 4.179910804199217,
+        "rmse": 4.275059700584936,
+        "mape": 8.110528850173765,
+        "r2": -102.60620999753517
+      },
+      "lightgbm": {
+        "mae": 2.915155610433107,
+        "rmse": 2.9259528474368945,
+        "mape": 5.662390165237614,
+        "r2": -47.53288018947846
+      }
+    },
+    "Ecuador::Rural::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 0.2800009999999986,
+        "rmse": 0.3130508584910744,
+        "mape": 0.4856496647021413,
+        "r2": -19.00017142897916
+      },
+      "random_forest": {
+        "mae": 3.6461542192597953,
+        "rmse": 3.6662165864097163,
+        "mape": 6.328748658960444,
+        "r2": -2742.090624176654
+      },
+      "xgboost": {
+        "mae": 3.291427680419922,
+        "rmse": 3.3260477414492104,
+        "mape": 5.713318424646747,
+        "r2": -2256.672158857001
+      },
+      "lightgbm": {
+        "mae": 3.424013508193937,
+        "rmse": 3.5029008972716738,
+        "mape": 5.943972003127325,
+        "r2": -2503.1458563482856
+      }
+    },
+    "Ecuador::Rural::Total": {
+      "naive": {
+        "mae": 0.9600009999999983,
+        "rmse": 0.9633285628491436,
+        "mape": 1.665839310613811,
+        "r2": -2.4319531634042137
+      },
+      "random_forest": {
+        "mae": 4.660771479167064,
+        "rmse": 4.858177421465457,
+        "mape": 8.072187874044687,
+        "r2": -86.28492037816747
+      },
+      "xgboost": {
+        "mae": 4.761568416870116,
+        "rmse": 4.9190907890394895,
+        "mape": 8.24935851110775,
+        "r2": -88.48745435397434
+      },
+      "lightgbm": {
+        "mae": 4.151205180858376,
+        "rmse": 4.283711032395918,
+        "mape": 7.192215643331296,
+        "r2": -66.86296198340763
+      }
+    },
+    "Ecuador::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 1.144999499999999,
+        "rmse": 1.6192738218104112,
+        "mape": 3.633765471278956,
+        "r2": -0.9999999999999996
+      },
+      "random_forest": {
+        "mae": 2.9437291969157755,
+        "rmse": 3.0041855534298043,
+        "mape": 8.96126435003335,
+        "r2": -5.884032510174754
+      },
+      "xgboost": {
+        "mae": 2.135565524780274,
+        "rmse": 2.3143048087672797,
+        "mape": 6.451952370984914,
+        "r2": -3.0853617784722482
+      },
+      "lightgbm": {
+        "mae": 3.162805275161741,
+        "rmse": 3.357653777298049,
+        "mape": 9.576259622473454,
+        "r2": -7.599262969323869
+      }
+    },
+    "Ecuador::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 1.1800004999999985,
+        "rmse": 1.6476953692963077,
+        "mape": 5.479007102011232,
+        "r2": -1.0003315809836248
+      },
+      "random_forest": {
+        "mae": 1.7751116427440294,
+        "rmse": 2.0560293718744713,
+        "mape": 7.613530952331024,
+        "r2": -2.114632266581105
+      },
+      "xgboost": {
+        "mae": 2.3329284667968757,
+        "rmse": 2.5684049694269557,
+        "mape": 10.071712022580542,
+        "r2": -3.8604351430139383
+      },
+      "lightgbm": {
+        "mae": 1.6980693669286566,
+        "rmse": 1.9325474808371756,
+        "mape": 7.298935567319139,
+        "r2": -1.7517469584557603
+      }
+    },
+    "Ecuador::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.1199984999999995,
+        "rmse": 1.3591531959284424,
+        "mape": 4.2620749397550775,
+        "r2": -1.0685863943519225
+      },
+      "random_forest": {
+        "mae": 2.891017293000626,
+        "rmse": 2.917757918138492,
+        "mape": 10.691179557546306,
+        "r2": -8.533126483202613
+      },
+      "xgboost": {
+        "mae": 3.000452800476074,
+        "rmse": 3.0059732476173697,
+        "mape": 11.172915668395792,
+        "r2": -9.1182886561648
+      },
+      "lightgbm": {
+        "mae": 2.3470159791013554,
+        "rmse": 2.3660870203338638,
+        "mape": 8.682051727069124,
+        "r2": -5.268999985438039
+      }
+    },
+    "Ecuador::Urban::Total": {
+      "naive": {
+        "mae": 1.1199999999999992,
+        "rmse": 1.5839191898578653,
+        "mape": 4.405979543666401,
+        "r2": -1.0
+      },
+      "random_forest": {
+        "mae": 2.0745639426895828,
+        "rmse": 2.238267170014709,
+        "mape": 7.696845442950638,
+        "r2": -2.993813715214972
+      },
+      "xgboost": {
+        "mae": 1.6356430435180673,
+        "rmse": 1.9974513026200853,
+        "mape": 5.991302157847878,
+        "r2": -2.1806534648745863
+      },
+      "lightgbm": {
+        "mae": 1.6863440993178376,
+        "rmse": 2.168014390803768,
+        "mape": 6.148266824312451,
+        "r2": -2.7470395398056753
+      }
+    },
+    "El Salvador::National::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 3.1600000000000037,
+        "rmse": 3.1600000000000037,
+        "mape": 5.118237605499274,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.5458426864825086,
+        "rmse": 1.5458426864825086,
+        "mape": 2.5037943576394905,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.8408619526367218,
+        "rmse": 0.8408619526367218,
+        "mape": 1.3619402743730424,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.5267026762074778,
+        "rmse": 1.5267026762074778,
+        "mape": 2.4727933701840143,
+        "r2": null
+      }
+    },
+    "El Salvador::National::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 3.590000999999994,
+        "rmse": 3.590000999999994,
+        "mape": 7.3056594893296465,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.0670002003838235,
+        "rmse": 1.0670002003838235,
+        "mape": 2.1713476233156284,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.7818828500976593,
+        "rmse": 1.7818828500976593,
+        "mape": 3.62613529987589,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.07860601659827182,
+        "rmse": 0.07860601659827182,
+        "mape": 0.15996340699614547,
+        "r2": null
+      }
+    },
+    "El Salvador::National::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 3.9699969999999993,
+        "rmse": 3.9699969999999993,
+        "mape": 7.331480800314651,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.8663921480998127,
+        "rmse": 0.8663921480998127,
+        "mape": 1.5999854406280773,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.9887881306152337,
+        "rmse": 0.9887881306152337,
+        "mape": 1.8260167942657395,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.6659653221287272,
+        "rmse": 0.6659653221287272,
+        "mape": 1.2298528116928364,
+        "r2": null
+      }
+    },
+    "El Salvador::National::Total": {
+      "naive": {
+        "mae": 3.520000000000003,
+        "rmse": 3.520000000000003,
+        "mape": 6.601650412603156,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.2368951092827487,
+        "rmse": 1.2368951092827487,
+        "mape": 2.319758269472522,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.0797306823730466,
+        "rmse": 1.0797306823730466,
+        "mape": 2.0250012797694046,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.16586438424651817,
+        "rmse": 0.16586438424651817,
+        "mape": 0.3110734888344302,
+        "r2": null
+      }
+    },
+    "El Salvador::Rural::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 2.380004999999997,
+        "rmse": 2.380004999999997,
+        "mape": 2.881362055238787,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 3.197850504734376,
+        "rmse": 3.197850504734376,
+        "mape": 3.8714898089154626,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.3973469707031256,
+        "rmse": 1.3973469707031256,
+        "mape": 1.6917033953234788,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.1840917074929251,
+        "rmse": 1.1840917074929251,
+        "mape": 1.4335251043140766,
+        "r2": null
+      }
+    },
+    "El Salvador::Rural::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 3.229996,
+        "rmse": 3.229996,
+        "mape": 4.294065351049384,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.667042304028314,
+        "rmse": 0.667042304028314,
+        "mape": 0.8867884806706052,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 2.2556531606445276,
+        "rmse": 2.2556531606445276,
+        "mape": 2.9987412000227542,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.0058588704634843,
+        "rmse": 1.0058588704634843,
+        "mape": 1.3372226230939355,
+        "r2": null
+      }
+    },
+    "El Salvador::Rural::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 2.199996999999996,
+        "rmse": 2.199996999999996,
+        "mape": 2.668603768350219,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.4337633817677187,
+        "rmse": 1.4337633817677187,
+        "mape": 1.7391598095396925,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.8334422465820381,
+        "rmse": 0.8334422465820381,
+        "mape": 1.010968251289026,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.1035225062595373,
+        "rmse": 0.1035225062595373,
+        "mape": 0.12557314865123037,
+        "r2": null
+      }
+    },
+    "El Salvador::Rural::Total": {
+      "naive": {
+        "mae": 2.800003000000004,
+        "rmse": 2.800003000000004,
+        "mape": 3.5687012945284438,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.2425708602704333,
+        "rmse": 0.2425708602704333,
+        "mape": 0.309165005559627,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.9422837148437537,
+        "rmse": 0.9422837148437537,
+        "mape": 1.200973396448493,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.7982251122654986,
+        "rmse": 0.7982251122654986,
+        "mape": 1.0173656926321126,
+        "r2": null
+      }
+    },
+    "El Salvador::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 3.319999999999993,
+        "rmse": 3.319999999999993,
+        "mape": 7.2236729160938244,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.6362922562406084,
+        "rmse": 1.6362922562406084,
+        "mape": 3.560253028379327,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.5484276662597622,
+        "rmse": 0.5484276662597622,
+        "mape": 1.193271710601565,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.9217174330005093,
+        "rmse": 0.9217174330005093,
+        "mape": 2.0054774870654573,
+        "r2": null
+      }
+    },
+    "El Salvador::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 3.7700009999999935,
+        "rmse": 3.7700009999999935,
+        "mape": 11.140664893617002,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.156562148439214,
+        "rmse": 1.156562148439214,
+        "mape": 3.4177368452695442,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.2871476745605435,
+        "rmse": 1.2871476745605435,
+        "mape": 3.803627879907043,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.8426088004471666,
+        "rmse": 1.8426088004471666,
+        "mape": 5.4450614670424535,
+        "r2": null
+      }
+    },
+    "El Salvador::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 5.979998999999999,
+        "rmse": 5.979998999999999,
+        "mape": 15.356957251077482,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.0905487004127679,
+        "rmse": 1.0905487004127679,
+        "mape": 2.8005873867967175,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.7232967458496091,
+        "rmse": 0.7232967458496091,
+        "mape": 1.8574647263077977,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.5613623892879573,
+        "rmse": 0.5613623892879573,
+        "mape": 1.4416086381716582,
+        "r2": null
+      }
+    },
+    "El Salvador::Urban::Total": {
+      "naive": {
+        "mae": 3.9700009999999963,
+        "rmse": 3.9700009999999963,
+        "mape": 10.533300889713464,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.6198734755408069,
+        "rmse": 0.6198734755408069,
+        "mape": 1.6446630193352005,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.7715984426269529,
+        "rmse": 0.7715984426269529,
+        "mape": 2.0472233035266276,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.4125203161995188,
+        "rmse": 0.4125203161995188,
+        "mape": 1.0945086949976273,
+        "r2": null
+      }
+    },
+    "Honduras::National::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 3.150001000000003,
+        "rmse": 3.150001000000003,
+        "mape": 4.2527352504387785,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 2.7386601121294945,
+        "rmse": 2.7386601121294945,
+        "mape": 3.697394508072762,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 2.9016116333007744,
+        "rmse": 2.9016116333007744,
+        "mape": 3.917391161469927,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 3.4082571919607574,
+        "rmse": 3.4082571919607574,
+        "mape": 4.601400286162762,
+        "r2": null
+      }
+    },
+    "Honduras::National::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 6.089999999999996,
+        "rmse": 6.089999999999996,
+        "mape": 9.900829455400073,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 2.786415334678047,
+        "rmse": 2.786415334678047,
+        "mape": 4.530020200420177,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 3.6301234599609344,
+        "rmse": 3.6301234599609344,
+        "mape": 5.901680341399026,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 2.730418177747687,
+        "rmse": 2.730418177747687,
+        "mape": 4.438982712611512,
+        "r2": null
+      }
+    },
+    "Honduras::National::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 9.739997000000002,
+        "rmse": 9.739997000000002,
+        "mape": 15.372469770005218,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 5.858072016631482,
+        "rmse": 5.858072016631482,
+        "mape": 9.245694324770422,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 5.466971961425784,
+        "rmse": 5.466971961425784,
+        "mape": 8.628427833241012,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 6.126249870442322,
+        "rmse": 6.126249870442322,
+        "mape": 9.668954819685565,
+        "r2": null
+      }
+    },
+    "Honduras::National::Total": {
+      "naive": {
+        "mae": 5.630004000000014,
+        "rmse": 5.630004000000014,
+        "mape": 8.522561565926802,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.732024703358917,
+        "rmse": 1.732024703358917,
+        "mape": 2.621896390852021,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.3287501689453194,
+        "rmse": 1.3287501689453194,
+        "mape": 2.0114293205781197,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.0439392465069233,
+        "rmse": 1.0439392465069233,
+        "mape": 1.580289552093119,
+        "r2": null
+      }
+    },
+    "Honduras::Rural::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 5.399994000000007,
+        "rmse": 5.399994000000007,
+        "mape": 6.068772553311789,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 3.082797280003902,
+        "rmse": 3.082797280003902,
+        "mape": 3.464595612571402,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.4491192109374964,
+        "rmse": 0.4491192109374964,
+        "mape": 0.5047417349912838,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.720097659948749,
+        "rmse": 1.720097659948749,
+        "mape": 1.933128345644975,
+        "r2": null
+      }
+    },
+    "Honduras::Rural::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 7.009994999999989,
+        "rmse": 7.009994999999989,
+        "mape": 8.376143903067405,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 4.553013645682299,
+        "rmse": 4.553013645682299,
+        "mape": 5.440331624896244,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 3.041649306152337,
+        "rmse": 3.041649306152337,
+        "mape": 3.6344237465215223,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 3.998518792603889,
+        "rmse": 3.998518792603889,
+        "mape": 4.777773565597345,
+        "r2": null
+      }
+    },
+    "Honduras::Rural::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 7.800003000000004,
+        "rmse": 7.800003000000004,
+        "mape": 9.248284763968929,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 6.69445105960294,
+        "rmse": 6.69445105960294,
+        "mape": 7.937457169908972,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 5.163093904785157,
+        "rmse": 5.163093904785157,
+        "mape": 6.121762093497321,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 3.128093948819,
+        "rmse": 3.128093948819,
+        "mape": 3.708909292358752,
+        "r2": null
+      }
+    },
+    "Honduras::Rural::Total": {
+      "naive": {
+        "mae": 6.559997999999993,
+        "rmse": 6.559997999999993,
+        "mape": 7.6501434402332285,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 4.540310352817201,
+        "rmse": 4.540310352817201,
+        "mape": 5.294822568883033,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 3.4248123168945312,
+        "rmse": 3.4248123168945312,
+        "mape": 3.9939502237837097,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 2.038431736189736,
+        "rmse": 2.038431736189736,
+        "mape": 2.3771798672766598,
+        "r2": null
+      }
+    },
+    "Honduras::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 0.4099999999999966,
+        "rmse": 0.4099999999999966,
+        "mape": 0.6833333333333277,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 2.873566723734818,
+        "rmse": 2.873566723734818,
+        "mape": 4.789277872891364,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 4.508880615234375,
+        "rmse": 4.508880615234375,
+        "mape": 7.514801025390624,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 3.9110331581850275,
+        "rmse": 3.9110331581850275,
+        "mape": 6.518388596975046,
+        "r2": null
+      }
+    },
+    "Honduras::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 4.790001000000004,
+        "rmse": 4.790001000000004,
+        "mape": 10.54601763742923,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.506418216323958,
+        "rmse": 1.506418216323958,
+        "mape": 3.316640868905273,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.0994909504394528,
+        "rmse": 1.0994909504394528,
+        "mape": 2.420719944636397,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.08392243185922865,
+        "rmse": 0.08392243185922865,
+        "mape": 0.18476978325544766,
+        "r2": null
+      }
+    },
+    "Honduras::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 11.660000000000004,
+        "rmse": 11.660000000000004,
+        "mape": 24.52671382989665,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 8.648145636012245,
+        "rmse": 8.648145636012245,
+        "mape": 18.191303016615933,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 8.3575934519043,
+        "rmse": 8.3575934519043,
+        "mape": 17.58012889378,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 8.523183402845028,
+        "rmse": 8.523183402845028,
+        "mape": 17.928445989820297,
+        "r2": null
+      }
+    },
+    "Honduras::Urban::Total": {
+      "naive": {
+        "mae": 4.339995999999999,
+        "rmse": 4.339995999999999,
+        "mape": 8.623079331488997,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 0.43427716353497203,
+        "rmse": 0.43427716353497203,
+        "mape": 0.8628594203810522,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.7969892719726559,
+        "rmse": 0.7969892719726559,
+        "mape": 1.5835272010771149,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 1.164656019883111,
+        "rmse": 1.164656019883111,
+        "mape": 2.3140392879044813,
+        "r2": null
+      }
+    },
+    "Latin America (simple average)::National::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 1.2760750000000023,
+        "rmse": 1.2763268511400228,
+        "mape": 3.723310615004549,
+        "r2": -2.8471829846139705
+      },
+      "random_forest": {
+        "mae": 1.248360904004631,
+        "rmse": 1.274014769739886,
+        "mape": 3.6269978632021553,
+        "r2": -2.8332571731904896
+      },
+      "xgboost": {
+        "mae": 1.5724602973632784,
+        "rmse": 1.577669312920922,
+        "mape": 4.593458391129959,
+        "r2": -4.87828972920768
+      },
+      "lightgbm": {
+        "mae": 1.0242169627080493,
+        "rmse": 1.0330768358254285,
+        "mape": 2.994788219722276,
+        "r2": -1.5204859375670199
+      }
+    },
+    "Latin America (simple average)::National::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 1.3557144999999995,
+        "rmse": 1.3735635027258475,
+        "mape": 5.449157519982455,
+        "r2": -4.858221028222573
+      },
+      "random_forest": {
+        "mae": 0.7895585276080528,
+        "rmse": 0.9641552764029042,
+        "mape": 3.2365037795189657,
+        "r2": -1.8864379965163351
+      },
+      "xgboost": {
+        "mae": 0.9222262503051759,
+        "rmse": 1.1364175942818486,
+        "mape": 3.781961292070299,
+        "r2": -3.0099980937905997
+      },
+      "lightgbm": {
+        "mae": 0.25504930205924303,
+        "rmse": 0.31628990475376106,
+        "mape": 1.0462474436077542,
+        "r2": 0.6893731953683756
+      }
+    },
+    "Latin America (simple average)::National::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.6674995,
+        "rmse": 1.6736378172682702,
+        "mape": 6.027416214957386,
+        "r2": -3.8222281226235246
+      },
+      "random_forest": {
+        "mae": 1.2017173806189767,
+        "rmse": 1.252959445456143,
+        "mape": 4.389555757250328,
+        "r2": -1.7027060834918442
+      },
+      "xgboost": {
+        "mae": 0.7289627569580084,
+        "rmse": 0.9350923850742063,
+        "mape": 2.699753027140643,
+        "r2": -0.5053373280896531
+      },
+      "lightgbm": {
+        "mae": 0.7668112422033513,
+        "rmse": 0.8194778597154929,
+        "mape": 2.8072306284137483,
+        "r2": -0.1561102173118909
+      }
+    },
+    "Latin America (simple average)::National::Total": {
+      "naive": {
+        "mae": 1.3867889999999985,
+        "rmse": 1.3946109441424857,
+        "mape": 4.940623350112767,
+        "r2": -4.065475727264717
+      },
+      "random_forest": {
+        "mae": 1.1691320962195135,
+        "rmse": 1.2464684983085796,
+        "mape": 4.209149161290975,
+        "r2": -3.046473634267975
+      },
+      "xgboost": {
+        "mae": 0.9361700026855484,
+        "rmse": 1.144790980859026,
+        "mape": 3.395135491563962,
+        "r2": -2.413237426686135
+      },
+      "lightgbm": {
+        "mae": 0.7680893781642038,
+        "rmse": 0.7916729062865066,
+        "mape": 2.7580224003561438,
+        "r2": -0.6323213649835824
+      }
+    },
+    "Latin America (simple average)::Rural::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 1.9839249999999993,
+        "rmse": 2.228008660182901,
+        "mape": 3.632539565831784,
+        "r2": -20.10373022601361
+      },
+      "random_forest": {
+        "mae": 1.4528839927483013,
+        "rmse": 1.9859039601633008,
+        "mape": 2.6946072893290216,
+        "r2": -15.76648254230411
+      },
+      "xgboost": {
+        "mae": 2.9273679764404292,
+        "rmse": 3.07558028093076,
+        "mape": 5.399994341005878,
+        "r2": -39.214216611310135
+      },
+      "lightgbm": {
+        "mae": 2.3275237716464403,
+        "rmse": 2.3586819791839733,
+        "mape": 4.287451149522798,
+        "r2": -22.651803122887134
+      }
+    },
+    "Latin America (simple average)::Rural::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 2.2314240000000005,
+        "rmse": 2.4750118543152495,
+        "mape": 4.772187086823909,
+        "r2": -17.18728424011671
+      },
+      "random_forest": {
+        "mae": 1.787641363958354,
+        "rmse": 1.855091128676341,
+        "mape": 3.8594554599047433,
+        "r2": -9.217479725468902
+      },
+      "xgboost": {
+        "mae": 1.550231985961915,
+        "rmse": 2.1307432385017364,
+        "mape": 3.3746154562886903,
+        "r2": -12.479554079112802
+      },
+      "lightgbm": {
+        "mae": 1.7873391187344048,
+        "rmse": 1.8637112022677742,
+        "mape": 3.85967461399919,
+        "r2": -9.312655705069412
+      }
+    },
+    "Latin America (simple average)::Rural::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 2.3582149999999977,
+        "rmse": 2.358799454438844,
+        "mape": 4.626644637352903,
+        "r2": -3.186325943539555
+      },
+      "random_forest": {
+        "mae": 1.881050463820145,
+        "rmse": 1.8820547765091258,
+        "mape": 3.6896129242324536,
+        "r2": -1.6651123407827364
+      },
+      "xgboost": {
+        "mae": 3.33438675646973,
+        "rmse": 3.4729423333374094,
+        "mape": 6.502000296302871,
+        "r2": -8.074989808533577
+      },
+      "lightgbm": {
+        "mae": 0.550478491989967,
+        "rmse": 0.6226628568722552,
+        "mape": 1.0676228380471224,
+        "r2": 0.7082862355903705
+      }
+    },
+    "Latin America (simple average)::Rural::Total": {
+      "naive": {
+        "mae": 2.1328545000000005,
+        "rmse": 2.3083544758854746,
+        "mape": 4.2516743216960435,
+        "r2": -12.64096098903169
+      },
+      "random_forest": {
+        "mae": 1.2261426873572248,
+        "rmse": 1.2758595203144096,
+        "mape": 2.4481023696683404,
+        "r2": -3.167212839876904
+      },
+      "xgboost": {
+        "mae": 1.9671002730712885,
+        "rmse": 2.013995448650212,
+        "mape": 3.9308455229986716,
+        "r2": -9.38381482799045
+      },
+      "lightgbm": {
+        "mae": 0.2938009722372499,
+        "rmse": 0.37181982724397344,
+        "mape": 0.58300220401543,
+        "r2": 0.64608004113475
+      }
+    },
+    "Latin America (simple average)::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 0.9382140000000003,
+        "rmse": 0.9953919252339755,
+        "mape": 3.7801033998153364,
+        "r2": -1.4544216370418965
+      },
+      "random_forest": {
+        "mae": 0.6883951763955132,
+        "rmse": 0.8703259525042878,
+        "mape": 2.802787482241252,
+        "r2": -0.8763973556643161
+      },
+      "xgboost": {
+        "mae": 1.2766886787109364,
+        "rmse": 1.3322521551247026,
+        "mape": 5.136570461770751,
+        "r2": -3.39677059960537
+      },
+      "lightgbm": {
+        "mae": 0.7583420574179272,
+        "rmse": 0.7616716661965371,
+        "mape": 3.0209787348465986,
+        "r2": -0.4371316196996997
+      }
+    },
+    "Latin America (simple average)::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 1.0250005000000009,
+        "rmse": 1.0250425941445076,
+        "mape": 5.969114501339598,
+        "r2": -3.0738356481608182
+      },
+      "random_forest": {
+        "mae": 0.3811349442682985,
+        "rmse": 0.47261745092977686,
+        "mape": 2.268260180356562,
+        "r2": 0.13395753663312637
+      },
+      "xgboost": {
+        "mae": 0.27502670269775287,
+        "rmse": 0.3009495720641972,
+        "mape": 1.6230918257838047,
+        "r2": 0.6488383023419151
+      },
+      "lightgbm": {
+        "mae": 0.3538877653509971,
+        "rmse": 0.3544786251605976,
+        "mape": 2.057903542053364,
+        "r2": 0.5128084076232047
+      }
+    },
+    "Latin America (simple average)::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.4807144999999995,
+        "rmse": 1.512523547311082,
+        "mape": 8.068312829197282,
+        "r2": -5.660362956476166
+      },
+      "random_forest": {
+        "mae": 0.9441651622806546,
+        "rmse": 0.9512725435872004,
+        "mape": 5.158907350020505,
+        "r2": -1.6345323241165604
+      },
+      "xgboost": {
+        "mae": 0.7950657089233406,
+        "rmse": 0.8159233589120314,
+        "mape": 4.393744696501925,
+        "r2": -0.9381721143729744
+      },
+      "lightgbm": {
+        "mae": 0.4377719632293644,
+        "rmse": 0.49959131139468477,
+        "mape": 2.3590513790014374,
+        "r2": 0.273353207141082
+      }
+    },
+    "Latin America (simple average)::Urban::Total": {
+      "naive": {
+        "mae": 1.0717850000000002,
+        "rmse": 1.0725448333053498,
+        "mape": 5.4945045332016935,
+        "r2": -2.7201818466887198
+      },
+      "random_forest": {
+        "mae": 0.3792231893752973,
+        "rmse": 0.4300358507277818,
+        "mape": 1.9124585276417645,
+        "r2": 0.4019429908113902
+      },
+      "xgboost": {
+        "mae": 0.7810622222900392,
+        "rmse": 0.8790949849191201,
+        "mape": 4.058611530906268,
+        "r2": -1.499222165400436
+      },
+      "lightgbm": {
+        "mae": 0.9229050375549299,
+        "rmse": 0.9772990699943576,
+        "mape": 4.773052556917667,
+        "r2": -2.0887889143999336
+      }
+    },
+    "Latin America (weighted average)::National::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 1.4006749999999997,
+        "rmse": 1.5237656172131595,
+        "mape": 4.717202436052329,
+        "r2": -1.320350861948116
+      },
+      "random_forest": {
+        "mae": 1.6986021111911853,
+        "rmse": 1.8482454213112083,
+        "mape": 5.56012864082179,
+        "r2": -2.4137883994580607
+      },
+      "xgboost": {
+        "mae": 1.7636288111572274,
+        "rmse": 1.7989301166759497,
+        "mape": 5.817253381366288,
+        "r2": -2.2340438594834633
+      },
+      "lightgbm": {
+        "mae": 1.5628889135922126,
+        "rmse": 1.5997268913274048,
+        "mape": 5.15213990748057,
+        "r2": -1.557460948794747
+      }
+    },
+    "Latin America (weighted average)::National::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 1.1115999999999993,
+        "rmse": 1.2098453432666507,
+        "mape": 5.827201363342647,
+        "r2": -1.3183557717816687
+      },
+      "random_forest": {
+        "mae": 0.7557296671335685,
+        "rmse": 0.780508690783639,
+        "mape": 3.852235339040322,
+        "r2": 0.0351143334760472
+      },
+      "xgboost": {
+        "mae": 0.7054736941528326,
+        "rmse": 0.7117559419672231,
+        "mape": 3.6542719990637607,
+        "r2": 0.19761542451359804
+      },
+      "lightgbm": {
+        "mae": 1.2033826430061279,
+        "rmse": 1.203590754614297,
+        "mape": 6.194784725225322,
+        "r2": -1.294447128885881
+      }
+    },
+    "Latin America (weighted average)::National::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.522489499999999,
+        "rmse": 1.8406739892633073,
+        "mape": 7.59323605761601,
+        "r2": -1.072858278121473
+      },
+      "random_forest": {
+        "mae": 0.879027564244673,
+        "rmse": 1.0604420054559895,
+        "mape": 4.036311122663095,
+        "r2": 0.31199799418655716
+      },
+      "xgboost": {
+        "mae": 0.9041716359252927,
+        "rmse": 1.1154037701098252,
+        "mape": 4.139203570235683,
+        "r2": 0.23883278189804713
+      },
+      "lightgbm": {
+        "mae": 1.4144186493130366,
+        "rmse": 1.5585618195808792,
+        "mape": 6.582296644838426,
+        "r2": -0.48615437983839205
+      }
+    },
+    "Latin America (weighted average)::National::Total": {
+      "naive": {
+        "mae": 1.2779594999999997,
+        "rmse": 1.4122718974802622,
+        "mape": 5.777768835305412,
+        "r2": -1.259496289337354
+      },
+      "random_forest": {
+        "mae": 0.7320262944071807,
+        "rmse": 0.9474916022867108,
+        "mape": 3.135111977216691,
+        "r2": -0.017011202725483843
+      },
+      "xgboost": {
+        "mae": 1.395021546325685,
+        "rmse": 1.4478306967265513,
+        "mape": 6.114544771536234,
+        "r2": -1.374709876108481
+      },
+      "lightgbm": {
+        "mae": 1.7655740855058735,
+        "rmse": 1.8670767140283382,
+        "mape": 7.71717198955143,
+        "r2": -2.949110836934999
+      }
+    },
+    "Latin America (weighted average)::Rural::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 1.8046664999999997,
+        "rmse": 1.806742578386445,
+        "mape": 2.898823888563451,
+        "r2": -3.423507793204039
+      },
+      "random_forest": {
+        "mae": 0.09018918374344409,
+        "rmse": 0.11981322145908896,
+        "mape": 0.14321610524087416,
+        "r2": 0.9805471280254013
+      },
+      "xgboost": {
+        "mae": 2.528154403686525,
+        "rmse": 2.5565826957253632,
+        "mape": 4.072085958513688,
+        "r2": -7.857148537425887
+      },
+      "lightgbm": {
+        "mae": 2.0840615478743523,
+        "rmse": 2.0841366340902527,
+        "mape": 3.3494406030572876,
+        "r2": -4.886086131857729
+      }
+    },
+    "Latin America (weighted average)::Rural::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 1.8850250000000024,
+        "rmse": 1.8853522446749862,
+        "mape": 3.6655619710333207,
+        "r2": -2.856330350337849
+      },
+      "random_forest": {
+        "mae": 3.2234105080992883,
+        "rmse": 3.3197892212269826,
+        "mape": 6.237167665512929,
+        "r2": -10.956670102344578
+      },
+      "xgboost": {
+        "mae": 4.425073368041993,
+        "rmse": 4.5001051093832,
+        "mape": 8.572194244776506,
+        "r2": -20.97022685132003
+      },
+      "lightgbm": {
+        "mae": 1.9671559204208755,
+        "rmse": 1.9911527430871354,
+        "mape": 3.8127647208060043,
+        "r2": -3.3012865747429725
+      }
+    },
+    "Latin America (weighted average)::Rural::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 2.747710999999999,
+        "rmse": 3.190898725638593,
+        "mape": 5.205743460804335,
+        "r2": -1.1326382569661901
+      },
+      "random_forest": {
+        "mae": 1.370302608896118,
+        "rmse": 1.7180503823019107,
+        "mape": 2.458293341798699,
+        "r2": 0.3817516791078759
+      },
+      "xgboost": {
+        "mae": 1.4837724783935542,
+        "rmse": 1.897241232874743,
+        "mape": 2.657358400170358,
+        "r2": 0.24606090520602297
+      },
+      "lightgbm": {
+        "mae": 1.3732333015585354,
+        "rmse": 1.8011219467104462,
+        "mape": 2.4540711286004724,
+        "r2": 0.3205188848908358
+      }
+    },
+    "Latin America (weighted average)::Rural::Total": {
+      "naive": {
+        "mae": 2.015545000000003,
+        "rmse": 2.0295100523648593,
+        "mape": 3.6517002685426654,
+        "r2": -2.245153243073766
+      },
+      "random_forest": {
+        "mae": 1.0089807990984703,
+        "rmse": 1.063019300376912,
+        "mape": 1.8113520072421043,
+        "r2": 0.10970261888719746
+      },
+      "xgboost": {
+        "mae": 1.0705813358154295,
+        "rmse": 1.1651134592061045,
+        "mape": 1.9180881232492717,
+        "r2": -0.06952079914937337
+      },
+      "lightgbm": {
+        "mae": 1.3782047637217971,
+        "rmse": 1.6291536781818452,
+        "mape": 2.459048977739636,
+        "r2": -1.0911101158496588
+      }
+    },
+    "Latin America (weighted average)::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 1.0061595000000008,
+        "rmse": 1.1714146806150671,
+        "mape": 5.090579374502857,
+        "r2": -1.1279878397419338
+      },
+      "random_forest": {
+        "mae": 0.6739341712857847,
+        "rmse": 0.8982555673613412,
+        "mape": 3.214694467633452,
+        "r2": -0.25126026172438287
+      },
+      "xgboost": {
+        "mae": 0.7470151786499013,
+        "rmse": 0.7491368380017043,
+        "mape": 3.681190683260854,
+        "r2": 0.1296977144184055
+      },
+      "lightgbm": {
+        "mae": 0.17906234719129976,
+        "rmse": 0.19383662003488647,
+        "mape": 0.8705022929615132,
+        "r2": 0.9417334272472403
+      }
+    },
+    "Latin America (weighted average)::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 0.7671049999999999,
+        "rmse": 0.8827407418092817,
+        "mape": 6.367989084179544,
+        "r2": -1.150565725562866
+      },
+      "random_forest": {
+        "mae": 2.1680111260532087,
+        "rmse": 2.7268095176147518,
+        "mape": 18.16172466980608,
+        "r2": -19.520879945996022
+      },
+      "xgboost": {
+        "mae": 1.580794380340576,
+        "rmse": 1.5973339823134203,
+        "mape": 12.859802618485555,
+        "r2": -6.041705200468156
+      },
+      "lightgbm": {
+        "mae": 1.833649283747385,
+        "rmse": 1.872033390307438,
+        "mape": 14.960362754192397,
+        "r2": -8.671939219720166
+      }
+    },
+    "Latin America (weighted average)::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.11348,
+        "rmse": 1.3363866022974034,
+        "mape": 9.202340601106664,
+        "r2": -1.0817402499884032
+      },
+      "random_forest": {
+        "mae": 1.0552650712998712,
+        "rmse": 1.3149410011508014,
+        "mape": 8.76943956825866,
+        "r2": -1.0154630837881253
+      },
+      "xgboost": {
+        "mae": 1.029420223388672,
+        "rmse": 1.2728141732736291,
+        "mape": 8.545071276670251,
+        "r2": -0.8883927247237655
+      },
+      "lightgbm": {
+        "mae": 1.149243690234095,
+        "rmse": 1.503008579632239,
+        "mape": 9.615853168062822,
+        "r2": -1.6332084043162678
+      }
+    },
+    "Latin America (weighted average)::Urban::Total": {
+      "naive": {
+        "mae": 0.8977950000000003,
+        "rmse": 1.0416862952203996,
+        "mape": 6.383636656464203,
+        "r2": -1.1342839805771616
+      },
+      "random_forest": {
+        "mae": 0.815502926816273,
+        "rmse": 0.9448415268668644,
+        "mape": 5.797595955722118,
+        "r2": -0.7558857296262766
+      },
+      "xgboost": {
+        "mae": 0.5834942427062986,
+        "rmse": 0.7448331539421571,
+        "mape": 4.1894749610347874,
+        "r2": -0.09117976330723998
+      },
+      "lightgbm": {
+        "mae": 0.7713621947087912,
+        "rmse": 0.8374047565017803,
+        "mape": 5.441201155114681,
+        "r2": -0.37926955652023153
+      }
+    },
+    "Mexico::National::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 6.049999,
+        "rmse": 6.049999,
+        "mape": 15.8750953588272,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.744738196624283,
+        "rmse": 1.744738196624283,
+        "mape": 4.578163607564018,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.7885051645507843,
+        "rmse": 0.7885051645507843,
+        "mape": 2.069024255734825,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.25043837316819406,
+        "rmse": 0.25043837316819406,
+        "mape": 0.6571460682149919,
+        "r2": null
+      }
+    },
+    "Mexico::National::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 5.369999,
+        "rmse": 5.369999,
+        "mape": 20.630037624662407,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 2.057238261580313,
+        "rmse": 2.057238261580313,
+        "mape": 7.903335315201536,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 3.042585059570314,
+        "rmse": 3.042585059570314,
+        "mape": 11.68876274561155,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 3.3320628556759964,
+        "rmse": 3.3320628556759964,
+        "mape": 12.800855657577564,
+        "r2": null
+      }
+    },
+    "Mexico::National::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 10.099998999999997,
+        "rmse": 10.099998999999997,
+        "mape": 41.77005376344084,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 7.8828954270474725,
+        "rmse": 7.8828954270474725,
+        "mape": 32.600890930717426,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 7.718126602172852,
+        "rmse": 7.718126602172852,
+        "mape": 31.919464855967128,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 8.129168034307256,
+        "rmse": 8.129168034307256,
+        "mape": 33.61938806578683,
+        "r2": null
+      }
+    },
+    "Mexico::National::Total": {
+      "naive": {
+        "mae": 6.3900019999999955,
+        "rmse": 6.3900019999999955,
+        "mape": 21.958769759450156,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 3.8484064712870847,
+        "rmse": 3.8484064712870847,
+        "mape": 13.224764506141184,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 3.655592346191405,
+        "rmse": 3.655592346191405,
+        "mape": 12.562173010967026,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 4.18311765426283,
+        "rmse": 4.18311765426283,
+        "mape": 14.374974756916941,
+        "r2": null
+      }
+    },
+    "Mexico::Rural::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 3.739998,
+        "rmse": 3.739998,
+        "mape": 5.691672586998518,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 2.318915421280437,
+        "rmse": 2.318915421280437,
+        "mape": 3.529014543555901,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 0.6002732167968787,
+        "rmse": 0.6002732167968787,
+        "mape": 0.9135188341684175,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.9890131560775046,
+        "rmse": 0.9890131560775046,
+        "mape": 1.5051182029047128,
+        "r2": null
+      }
+    },
+    "Mexico::Rural::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 4.469997999999997,
+        "rmse": 4.469997999999997,
+        "mape": 8.022250394431968,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 1.9500476186574431,
+        "rmse": 1.9500476186574431,
+        "mape": 3.4997264602659337,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 1.4239237131347622,
+        "rmse": 1.4239237131347622,
+        "mape": 2.555498362490629,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 0.03924175461146717,
+        "rmse": 0.03924175461146717,
+        "mape": 0.07042669401866516,
+        "r2": null
+      }
+    },
+    "Mexico::Rural::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 14.270004999999998,
+        "rmse": 14.270004999999998,
+        "mape": 26.603290950844343,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 11.837529423141063,
+        "rmse": 11.837529423141063,
+        "mape": 22.06847435463424,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 10.991775902343747,
+        "rmse": 10.991775902343747,
+        "mape": 20.491752623529592,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 10.433285743856374,
+        "rmse": 10.433285743856374,
+        "mape": 19.450570354888285,
+        "r2": null
+      }
+    },
+    "Mexico::Rural::Total": {
+      "naive": {
+        "mae": 5.68,
+        "rmse": 5.68,
+        "mape": 9.674672281973637,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 5.936214314253057,
+        "rmse": 5.936214314253057,
+        "mape": 10.111078888373097,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 3.910694206787106,
+        "rmse": 3.910694206787106,
+        "mape": 6.661036064379947,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 4.274224462729535,
+        "rmse": 4.274224462729535,
+        "mape": 7.280232559243502,
+        "r2": null
+      }
+    },
+    "Mexico::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 5.279999000000004,
+        "rmse": 5.279999000000004,
+        "mape": 18.571927541329593,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 2.497567748008972,
+        "rmse": 2.497567748008972,
+        "mape": 8.78497273306005,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 2.6106284332275393,
+        "rmse": 2.6106284332275393,
+        "mape": 9.18265365187316,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 2.2907015902924037,
+        "rmse": 2.2907015902924037,
+        "mape": 8.05733939603378,
+        "r2": null
+      }
+    },
+    "Mexico::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 4.369999,
+        "rmse": 4.369999,
+        "mape": 23.49461827956989,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 3.614422106551398,
+        "rmse": 3.614422106551398,
+        "mape": 19.432376916943,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 2.3817428588867173,
+        "rmse": 2.3817428588867173,
+        "mape": 12.805069133799554,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 2.1499445746655326,
+        "rmse": 2.1499445746655326,
+        "mape": 11.558841799277056,
+        "r2": null
+      }
+    },
+    "Mexico::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 7.909998999999999,
+        "rmse": 7.909998999999999,
+        "mape": 48.73690080098582,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 6.261137048676414,
+        "rmse": 6.261137048676414,
+        "mape": 38.57755421242399,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 5.852647323608398,
+        "rmse": 5.852647323608398,
+        "mape": 36.06067358970054,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 4.880295113575432,
+        "rmse": 4.880295113575432,
+        "mape": 30.069594045443203,
+        "r2": null
+      }
+    },
+    "Mexico::Urban::Total": {
+      "naive": {
+        "mae": 5.229998999999999,
+        "rmse": 5.229998999999999,
+        "mape": 25.12007204610951,
+        "r2": null
+      },
+      "random_forest": {
+        "mae": 3.934787432797613,
+        "rmse": 3.934787432797613,
+        "mape": 18.89907508548325,
+        "r2": null
+      },
+      "xgboost": {
+        "mae": 3.697709732055664,
+        "rmse": 3.697709732055664,
+        "mape": 17.760373352812987,
+        "r2": null
+      },
+      "lightgbm": {
+        "mae": 3.313323237711444,
+        "rmse": 3.313323237711444,
+        "mape": 15.914136588431527,
+        "r2": null
+      }
+    },
+    "Paraguay::National::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 3.044999999999998,
+        "rmse": 3.2896888135507565,
+        "mape": 5.991203193869452,
+        "r2": -12.360573474708366
+      },
+      "random_forest": {
+        "mae": 1.5734712878279389,
+        "rmse": 1.7416556959886804,
+        "mape": 3.092237469218926,
+        "r2": -2.744898683676167
+      },
+      "xgboost": {
+        "mae": 1.918483852661133,
+        "rmse": 2.536857999625667,
+        "mape": 3.8611103967428506,
+        "r2": -6.945253902458357
+      },
+      "lightgbm": {
+        "mae": 0.7741787646444216,
+        "rmse": 0.8996467476852149,
+        "mape": 1.518229431482284,
+        "r2": 0.0007837408457178618
+      }
+    },
+    "Paraguay::National::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 3.1000005,
+        "rmse": 3.260384043329941,
+        "mape": 7.916218804762688,
+        "r2": -8.734304718298995
+      },
+      "random_forest": {
+        "mae": 1.3111712096199568,
+        "rmse": 1.6056434705887377,
+        "mape": 3.442067007912339,
+        "r2": -1.3608351041818985
+      },
+      "xgboost": {
+        "mae": 1.436708136962892,
+        "rmse": 1.549977836909831,
+        "mape": 3.7415550965079354,
+        "r2": -1.19997829254062
+      },
+      "lightgbm": {
+        "mae": 1.5349953766416782,
+        "rmse": 1.6545416421096297,
+        "mape": 3.9116576560552367,
+        "r2": -1.5068181089945938
+      }
+    },
+    "Paraguay::National::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 3.75,
+        "rmse": 3.7611963867909104,
+        "mape": 7.911267220008181,
+        "r2": -3.7267111257869017
+      },
+      "random_forest": {
+        "mae": 1.3566093603851819,
+        "rmse": 1.4236158476639797,
+        "mape": 2.9034899850213964,
+        "r2": 0.32283786052089825
+      },
+      "xgboost": {
+        "mae": 1.3472881821289064,
+        "rmse": 1.3479004153983312,
+        "mape": 2.853533503093568,
+        "r2": 0.39295252789827684
+      },
+      "lightgbm": {
+        "mae": 2.5139656156379964,
+        "rmse": 2.838809693552571,
+        "mape": 5.420647078804393,
+        "r2": -1.69264810095838
+      }
+    },
+    "Paraguay::National::Total": {
+      "naive": {
+        "mae": 3.1849990000000012,
+        "rmse": 3.336801705226429,
+        "mape": 7.256436788018536,
+        "r2": -8.286099919977913
+      },
+      "random_forest": {
+        "mae": 2.5467787462316913,
+        "rmse": 2.551174109737689,
+        "mape": 5.8569179658458665,
+        "r2": -4.428161402692953
+      },
+      "xgboost": {
+        "mae": 2.0529025350341783,
+        "rmse": 2.0672007157513304,
+        "mape": 4.700164596553299,
+        "r2": -2.564001254654394
+      },
+      "lightgbm": {
+        "mae": 2.9499601317127357,
+        "rmse": 2.9499718308070997,
+        "mape": 6.773643790966926,
+        "r2": -6.257855088301542
+      }
+    },
+    "Paraguay::Rural::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 2.8349990000000034,
+        "rmse": 3.186573418266873,
+        "mape": 4.000894644420296,
+        "r2": -20.328070361400204
+      },
+      "random_forest": {
+        "mae": 1.7098657845113934,
+        "rmse": 1.7258980381207183,
+        "mape": 2.4219722680585862,
+        "r2": -5.256536418830584
+      },
+      "xgboost": {
+        "mae": 1.6508599594726547,
+        "rmse": 2.0161971518797115,
+        "mape": 2.357603007252358,
+        "r2": -7.538266392438697
+      },
+      "lightgbm": {
+        "mae": 1.4059888355756058,
+        "rmse": 1.470836814281163,
+        "mape": 2.000213634842144,
+        "r2": -3.5439410632063177
+      }
+    },
+    "Paraguay::Rural::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 4.0000019999999985,
+        "rmse": 4.14323738156577,
+        "mape": 6.2419089240566645,
+        "r2": -7.053289774999877
+      },
+      "random_forest": {
+        "mae": 2.5301070932306793,
+        "rmse": 2.632252362256262,
+        "mape": 3.946624322640487,
+        "r2": -2.2504893071737797
+      },
+      "xgboost": {
+        "mae": 0.5743163381347607,
+        "rmse": 0.6667943034707984,
+        "mape": 0.8895973603765839,
+        "r2": 0.7914176984046833
+      },
+      "lightgbm": {
+        "mae": 1.0804948517862876,
+        "rmse": 1.4109444888138367,
+        "mape": 1.6639382710090123,
+        "r2": 0.06607167224503518
+      }
+    },
+    "Paraguay::Rural::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 6.0599975000000015,
+        "rmse": 6.066932550309795,
+        "mape": 8.366111474538382,
+        "r2": -2.6513293732262033
+      },
+      "random_forest": {
+        "mae": 1.5169279076501851,
+        "rmse": 2.1110639237028965,
+        "mape": 2.178128248900177,
+        "r2": 0.5579051602841213
+      },
+      "xgboost": {
+        "mae": 0.6128733403320297,
+        "rmse": 0.6510337806253413,
+        "mape": 0.8311274720298509,
+        "r2": 0.9579544803015845
+      },
+      "lightgbm": {
+        "mae": 2.0027786142323265,
+        "rmse": 2.73107018668018,
+        "mape": 2.8708427014896514,
+        "r2": 0.26009084617425005
+      }
+    },
+    "Paraguay::Rural::Total": {
+      "naive": {
+        "mae": 3.880001,
+        "rmse": 4.022189950761274,
+        "mape": 5.741542358126779,
+        "r2": -7.137429442069486
+      },
+      "random_forest": {
+        "mae": 1.732974504417463,
+        "rmse": 1.8061728849144096,
+        "mape": 2.563309132277853,
+        "r2": -0.6408947255475934
+      },
+      "xgboost": {
+        "mae": 1.094131817138667,
+        "rmse": 1.155166905358093,
+        "mape": 1.616837302722362,
+        "r2": 0.3288006007617478
+      },
+      "lightgbm": {
+        "mae": 0.7395200822452708,
+        "rmse": 0.7396072558054766,
+        "mape": 1.1002787005289987,
+        "r2": 0.7248532363578433
+      }
+    },
+    "Paraguay::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 3.164998999999998,
+        "rmse": 3.404738045724222,
+        "mape": 8.728131261644826,
+        "r2": -11.710442323403454
+      },
+      "random_forest": {
+        "mae": 1.394749474831098,
+        "rmse": 1.4393312980233515,
+        "mape": 3.860954660508379,
+        "r2": -1.2715107430932187
+      },
+      "xgboost": {
+        "mae": 0.9074076843261736,
+        "rmse": 0.950021514471196,
+        "mape": 2.549891181857268,
+        "r2": 0.010398971565310222
+      },
+      "lightgbm": {
+        "mae": 0.22069445732448045,
+        "rmse": 0.22191876143877123,
+        "mape": 0.6133716493020043,
+        "r2": 0.9460015496521275
+      }
+    },
+    "Paraguay::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 2.6750004999999994,
+        "rmse": 2.857560440305768,
+        "mape": 10.533755474577482,
+        "r2": -10.711630952398052
+      },
+      "random_forest": {
+        "mae": 1.1183720436681455,
+        "rmse": 1.3343115461541275,
+        "mape": 4.363187910537769,
+        "r2": -1.5535303094435413
+      },
+      "xgboost": {
+        "mae": 1.1598653752441415,
+        "rmse": 1.2456144128653777,
+        "mape": 4.564936885738549,
+        "r2": -1.2253266985400861
+      },
+      "lightgbm": {
+        "mae": 0.774269789532438,
+        "rmse": 0.8929457041579704,
+        "mape": 3.028545145863297,
+        "r2": -0.14360654833435493
+      }
+    },
+    "Paraguay::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 2.210000000000001,
+        "rmse": 2.210022633369171,
+        "mape": 6.806756130065674,
+        "r2": -3.0365362978345605
+      },
+      "random_forest": {
+        "mae": 0.7547287997694649,
+        "rmse": 0.8479600577065113,
+        "mape": 2.365208053342442,
+        "r2": 0.4057540770197804
+      },
+      "xgboost": {
+        "mae": 0.7890605463256826,
+        "rmse": 0.8228398141932947,
+        "mape": 2.406334522367991,
+        "r2": 0.44044083400722256
+      },
+      "lightgbm": {
+        "mae": 0.41120576887148275,
+        "rmse": 0.4147923493336368,
+        "mape": 1.2610248045120072,
+        "r2": 0.8578074331494029
+      }
+    },
+    "Paraguay::Urban::Total": {
+      "naive": {
+        "mae": 2.7600000000000016,
+        "rmse": 2.922190630332151,
+        "mape": 9.353264806962821,
+        "r2": -9.542208138285273
+      },
+      "random_forest": {
+        "mae": 0.9355528680476333,
+        "rmse": 0.9357200045881253,
+        "mape": 3.2029295583083597,
+        "r2": -0.08095179522162588
+      },
+      "xgboost": {
+        "mae": 1.0346047932739264,
+        "rmse": 1.3007635390763064,
+        "mape": 3.4609196026408613,
+        "r2": -1.0888690180341762
+      },
+      "lightgbm": {
+        "mae": 0.6565057801502299,
+        "rmse": 0.7357078100379,
+        "mape": 2.213865971613413,
+        "r2": 0.33177113537701397
+      }
+    },
+    "Peru::National::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 2.380001,
+        "rmse": 2.6836541878574818,
+        "mape": 7.093936156577499,
+        "r2": -21.16670327760086
+      },
+      "random_forest": {
+        "mae": 1.7333156525097166,
+        "rmse": 1.7810214191118576,
+        "mape": 5.191838969822856,
+        "r2": -8.763067406795884
+      },
+      "xgboost": {
+        "mae": 0.6864720412597656,
+        "rmse": 0.7395043641993603,
+        "mape": 2.078736940863843,
+        "r2": -0.6831758277483762
+      },
+      "lightgbm": {
+        "mae": 1.2093033278686907,
+        "rmse": 1.2621038081147333,
+        "mape": 3.6183583834040247,
+        "r2": -3.902732036857179
+      }
+    },
+    "Peru::National::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 1.9449995000000015,
+        "rmse": 1.9975103504113578,
+        "mape": 8.058083825104594,
+        "r2": -6.188951128328445
+      },
+      "random_forest": {
+        "mae": 0.788670203281228,
+        "rmse": 0.8662335435774068,
+        "mape": 3.24491445790952,
+        "r2": -0.35194009642569113
+      },
+      "xgboost": {
+        "mae": 0.49316917419433537,
+        "rmse": 0.6070609859862125,
+        "mape": 2.1040287409815477,
+        "r2": 0.3360244300589136
+      },
+      "lightgbm": {
+        "mae": 0.6985449583746028,
+        "rmse": 0.7265878242433391,
+        "mape": 2.941150878037147,
+        "r2": 0.04881786164827151
+      }
+    },
+    "Peru::National::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 2.16,
+        "rmse": 2.4956161563830266,
+        "mape": 6.772450438561687,
+        "r2": -29.08380630358624
+      },
+      "random_forest": {
+        "mae": 2.092116562012487,
+        "rmse": 2.3230278582717,
+        "mape": 6.660581157474786,
+        "r2": -25.066699337308815
+      },
+      "xgboost": {
+        "mae": 1.9593284225463883,
+        "rmse": 2.261528348938209,
+        "mape": 6.24618653856877,
+        "r2": -23.70479639198716
+      },
+      "lightgbm": {
+        "mae": 1.6061999433208722,
+        "rmse": 1.7309521306720428,
+        "mape": 5.107679350797159,
+        "r2": -13.472625425325736
+      }
+    },
+    "Peru::National::Total": {
+      "naive": {
+        "mae": 2.1400004999999993,
+        "rmse": 2.298956202280178,
+        "mape": 7.588051617235875,
+        "r2": -11.509309722810308
+      },
+      "random_forest": {
+        "mae": 1.5204695110006146,
+        "rmse": 1.5660055032685614,
+        "mape": 5.409769709118711,
+        "r2": -4.80441583555274
+      },
+      "xgboost": {
+        "mae": 2.061605025695801,
+        "rmse": 2.073078554300082,
+        "mape": 7.35927621706714,
+        "r2": -9.171932470477017
+      },
+      "lightgbm": {
+        "mae": 1.9065299131120383,
+        "rmse": 1.9873011424893878,
+        "mape": 6.7758094318900595,
+        "r2": -8.347582672361678
+      }
+    },
+    "Peru::Rural::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 7.3949985,
+        "rmse": 9.928575322774384,
+        "mape": 11.75872818074709,
+        "r2": -664.0471104065012
+      },
+      "random_forest": {
+        "mae": 6.390656766820253,
+        "rmse": 7.415814386111057,
+        "mape": 10.181053396759374,
+        "r2": -370.01907916512914
+      },
+      "xgboost": {
+        "mae": 4.059942321777346,
+        "rmse": 5.291960796552511,
+        "mape": 6.4580719855332775,
+        "r2": -187.93472135097622
+      },
+      "lightgbm": {
+        "mae": 5.592994179904512,
+        "rmse": 6.737042522403516,
+        "mape": 8.9057255606654,
+        "r2": -305.20841253953625
+      }
+    },
+    "Peru::Rural::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 7.6849995000000035,
+        "rmse": 9.752908504646326,
+        "mape": 13.774541767942303,
+        "r2": -133.80599640438248
+      },
+      "random_forest": {
+        "mae": 6.214756095413108,
+        "rmse": 8.778738206743498,
+        "mape": 11.1021446234751,
+        "r2": -108.22073803442608
+      },
+      "xgboost": {
+        "mae": 5.57596195629883,
+        "rmse": 7.865269934539354,
+        "mape": 9.961427872425467,
+        "r2": -86.67346584103697
+      },
+      "lightgbm": {
+        "mae": 6.206967010983757,
+        "rmse": 8.433415947419466,
+        "mape": 11.101582329437807,
+        "r2": -99.79708031833412
+      }
+    },
+    "Peru::Rural::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 5.475002499999995,
+        "rmse": 6.447456428702133,
+        "mape": 7.418740355884829,
+        "r2": -37.80575453337323
+      },
+      "random_forest": {
+        "mae": 3.100911859194973,
+        "rmse": 4.089306436189825,
+        "mape": 4.187540004248933,
+        "r2": -14.610564661078335
+      },
+      "xgboost": {
+        "mae": 3.491554107666019,
+        "rmse": 4.075365726836027,
+        "mape": 4.73247391404252,
+        "r2": -14.504311239440678
+      },
+      "lightgbm": {
+        "mae": 3.1338460573337628,
+        "rmse": 3.6750647376728143,
+        "mape": 4.246992716985607,
+        "r2": -11.60808964137902
+      }
+    },
+    "Peru::Rural::Total": {
+      "naive": {
+        "mae": 7.100002499999999,
+        "rmse": 9.155239929133945,
+        "mape": 11.523196345863369,
+        "r2": -191.41944483908355
+      },
+      "random_forest": {
+        "mae": 6.844534992393125,
+        "rmse": 7.9241286732509,
+        "mape": 11.136513705514323,
+        "r2": -143.14929907142144
+      },
+      "xgboost": {
+        "mae": 5.136171264648439,
+        "rmse": 5.9235630989662695,
+        "mape": 8.357695287466369,
+        "r2": -79.55185291602642
+      },
+      "lightgbm": {
+        "mae": 6.9748550613601985,
+        "rmse": 8.1123232007059,
+        "mape": 11.347251541153302,
+        "r2": -150.07756856594617
+      }
+    },
+    "Peru::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 0.7399994999999997,
+        "rmse": 0.7912006193137745,
+        "mape": 2.988910558315872,
+        "r2": -1.4067699919472667
+      },
+      "random_forest": {
+        "mae": 1.0836643548848581,
+        "rmse": 1.1352178017798196,
+        "mape": 4.371115912381461,
+        "r2": -3.9547270714896623
+      },
+      "xgboost": {
+        "mae": 1.8605794525146493,
+        "rmse": 1.9206660237822657,
+        "mape": 7.496394209799312,
+        "r2": -13.182900582299045
+      },
+      "lightgbm": {
+        "mae": 0.6555567497487083,
+        "rmse": 0.7061599076669095,
+        "mape": 2.6490240446751696,
+        "r2": -0.9172001950727366
+      }
+    },
+    "Peru::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 0.6950005000000008,
+        "rmse": 0.8650145547911324,
+        "mape": 4.0483360578017065,
+        "r2": -1.0442597636787108
+      },
+      "random_forest": {
+        "mae": 0.2420123903603404,
+        "rmse": 0.3160697058510108,
+        "mape": 1.3350990098203352,
+        "r2": 0.727067662163119
+      },
+      "xgboost": {
+        "mae": 0.9976444244384766,
+        "rmse": 1.0288857856348548,
+        "mape": 5.6180087437510355,
+        "r2": -1.8921684581147487
+      },
+      "lightgbm": {
+        "mae": 0.8218915174217152,
+        "rmse": 1.031879479998012,
+        "mape": 4.547059147192885,
+        "r2": -1.909023321469753
+      }
+    },
+    "Peru::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 0.8300000000000001,
+        "rmse": 1.0300491347508616,
+        "mape": 4.225949184358443,
+        "r2": -86.68684839110631
+      },
+      "random_forest": {
+        "mae": 0.6421318675256789,
+        "rmse": 0.8679230425075845,
+        "mape": 3.299775182898194,
+        "r2": -61.25597155842315
+      },
+      "xgboost": {
+        "mae": 1.6011086314086924,
+        "rmse": 1.725369378298649,
+        "mape": 8.204370907098907,
+        "r2": -245.02698797337186
+      },
+      "lightgbm": {
+        "mae": 1.7141179856546778,
+        "rmse": 1.899435576583565,
+        "mape": 8.78718971446891,
+        "r2": -297.17258747945243
+      }
+    },
+    "Peru::Urban::Total": {
+      "naive": {
+        "mae": 0.6850004999999992,
+        "rmse": 0.7761772027059918,
+        "mape": 3.4761858883495798,
+        "r2": -1.1857592833608348
+      },
+      "random_forest": {
+        "mae": 0.7491926608984478,
+        "rmse": 0.9344059315818788,
+        "mape": 3.676106055171652,
+        "r2": -2.1677561248168495
+      },
+      "xgboost": {
+        "mae": 0.871505351745606,
+        "rmse": 1.0140005595471662,
+        "mape": 4.429736540731814,
+        "r2": -2.730413338028244
+      },
+      "lightgbm": {
+        "mae": 0.5917830699252189,
+        "rmse": 0.6802241661586124,
+        "mape": 3.0057717466533513,
+        "r2": -0.6787447977677736
+      }
+    },
+    "Uruguay::National::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 1.0249999999999986,
+        "rmse": 1.3476831971943544,
+        "mape": 12.298284334939348,
+        "r2": -1.0124653739612186
+      },
+      "random_forest": {
+        "mae": 2.5486879193060634,
+        "rmse": 2.9205404486650273,
+        "mape": 29.723919159773082,
+        "r2": -8.45103214658009
+      },
+      "xgboost": {
+        "mae": 1.9077254104614259,
+        "rmse": 2.097380584540893,
+        "mape": 22.025005151314243,
+        "r2": -3.8742441179048246
+      },
+      "lightgbm": {
+        "mae": 4.221083114728063,
+        "rmse": 4.326154480368053,
+        "mape": 47.61308867847049,
+        "r2": -19.737520873139726
+      }
+    },
+    "Uruguay::National::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 0.4849999999999999,
+        "rmse": 0.49844759002326394,
+        "mape": 11.52173913043478,
+        "r2": -1.7605555555555568
+      },
+      "random_forest": {
+        "mae": 0.3183196942640705,
+        "rmse": 0.335230341556618,
+        "mape": 7.6103976508093645,
+        "r2": -0.24865979889074352
+      },
+      "xgboost": {
+        "mae": 0.627804470062256,
+        "rmse": 0.6295869144370722,
+        "mape": 14.748704951742425,
+        "r2": -3.4042186981154847
+      },
+      "lightgbm": {
+        "mae": 1.4904950030216741,
+        "rmse": 1.527434046206388,
+        "mape": 35.37659842959051,
+        "r2": -24.922830727893565
+      }
+    },
+    "Uruguay::National::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 0.245,
+        "rmse": 0.28469281690973514,
+        "mape": 12.706093189964157,
+        "r2": -1.131492439184747
+      },
+      "random_forest": {
+        "mae": 0.25941540945165864,
+        "rmse": 0.3129842775388184,
+        "mape": 13.554234690090833,
+        "r2": -1.576177724825671
+      },
+      "xgboost": {
+        "mae": 0.682243890762329,
+        "rmse": 0.7183687131014102,
+        "mape": 34.54896079169379,
+        "r2": -12.571429532228176
+      },
+      "lightgbm": {
+        "mae": 0.7989106156673215,
+        "rmse": 0.8223643789865528,
+        "mape": 40.13826320660324,
+        "r2": -16.785224768598
+      }
+    },
+    "Uruguay::National::Total": {
+      "naive": {
+        "mae": 0.54,
+        "rmse": 0.6328506932918697,
+        "mape": 11.42442209847362,
+        "r2": -1.1165279429250896
+      },
+      "random_forest": {
+        "mae": 0.6306476397907668,
+        "rmse": 0.6879279157247835,
+        "mape": 12.191616370383434,
+        "r2": -1.50096349442962
+      },
+      "xgboost": {
+        "mae": 0.4945829963684081,
+        "rmse": 0.6126631989199206,
+        "mape": 10.56697763582294,
+        "r2": -0.9836501271543936
+      },
+      "lightgbm": {
+        "mae": 1.2452990126811394,
+        "rmse": 1.4807692793276448,
+        "mape": 26.415980559859424,
+        "r2": -10.587674242835314
+      }
+    },
+    "Uruguay::Rural::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 3.2700000000000005,
+        "rmse": 4.404020890050365,
+        "mape": 33.79782339005133,
+        "r2": -756.6328124999989
+      },
+      "random_forest": {
+        "mae": 4.117898925030808,
+        "rmse": 4.63516854110765,
+        "mape": 42.29807604072799,
+        "r2": -838.2495079872651
+      },
+      "xgboost": {
+        "mae": 3.719075374603271,
+        "rmse": 4.111202964777888,
+        "mape": 38.173328231443506,
+        "r2": -659.2339772499403
+      },
+      "lightgbm": {
+        "mae": 4.766581483790324,
+        "rmse": 4.945321463652144,
+        "mape": 48.77107858306465,
+        "r2": -954.3204835491618
+      }
+    },
+    "Uruguay::Rural::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 1.37,
+        "rmse": 1.7507141400011597,
+        "mape": 21.96392815405343,
+        "r2": -155.37755102040788
+      },
+      "random_forest": {
+        "mae": 2.6390227216968816,
+        "rmse": 3.675455662908497,
+        "mape": 42.468274695486194,
+        "r2": -688.2333841839855
+      },
+      "xgboost": {
+        "mae": 1.8995498657226562,
+        "rmse": 2.044091139499134,
+        "mape": 30.190981495718155,
+        "r2": -212.17900951932967
+      },
+      "lightgbm": {
+        "mae": 2.506966331143935,
+        "rmse": 2.510134073911237,
+        "mape": 39.54277627665855,
+        "r2": -320.4680137250108
+      }
+    },
+    "Uruguay::Rural::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 1.0099999999999998,
+        "rmse": 1.2822636234409832,
+        "mape": 22.377785772301937,
+        "r2": -1.0298765432098764
+      },
+      "random_forest": {
+        "mae": 1.3939554991392473,
+        "rmse": 1.6808553122275023,
+        "mape": 30.380475045020503,
+        "r2": -2.4879933094363142
+      },
+      "xgboost": {
+        "mae": 1.5210542488098144,
+        "rmse": 1.5537664442858092,
+        "mape": 30.78819752239985,
+        "r2": -1.980481683195762
+      },
+      "lightgbm": {
+        "mae": 2.8417370776615214,
+        "rmse": 2.9675299363089187,
+        "mape": 58.396230297170405,
+        "r2": -9.87189373196249
+      }
+    },
+    "Uruguay::Rural::Total": {
+      "naive": {
+        "mae": 1.5349999999999997,
+        "rmse": 2.1150059101572265,
+        "mape": 22.093032997183034,
+        "r2": -2794.781249999993
+      },
+      "random_forest": {
+        "mae": 2.175716028595241,
+        "rmse": 2.929645868524862,
+        "mape": 31.323178495791915,
+        "r2": -5363.265571852986
+      },
+      "xgboost": {
+        "mae": 3.109128322601318,
+        "rmse": 3.1966034800552974,
+        "mape": 44.93390915687018,
+        "r2": -6385.421130438513
+      },
+      "lightgbm": {
+        "mae": 3.5367233751038087,
+        "rmse": 3.619738279895905,
+        "mape": 51.11982564369948,
+        "r2": -8188.065759339838
+      }
+    },
+    "Uruguay::Urban::0 a 17 a\u00f1os": {
+      "naive": {
+        "mae": 1.2800000000000011,
+        "rmse": 1.4835430563350707,
+        "mape": 15.110837438423658,
+        "r2": -1.136329442597491
+      },
+      "random_forest": {
+        "mae": 2.7637411637577234,
+        "rmse": 3.199551953608693,
+        "mape": 32.61794434334843,
+        "r2": -8.93679313144332
+      },
+      "xgboost": {
+        "mae": 1.8924133682250979,
+        "rmse": 2.0825456242574774,
+        "mape": 22.04565203248574,
+        "r2": -3.2097563902195754
+      },
+      "lightgbm": {
+        "mae": 3.6389908736011787,
+        "rmse": 3.8434220690575676,
+        "mape": 41.85677766426152,
+        "r2": -13.338511685232582
+      }
+    },
+    "Uruguay::Urban::18 a 59 a\u00f1os": {
+      "naive": {
+        "mae": 0.44000000000000017,
+        "rmse": 0.48754486972995625,
+        "mape": 10.969578254425977,
+        "r2": -1.2504142011834327
+      },
+      "random_forest": {
+        "mae": 0.1830656980519476,
+        "rmse": 0.2064485255222419,
+        "mape": 4.579038518652152,
+        "r2": 0.5964876337012281
+      },
+      "xgboost": {
+        "mae": 0.6495506191253664,
+        "rmse": 0.6908373915622584,
+        "mape": 16.05427216767523,
+        "r2": -3.5184028552004287
+      },
+      "lightgbm": {
+        "mae": 0.930427443337275,
+        "rmse": 0.9401200819570559,
+        "mape": 22.618705710001695,
+        "r2": -7.3675812402266665
+      }
+    },
+    "Uruguay::Urban::60 a\u00f1os y m\u00e1s": {
+      "naive": {
+        "mae": 0.20000000000000007,
+        "rmse": 0.21931712199461315,
+        "mape": 11.293230860183273,
+        "r2": -1.2877526753864452
+      },
+      "random_forest": {
+        "mae": 0.39746046897546794,
+        "rmse": 0.41347471470548464,
+        "mape": 22.164898972037367,
+        "r2": -7.131336014305914
+      },
+      "xgboost": {
+        "mae": 0.8046760845184326,
+        "rmse": 0.8176359831831741,
+        "mape": 44.50642553758522,
+        "r2": -30.79684190230276
+      },
+      "lightgbm": {
+        "mae": 0.5241714519670959,
+        "rmse": 0.5438572524636346,
+        "mape": 29.208434196845758,
+        "r2": -13.068048088337381
+      }
+    },
+    "Uruguay::Urban::Total": {
+      "naive": {
+        "mae": 0.4849999999999999,
+        "rmse": 0.6514982732133677,
+        "mape": 10.826778270808118,
+        "r2": -1.0059073724007561
+      },
+      "random_forest": {
+        "mae": 0.515572973484848,
+        "rmse": 0.5943511659031867,
+        "mape": 10.043894098838116,
+        "r2": -0.6694390756638819
+      },
+      "xgboost": {
+        "mae": 0.4288331031799313,
+        "rmse": 0.5715822818855186,
+        "mape": 9.559954639338375,
+        "r2": -0.5439806472847661
+      },
+      "lightgbm": {
+        "mae": 1.0437899665672439,
+        "rmse": 1.2720825967867944,
+        "mape": 22.896681573614323,
+        "r2": -6.647420288505834
+      }
+    }
+  },
+  "available_models": [
+    "lightgbm",
+    "naive",
+    "random_forest",
+    "xgboost"
   ],
+  "unavailable_models": [],
   "feature_names": [
     "year",
     "year_squared",
@@ -74,8 +4367,6 @@
     "avg_previous_2",
     "avg_previous_3",
     "value_trend",
-    "global_mean",
-    "deviation_from_global",
     "area_encoded",
     "country_encoded",
     "age_range_encoded"
@@ -110,6 +4401,17 @@
     "60 a\u00f1os y m\u00e1s",
     "Total"
   ],
-  "train_date": "2026-09-09T21:52:46.175458",
-  "n_samples": 2408
+  "train_years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
+  ],
+  "test_years": [
+    2023,
+    2024
+  ],
+  "n_samples": 2212,
+  "train_date": "2026-10-01T05:07:40.563408"
 }

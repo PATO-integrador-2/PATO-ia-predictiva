@@ -1,0 +1,39 @@
+{
+  "started_at": "2026-10-02T16:02:55.313745",
+  "finished_at": "2026-10-02T16:03:46.438945",
+  "total": 1,
+  "successful": 0,
+  "failed": 1,
+  "results": [
+    {
+      "model": "lv1_vw1",
+      "trainer": "src\\level1\\lv1_vw1_train.py",
+      "started_at": "2026-10-02T16:02:55.313745",
+      "exit_code": 1,
+      "status": "failed",
+      "metrics": {
+        "selected_model": "random_forest",
+        "variation_required": null,
+        "available_models": [
+          "lightgbm",
+          "naive",
+          "random_forest",
+          "xgboost"
+        ],
+        "train_years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "test_years": [
+          2023,
+          2024,
+          2025
+        ],
+        "metrics_path": "models\\train_lv1_vw1\\metrics.json"
+      }
+    }
+  ]
+}
