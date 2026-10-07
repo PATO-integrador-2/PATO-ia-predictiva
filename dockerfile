@@ -2,6 +2,9 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+RUN apt-get -y update
+RUN apt-get -y --no-install-recommends install libgomp1
+
 RUN python -m pip install --upgrade pip
 
 COPY requirements.txt .
