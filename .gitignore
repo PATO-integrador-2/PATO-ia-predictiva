@@ -8,3 +8,5 @@ Endpoints nivel 3.txt
 
 __pycache__/
 .vscode
+.venv/
+reports/retrain_summary.json

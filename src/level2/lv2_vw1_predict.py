@@ -127,46 +127,45 @@ class DepartmentPovertyPredictor:
     def predict_department_trend(self, region, departamentos, año_inicio=2026, años=5):
         results = []
         for departamento in departamentos:
-            try:
-                historical = self._get_historical_data(region, departamento)
-                ipm_values = historical['ipm'].astype(float).tolist()
-                projections = {
-                    column: (
-                        [historical[column].mean()] * años
-                        if column == 'personas_que_habitan_ese_hogar'
-                        else project_privation(historical[column].values, años)
-                    )
-                    for column in PRIVATION_COLS
-                }
-                ipm_real = ipm_values[-1]
-                real_year = int(historical['anio'].iloc[-1])
-                for offset in range(años):
-                    year = año_inicio + offset
-                    row = {'region': region, 'departamento': departamento}
-                    row.update({
-                        'year': year,
-                        'year_squared': year ** 2,
-                        'years_since_2010': year - 2010,
-                        'ipm_lag1': ipm_values[-1],
-                        'ipm_lag2': ipm_values[-2],
-                        'ipm_lag3': ipm_values[-3],
-                        'ipm_trend': float(np.mean(np.diff(ipm_values)[-3:])),
-                    })
-                    row.update({column: projections[column][offset] for column in PRIVATION_COLS})
-                    prediction = self.predict_household(row)
-                    results.append({
-                        'departamento': departamento,
-                        'region': region,
-                        'anio_real': real_year,
-                        'ipm_real': float(ipm_real),
-                        'año': year,
-                        'ipm_predicho': prediction,
-                        'cambio': prediction - ipm_real,
-                        'cambio_porcentaje': ((prediction - ipm_real) / ipm_real * 100) if ipm_real else 0,
-                    })
-                    ipm_values.append(prediction)
-            except Exception as error:
-                print(f'Error con {departamento}: {error}')
+            # Los errores (datos insuficientes, base caída) se propagan: un
+            # departamento sin datos no debe devolver éxito con lista vacía.
+            historical = self._get_historical_data(region, departamento)
+            ipm_values = historical['ipm'].astype(float).tolist()
+            projections = {
+                column: (
+                    [historical[column].mean()] * años
+                    if column == 'personas_que_habitan_ese_hogar'
+                    else project_privation(historical[column].values, años)
+                )
+                for column in PRIVATION_COLS
+            }
+            ipm_real = ipm_values[-1]
+            real_year = int(historical['anio'].iloc[-1])
+            for offset in range(años):
+                year = año_inicio + offset
+                row = {'region': region, 'departamento': departamento}
+                row.update({
+                    'year': year,
+                    'year_squared': year ** 2,
+                    'years_since_2010': year - 2010,
+                    'ipm_lag1': ipm_values[-1],
+                    'ipm_lag2': ipm_values[-2],
+                    'ipm_lag3': ipm_values[-3],
+                    'ipm_trend': float(np.mean(np.diff(ipm_values)[-3:])),
+                })
+                row.update({column: projections[column][offset] for column in PRIVATION_COLS})
+                prediction = self.predict_household(row)
+                results.append({
+                    'departamento': departamento,
+                    'region': region,
+                    'anio_real': real_year,
+                    'ipm_real': float(ipm_real),
+                    'año': year,
+                    'ipm_predicho': prediction,
+                    'cambio': prediction - ipm_real,
+                    'cambio_porcentaje': ((prediction - ipm_real) / ipm_real * 100) if ipm_real else 0,
+                })
+                ipm_values.append(prediction)
         return pd.DataFrame(results)
 
     def predict_household_poverty(self, region, departamento, household_data):
@@ -179,6 +178,29 @@ class DepartmentPovertyPredictor:
         row.setdefault('ipm_lag3', 0)
         row.setdefault('ipm_trend', 0)
         return self.predict_household(row)
+
+    def predict_household_trend(self, region, departamento, household_data, año_inicio=2026, años=5):
+        # Los rezagos de IPM salen del historial del departamento (igual que
+        # predict_department_trend); con rezagos en 0 el modelo subestima el IPM.
+        historical = self._get_historical_data(region, departamento)
+        ipm_values = historical['ipm'].astype(float).tolist()
+        predictions = []
+        for offset in range(años):
+            year = año_inicio + offset
+            row = {**household_data, 'region': region, 'departamento': departamento}
+            row.update({
+                'year': year,
+                'year_squared': year ** 2,
+                'years_since_2010': year - 2010,
+                'ipm_lag1': ipm_values[-1],
+                'ipm_lag2': ipm_values[-2],
+                'ipm_lag3': ipm_values[-3],
+                'ipm_trend': float(np.mean(np.diff(ipm_values)[-3:])),
+            })
+            prediction = self.predict_household(row)
+            predictions.append({'year': year, 'predicted_ipm': round(prediction, 4)})
+            ipm_values.append(prediction)
+        return predictions
 
 
 if __name__ == '__main__':

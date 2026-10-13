@@ -1,6 +1,7 @@
 {
   "model": "temporal_benchmark",
   "selected_model": "random_forest",
+  "variation_required": true,
   "candidates": {
     "naive": {
       "mae": 1.5030769230769228,
@@ -10,30 +11,24 @@
     },
     "random_forest": {
       "mae": 1.3192655875823132,
-      "rmse": 1.6410499621298416,
-      "mape": 1140.2909653628021,
-      "r2": 0.9559564851716373
+      "rmse": 1.641049962129841,
+      "mape": 1140.2909653628017,
+      "r2": 0.9559564851716374
     },
     "xgboost": {
       "mae": 1.3869206670382275,
       "rmse": 1.7667561204493725,
       "mape": 232.04459827383067,
       "r2": 0.9489504906886699
-    },
-    "lightgbm": {
-      "mae": 1.9090497354787241,
-      "rmse": 2.348155939482982,
-      "mape": 1250.663381910694,
-      "r2": 0.9098237372506325
     }
   },
   "available_models": [
-    "lightgbm",
     "naive",
     "random_forest",
     "xgboost"
   ],
   "unavailable_models": [
+    "lightgbm",
     "arima"
   ],
   "feature_names": [
@@ -57,5 +52,5 @@
     2025
   ],
   "n_samples": 217,
-  "train_date": "2026-09-30T22:01:15.856830"
+  "train_date": "2026-10-12T22:33:30.010214"
 }

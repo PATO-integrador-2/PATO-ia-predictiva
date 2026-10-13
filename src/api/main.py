@@ -593,28 +593,13 @@ def predict_household_poverty(request: PredictHouseholdPovertyRequest):
         hogar['region'] = region
         hogar['departamento'] = department
 
-        predicciones = []
-        for year in range(request.begin_year, request.begin_year + request.years):
-            hogar['anio'] = year
-            hogar['year'] = year
-            hogar['year_squared'] = year ** 2
-            hogar['years_since_2010'] = year - 2010
-
-            if 'ipm_lag1' not in hogar:
-                hogar['ipm_lag1'] = 0
-            if 'ipm_lag2' not in hogar:
-                hogar['ipm_lag2'] = 0
-            if 'ipm_lag3' not in hogar:
-                hogar['ipm_lag3'] = 0
-            if 'ipm_trend' not in hogar:
-                hogar['ipm_trend'] = 0
-
-            ipm_pred = predictors['department_poverty'].predict_household(hogar)
-
-            predicciones.append({
-                'year': year,
-                'predicted_ipm': round(ipm_pred, 4)
-            })
+        predicciones = predictors['department_poverty'].predict_household_trend(
+            region=region,
+            departamento=department,
+            household_data=hogar,
+            año_inicio=request.begin_year,
+            años=request.years
+        )
 
         privaciones = [
             hogar['privacion_bajo_logro_educativo'],
@@ -678,27 +663,13 @@ def predict_multiple_households(request: PredictMultipleHouseholdsRequest):
             hogar['region'] = _coerce_level2_name(hogar_request.region, accepted_regions)
             hogar['departamento'] = _coerce_level2_name(hogar_request.department, accepted_departments)
 
-            predicciones = []
-            for year in range(hogar_request.begin_year, hogar_request.begin_year + hogar_request.years):
-                hogar['anio'] = year
-                hogar['year'] = year
-                hogar['year_squared'] = year ** 2
-                hogar['years_since_2010'] = year - 2010
-
-                if 'ipm_lag1' not in hogar:
-                    hogar['ipm_lag1'] = 0
-                if 'ipm_lag2' not in hogar:
-                    hogar['ipm_lag2'] = 0
-                if 'ipm_lag3' not in hogar:
-                    hogar['ipm_lag3'] = 0
-                if 'ipm_trend' not in hogar:
-                    hogar['ipm_trend'] = 0
-
-                ipm_pred = predictors['department_poverty'].predict_household(hogar)
-                predicciones.append({
-                    'year': year,
-                    'predicted_ipm': round(ipm_pred, 4)
-                })
+            predicciones = predictors['department_poverty'].predict_household_trend(
+                region=hogar['region'],
+                departamento=hogar['departamento'],
+                household_data=hogar,
+                año_inicio=hogar_request.begin_year,
+                años=hogar_request.years
+            )
 
             privaciones = [
                 hogar['privacion_bajo_logro_educativo'],

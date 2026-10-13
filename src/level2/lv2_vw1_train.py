@@ -63,7 +63,14 @@ def _prepare_data(data_frame):
     frame['departamento'] = frame['departamento'].astype(str)
     frame['anio'] = pd.to_numeric(frame['anio'], errors='raise').astype(int)
     frame['ipm'] = pd.to_numeric(frame['ipm'], errors='raise')
-    frame = frame.drop_duplicates(subset=GROUP_COLS + ['anio']).sort_values(GROUP_COLS + ['anio'])
+    # La vista trae un registro por hogar: se promedia por departamento y
+    # año (igual que DepartmentPovertyPredictor._aggregate_by_year) en vez
+    # de quedarse con un hogar arbitrario por grupo.
+    frame = (
+        frame.groupby(GROUP_COLS + ['anio'], as_index=False)[[*PRIVATION_COLS, 'ipm']]
+        .mean()
+        .sort_values(GROUP_COLS + ['anio'])
+    )
     frame['year'] = frame['anio']
     frame['year_squared'] = frame['anio'] ** 2
     frame['years_since_2010'] = frame['anio'] - 2010
